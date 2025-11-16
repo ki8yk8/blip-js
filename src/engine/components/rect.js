@@ -8,8 +8,18 @@ export function rect(width, height, opt) {
 		rect: { width, height, radius, fill },
 		draw(ctx, e) {
 			console.log(e);
-			ctx.fillStyle = rgbToHex(e.color) || "#ffffff";
-			ctx.fillRect(e.pos.x, e.pos.y, e.rect.width, e.rect.height);
+			ctx.beginPath();
+			ctx.roundRect(
+				e.pos.x,
+				e.pos.y,
+				e.rect.width,
+				e.rect.height,
+				e.rect.radius
+			);
+			if (e.rect.fill) {
+				ctx.fillStyle = rgbToHex(e.color) || "#ffffff";
+				ctx.fill();
+			}
 		},
 	};
 }

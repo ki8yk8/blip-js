@@ -15,7 +15,11 @@ class Engine {
 		if (!props.canvas) {
 			document.body.appendChild(this.canvas);
 		}
-		this.canvas_ctx = this.canvas.getContext("2d");
+		if (this.canvas.getContext) {
+			this.canvas_ctx = this.canvas.getContext("2d");
+		} else {
+			throw new Error("Canvas not supported in this browser");
+		}
 
 		// setting the size
 		this.canvas.width = this.width;
