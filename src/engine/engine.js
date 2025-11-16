@@ -70,6 +70,13 @@ class Engine {
 		return entity;
 	}
 
+	width() {
+		return this.width;
+	}
+	height() {
+		return this.height;
+	}
+
 	add_defaults(entity) {
 		const defaults = {
 			pos: { x: 0, y: 0 },
