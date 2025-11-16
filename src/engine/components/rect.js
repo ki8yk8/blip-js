@@ -1,4 +1,5 @@
 import { rgbToHex } from "../utils";
+import { convertBasedOnAnchor } from "./anchor";
 
 export function rect(width, height, opt) {
 	const radius = opt["radius"] ?? [0, 0, 0, 0];
@@ -7,10 +8,18 @@ export function rect(width, height, opt) {
 	return {
 		rect: { width, height, radius, fill },
 		draw(ctx, e) {
-			ctx.beginPath();
-			ctx.roundRect(
+			const anchored_pos = convertBasedOnAnchor(
 				e.pos.x,
 				e.pos.y,
+				e.rect.width,
+				e.rect.height,
+				e.anchor
+			);
+
+			ctx.beginPath();
+			ctx.roundRect(
+				anchored_pos.x,
+				anchored_pos.y,
 				e.rect.width,
 				e.rect.height,
 				e.rect.radius
