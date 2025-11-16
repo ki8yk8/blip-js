@@ -20,6 +20,47 @@ class Engine {
 		// setting the size
 		this.canvas.width = this.width;
 		this.canvas.height = this.height;
+
+		this.entities = [];
+		this.time = 0;
+	}
+
+	start() {
+		requestAnimationFrame(this.loop.bind(this));
+	}
+
+	loop(t) {
+		const dt = (t - this.time) / 1000; // in seconds
+		this.time = t;   // total time elapsed
+		this.dt = dt;    // time elapsed since last render
+
+		this.update(dt);
+		this.draw();
+	}
+
+	update(dt) {
+		for (const e of this.entities) {
+			if (e.update) e.update(dt, e);
+		}
+	}
+
+	draw() {
+		this.canvas_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+		for (const e of this.entities) {
+			if (e.draw) e.draw(this.canvas_ctx, e);
+		}
+	}
+
+	add(components) {
+		const entity = {};
+
+		for (const c of components) {
+			Object.assign(entity, c);
+		}
+
+		this.entities.push(entity);
+		return entity;
 	}
 }
 
