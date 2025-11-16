@@ -31,8 +31,8 @@ class Engine {
 
 	loop(t) {
 		const dt = (t - this.time) / 1000; // in seconds
-		this.time = t;   // total time elapsed
-		this.dt = dt;    // time elapsed since last render
+		this.time = t; // total time elapsed
+		this.dt = dt; // time elapsed since last render
 
 		this.update(dt);
 		this.draw();
@@ -59,8 +59,20 @@ class Engine {
 			Object.assign(entity, c);
 		}
 
-		this.entities.push(entity);
+		this.entities.push(this.add_defaults(entity));
 		return entity;
+	}
+
+	add_defaults(entity) {
+		const defaults = {
+			pos: { x: 0, y: 0 },
+			anchor: "center",
+			color: { r: 255, g: 255, b: 255 },
+			rotate: 0,
+			scale: 1,
+		};
+
+		return { ...defaults, ...entity };
 	}
 }
 

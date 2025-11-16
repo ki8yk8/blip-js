@@ -1,3 +1,5 @@
+import { rgbToHex } from "../utils";
+
 export function rect(width, height, opt) {
 	const radius = opt["radius"] ?? [0, 0, 0, 0];
 	const fill = opt["fill"] ?? true;
@@ -5,7 +7,7 @@ export function rect(width, height, opt) {
 	return {
 		rect: { width, height, radius, fill },
 		draw(ctx, e) {
-			ctx.fillStyle = e.color || "rgb(255, 255, 255)";
+			ctx.fillStyle = rgbToHex(e.color) || "rgb(0, 0, 0)";
 			ctx.fillRect(e.pos.x, e.pos.y, e.rect.w, e.rect.h);
 		},
 	};
