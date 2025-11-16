@@ -1,7 +1,7 @@
-import Blip from "./blip";
+import Engine from "./blip";
 import { rgbToHex } from "./blip";
 
-const blip = new Blip();
+const blip = new Engine();
 
 // creating a rectangle on the new canvas manually
 blip.canvas_ctx.fillStyle = "red";
