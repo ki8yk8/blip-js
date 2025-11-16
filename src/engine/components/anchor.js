@@ -33,5 +33,26 @@ export function convertBasedOnAnchor(x, y, width, height, anchor) {
 
 		case "top":
 			return { x: x - width / 2, y };
+
+		case "topright":
+			return { x: x - width, y };
+
+		case "left":
+			return { x, y: y - height / 2 };
+
+		case "center":
+			return { x: x - width / 2, y: y - height / 2 };
+
+		case "right":
+			return { x: x - width, y: y - height / 2 };
+
+		case "botright":
+			return { x: x - width, y: y - height };
+
+		case "bot":
+			return { x: x - width / 2, y: y - height };
+
+		case "botleft":
+			return { x, y: y - height };
 	}
 }
