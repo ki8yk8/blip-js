@@ -1,13 +1,15 @@
 import Engine from "./engine";
 import * as k from "./engine";
 
+// TODO: Later make sure that all the components are imported from this engine not the import
 const engine = new Engine();
 
 engine.add([
 	k.rect(100, 200, { radius: [10, 10, 20, 0] }),
 	k.color(0, 0, 0),
 	k.pos(200, 200),
-	k.anchor("botright"),
+	k.anchor("topleft"),
+	k.rotate(30),
 ]);
 
 engine.add([

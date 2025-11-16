@@ -82,7 +82,7 @@ class Engine {
 			pos: { x: 0, y: 0 },
 			anchor: "center",
 			color: { r: 255, g: 255, b: 255 },
-			rotate: 0,
+			angle: 0,
 			scale: 1,
 		};
 

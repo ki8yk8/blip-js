@@ -1,4 +1,4 @@
-import { rgbToHex } from "../utils";
+import { rgbToHex, toRadian } from "../utils";
 import { convertBasedOnAnchor } from "./anchor";
 
 export function rect(width, height, opt) {
@@ -16,6 +16,7 @@ export function rect(width, height, opt) {
 				e.anchor
 			);
 
+			ctx.rotate(toRadian(e.angle));
 			ctx.beginPath();
 			ctx.roundRect(
 				anchored_pos.x,
@@ -28,6 +29,7 @@ export function rect(width, height, opt) {
 				ctx.fillStyle = rgbToHex(e.color) || "#ffffff";
 				ctx.fill();
 			}
+			ctx.closePath();
 		},
 	};
 }
