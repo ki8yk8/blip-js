@@ -21,19 +21,35 @@ export function hexToRgb(hex) {
 	G = parseInt(G, 16);
 	B = parseInt(B, 16);
 
-	return [R, G, B];
+	return { r: R, g: G, b: B };
 }
 
 export function color(...props) {
-	if (props.length === 1 && props[0].startsWith("#")) {
+	if (
+		props.length === 1 &&
+		typeof props[0] === "string" &&
+		props[0].startsWith("#")
+	) {
 		//hex color
 		return hexToRgb(props[0]);
+	} else if (props.length === 1 && typeof props[0] === "object") {
+		// might be {r: value, g: value, b: value}
+		const dict = props[0];
+		if ("r" in dict && "g" in dict && "b" in dict) {
+			return props[0];
+		} else {
+			throw new Error(
+				`Object passed to color must have keys, r, g and b, got ${Object.keys(
+					props[0]
+				)}`
+			);
+		}
 	} else if (
 		props.length === 3 &&
 		props.every((item) => typeof item === "number")
 	) {
 		//rgb color format
-		return { color: (props[0], props[1], props[2]) };
+		return { r: props[0], g: props[1], b: props[2] };
 	} else {
 		throw new Error(
 			`color accepts only RGB and Hex color format, got ${props}`
