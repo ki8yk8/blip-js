@@ -23,6 +23,9 @@ class Engine {
 
 		this.entities = [];
 		this.time = 0;
+
+		// begin the render
+		this.start();
 	}
 
 	start() {

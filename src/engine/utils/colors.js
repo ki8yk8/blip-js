@@ -8,9 +8,11 @@ export function rgbToHex(...props) {
 	} else if (props.length === 1 && typeof props[0] === "object") {
 		// object format
 		if ("r" in props[0] && "g" in props[0] && "b" in props[0]) {
-			r = props["r"];
-			g = props["g"];
-			b = props["b"];
+			r = props[0]["r"];
+			g = props[0]["g"];
+			b = props[0]["b"];
+		} else {
+			throw new Error(`rgb color object must have keys, r, g, and b, got ${Object.keys(props[0])}`)
 		}
 	} else {
 		throw new Error("rgb color must be receive three numbers, or an object");
