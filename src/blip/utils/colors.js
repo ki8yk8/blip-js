@@ -1,4 +1,21 @@
-export function rgbToHex(r, g, b) {
+export function rgbToHex(...props) {
+	let [r, g, b] = [undefined, undefined, undefined];
+	if (props.length === 3 && props.every((item) => typeof item === "number")) {
+		// array format
+		r = props[0];
+		g = props[1];
+		b = props[2];
+	} else if (props.length === 1 && typeof props[0] === "object") {
+		// object format
+		if ("r" in props[0] && "g" in props[0] && "b" in props[0]) {
+			r = props["r"];
+			g = props["g"];
+			b = props["b"];
+		}
+	} else {
+		throw new Error("rgb color must be receive three numbers, or an object");
+	}
+
 	let R = r.toString(16);
 	let G = g.toString(16);
 	let B = b.toString(16);
