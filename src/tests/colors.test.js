@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { rgbToHex, hexToRgb, color } from "../blip";
+import { rgbToHex, hexToRgb, color } from "../engine";
 
 describe("Colors Uilities Test", () => {
 	test("Hex to RGB should work for 6-string format", () => {

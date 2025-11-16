@@ -1,5 +1,5 @@
-import Engine from "./blip";
-import { rgbToHex } from "./blip";
+import Engine from "./engine";
+import { rgbToHex } from "./engine";
 
 const blip = new Engine();
 
