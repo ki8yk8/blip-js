@@ -48,12 +48,12 @@ export function color(...props) {
 		props[0].startsWith("#")
 	) {
 		//hex color
-		return hexToRgb(props[0]);
+		return {color: hexToRgb(props[0])};
 	} else if (props.length === 1 && typeof props[0] === "object") {
 		// might be {r: value, g: value, b: value}
 		const dict = props[0];
 		if ("r" in dict && "g" in dict && "b" in dict) {
-			return props[0];
+			return {color: props[0]};
 		} else {
 			throw new Error(
 				`Object passed to color must have keys, r, g and b, got ${Object.keys(
@@ -66,7 +66,7 @@ export function color(...props) {
 		props.every((item) => typeof item === "number")
 	) {
 		//rgb color format
-		return { r: props[0], g: props[1], b: props[2] };
+		return {color: { r: props[0], g: props[1], b: props[2] }};
 	} else {
 		throw new Error(
 			`color accepts only RGB and Hex color format, got ${props}`

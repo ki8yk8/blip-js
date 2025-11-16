@@ -11,16 +11,18 @@ describe("Colors Uilities Test", () => {
 	});
 
 	test("color should accept hex value", () => {
-		expect(color("#ffffff")).toEqual({ r: 255, g: 255, b: 255 });
+		expect(color("#ffffff")).toEqual({ color: { r: 255, g: 255, b: 255 } });
 	});
 	test("color should accept rgb value in list", () => {
-		expect(color(255, 255, 255)).toEqual({ r: 255, g: 255, b: 255 });
+		expect(color(255, 255, 255)).toEqual({ color: { r: 255, g: 255, b: 255 } });
 	});
 	test("color should accept rgb value in object with keys r, g, b", () => {
 		expect(color({ r: 255, g: 255, b: 255 })).toEqual({
-			r: 255,
-			g: 255,
-			b: 255,
+			color: {
+				r: 255,
+				g: 255,
+				b: 255,
+			},
 		});
 	});
 });
