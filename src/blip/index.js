@@ -1,3 +1,5 @@
+export { color, rgbToHex, hexToRgb } from "./utils/colors";
+
 class Blip {
 	constructor(
 		props = {
