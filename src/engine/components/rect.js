@@ -7,7 +7,6 @@ export function rect(width, height, opt) {
 	return {
 		rect: { width, height, radius, fill },
 		draw(ctx, e) {
-			console.log(e);
 			ctx.beginPath();
 			ctx.roundRect(
 				e.pos.x,
