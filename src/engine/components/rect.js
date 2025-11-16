@@ -21,14 +21,14 @@ export function rect(width, height, opt) {
 
 			// the default for rotation is 0, 0 of canvas
 			// this brings the canvas at the point of the anchor
-			ctx.translate(anchored_pos.x, anchored_pos.y);
+			ctx.translate(e.pos.x, e.pos.y);
 			// does the rotation
 			ctx.rotate(toRadian(e.angle));
 			ctx.beginPath();
 			// the coordinate are 0,0 since the coordinate origin is already at the anchor point
 			ctx.roundRect(
-				0,
-				0,
+				anchored_pos.x - e.pos.x,
+				anchored_pos.y - e.pos.y,
 				e.rect.width,
 				e.rect.height,
 				e.rect.radius
@@ -39,7 +39,7 @@ export function rect(width, height, opt) {
 			}
 			// resetting to its original position and rotation angle
 			ctx.translate(-anchored_pos.x, -anchored_pos.y);
-			
+
 			ctx.closePath();
 
 			// restores context from the stack
