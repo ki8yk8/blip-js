@@ -7,8 +7,9 @@ export function rect(width, height, opt) {
 	return {
 		rect: { width, height, radius, fill },
 		draw(ctx, e) {
-			ctx.fillStyle = rgbToHex(e.color) || "rgb(0, 0, 0)";
-			ctx.fillRect(e.pos.x, e.pos.y, e.rect.w, e.rect.h);
+			console.log(e);
+			ctx.fillStyle = rgbToHex(e.color) || "#ffffff";
+			ctx.fillRect(e.pos.x, e.pos.y, e.rect.width, e.rect.height);
 		},
 	};
 }

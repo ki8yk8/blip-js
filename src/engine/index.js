@@ -1,5 +1,5 @@
 export * from "./utils";
-export * from "./shapes";
+export * from "./components";
 import Engine from "./engine";
 
 export default Engine;
