@@ -16,6 +16,9 @@ export function rect(width, height, opt) {
 				e.anchor
 			);
 
+			// pushes the current state in the stack
+			ctx.save();
+
 			// the default for rotation is 0, 0 of canvas
 			// this brings the canvas at the point of the anchor
 			ctx.translate(anchored_pos.x, anchored_pos.y);
@@ -34,10 +37,13 @@ export function rect(width, height, opt) {
 				ctx.fillStyle = rgbToHex(e.color) || "#ffffff";
 				ctx.fill();
 			}
-			// resetting to its original position
+			// resetting to its original position and rotation angle
 			ctx.translate(-anchored_pos.x, -anchored_pos.y);
 			
 			ctx.closePath();
+
+			// restores context from the stack
+			ctx.restore();
 		},
 	};
 }
