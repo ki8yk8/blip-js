@@ -1,7 +1,7 @@
 export function toRadian(degree) {
-	return (Math.PI / 180) * degree;
+	return (degree * Math.PI) / 180;
 }
 
 export function toDegree(radian) {
-	return (180 / Math.PI) * radian;
+	return (180 * radian) / Math.PI;
 }

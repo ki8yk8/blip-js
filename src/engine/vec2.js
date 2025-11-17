@@ -55,7 +55,7 @@ export class Vec2 {
 	}
 
 	scale(x, y = undefined) {
-		if (!y) {
+		if (y === undefined) {
 			y = x;
 		}
 
@@ -93,7 +93,7 @@ export class Vec2 {
 	angleBetween(...props) {
 		const { x, y } = this.parse_props(props);
 
-		return toDegree(Math.atan2(x - this.x, y - this.y));
+		return toDegree(Math.atan2(y - this.y, x - this.x));
 	}
 	isZero() {
 		return this.x === 0 && this.y === 0;

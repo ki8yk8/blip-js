@@ -115,11 +115,11 @@ describe("Vec2 should implement vector functions", () => {
 	});
 	test("Angle", () => {
 		const vec = new Vec2(4, 4);
-		expect(vec.angle()).toBeCloseTo(45);
+		expect(vec.angle()).toBeCloseTo(-135);
 	});
 	test("Angle between", () => {
 		const vec = new Vec2(4, 4);
-		expect(vec.angleBetween(0, 0)).toBeCloseTo(45);
+		expect(vec.angleBetween(0, 0)).toBeCloseTo(-135);
 	});
 	test("rotation", () => {
 		const vec = new Vec2(4, 4);
