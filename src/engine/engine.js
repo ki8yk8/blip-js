@@ -43,10 +43,11 @@ class Engine {
 
 		this.update(dt);
 		this.draw();
+
+		requestAnimationFrame(this.loop.bind(this));
 	}
 
 	update(dt) {
-		console.log(this.entities[0].scale);
 		for (const e of this.entities) {
 			if (e.update) e.update(dt, e);
 		}
@@ -61,13 +62,13 @@ class Engine {
 	}
 
 	add(components) {
-		const entity = {};
+		// default values that are overrriden later if defined by the user
+		const entity = {...this.defaults()}; 
 
 		for (const c of components) {
 			Object.assign(entity, c);
 		}
 
-		Object.assign(entity, this.defaults());
 		this.entities.push(entity);
 		return entity;
 	}
@@ -88,7 +89,7 @@ class Engine {
 			scale: 1,
 		};
 
-		return {...defaults};
+		return { ...defaults };
 	}
 }
 
