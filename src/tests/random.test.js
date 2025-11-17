@@ -2,7 +2,7 @@ import { describe, expect, test } from "vitest";
 import { choose, rand, randi, randSeed, shuffle } from "../engine/utils/random";
 
 describe("Random utilities test", () => {
-	const generator = randSeed();
+	const generator = randSeed(100);
 
 	test("rand should return number betwen lower and upper inclusive", () => {
 		const [lower, upper] = [10, 20];
@@ -34,6 +34,7 @@ describe("Random utilities test", () => {
 		const list = [1, 2, 3, 4, 5];
 		const shuffled = shuffle(generator, list);
 
+		console.log(shuffled);
 		const all_exists = list.every((x) => shuffled.includes(x));
 		expect(all_exists).toBe(true);
 
