@@ -15,11 +15,14 @@ export function randSeed(seed) {
 }
 
 export function choose(list) {
+	list = structuredClone(list); // avoid copy by reference
 	const random_index = randi(0, list.length - 1);
-	return choose[random_index];
+	return list[random_index];
 }
 
 export function chooseMultiple(list, n = 1, replacement = true) {
+	list = structuredClone(list);
+
 	if (n > list.length && !replacement) {
 		throw new Error(
 			`Impossible to make ${n} choices from array with length ${list.length} without replacement`
@@ -29,15 +32,18 @@ export function chooseMultiple(list, n = 1, replacement = true) {
 	const choices = [];
 	for (let i = 0; i < n; i++) {
 		const choice = choose(list);
-		choices.append(choice);
+		choices.push(choice);
 
 		if (!replacement) {
 			// remove elment at found index
 			list.splice(list.indexOf(choice), 1);
 		}
 	}
+
+	return choices;
 }
 
 export function shuffle(list) {
+	list =  structuredClone(list);
 	return chooseMultiple(list, list.length, false);
 }

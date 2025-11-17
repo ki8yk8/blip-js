@@ -5,6 +5,7 @@ import { rotate } from "./components/rotate";
 import { scale } from "./components/scale";
 import { color, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
 import { clamp, map, max, min } from "./utils/numbers";
+import { choose, chooseMultiple, rand, randi, shuffle } from "./utils/random";
 import { vec2 } from "./vec2";
 
 class Engine {
@@ -56,6 +57,13 @@ class Engine {
 		this.rect = rect;
 		this.rotate = rotate;
 		this.scale = scale;
+
+		// random utilities
+		this.rand = rand;
+		this.randi = randi;
+		this.choose = choose;
+		this.chooseMultiple = chooseMultiple;
+		this.shuffle = shuffle;
 
 		// begin the render
 		this.start();
@@ -125,7 +133,7 @@ class Engine {
 			this.color(255, 255, 255),
 			this.rotate(0),
 			this.scale(1, 1),
-		]
+		];
 	}
 
 	onUpdate(func) {
