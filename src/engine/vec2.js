@@ -114,3 +114,7 @@ export class Vec2 {
 		return new Vec2(new_x, new_y);
 	}
 }
+
+export function vec2(...props) {
+	return new Vec2(...props);
+}
