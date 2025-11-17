@@ -12,7 +12,7 @@ const object = e.add([
 
 e.onUpdate(() => {
 	object.angle += 10 * e.dt;
-	object.scale.x += 0.05 * e.dt;
+	// object.scale.x += 0.05 * e.dt;
 });
 
 // e.add([

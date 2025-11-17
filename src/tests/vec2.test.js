@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { Vec2 } from "../engine";
+import { Vec2 } from "../engine/vec2";
 
 describe("Vec2 should be initialized in different conditions", () => {
 	test("While passing objects", () => {

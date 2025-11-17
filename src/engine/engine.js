@@ -4,6 +4,7 @@ import { rect } from "./components/rect";
 import { rotate } from "./components/rotate";
 import { scale } from "./components/scale";
 import { color, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
+import { clamp, map, max, min } from "./utils/numbers";
 import { vec2 } from "./vec2";
 
 class Engine {
@@ -44,6 +45,10 @@ class Engine {
 		this.rgbToHex = rgbToHex;
 		this.hexToRgb = hexToRgb;
 		this.color = color;
+		this.clamp = clamp;
+		this.min = min;
+		this.max = max;
+		this.map = map;
 
 		// adding the components
 		this.anchor = anchor;
