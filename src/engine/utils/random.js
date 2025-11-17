@@ -1,6 +1,6 @@
 export class Random {
 	constructor(seed) {
-		this.x = seed;
+		this.x = seed || Date.now();
 		this.a = 1664525;
 		this.c = 1013904223;
 		this.m = 2 ** 32;

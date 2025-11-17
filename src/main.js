@@ -15,6 +15,15 @@ e.onUpdate(() => {
 	// object.scale.x += 0.05 * e.dt;
 });
 
+e.randSeed(200);
+console.log(e.rand());
+console.log(e.rand());
+
+e.randSeed(200);
+console.log(e.rand());
+console.log(e.rand());
+
+
 // e.add([
 // 	e.rect(10, 10, { radius: 5 }),
 // 	e.color(255, 0, 0),
