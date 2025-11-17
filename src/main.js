@@ -19,7 +19,13 @@ e.onKeyDown(" ", () => {
 });
 
 e.onKeyPressed("ArrowUp", () => {
-	console.log("Arrow pressed");
+	object.moveTo(100, 100);
+	console.log(object.pos);
+});
+
+e.onKeyPressed("ArrowDown", () => {
+	object.moveBy(100, 100);
+	console.log(object.pos);
 })
 
 e.onUpdate(() => {

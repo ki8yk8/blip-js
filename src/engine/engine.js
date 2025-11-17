@@ -49,6 +49,7 @@ class Engine {
 
 		// window event listeners to handle the keys action
 		window.addEventListener("keydown", (e) => {
+			e.preventDefault();
 			const key = e.key;
 
 			// if the key has not been down before then, this is the first time key has been pressed
@@ -60,6 +61,7 @@ class Engine {
 		});
 
 		window.addEventListener("keyup", (e) => {
+			e.preventDefault();
 			const key = e.key;
 
 			// remove the key from keydown
