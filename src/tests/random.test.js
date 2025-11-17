@@ -1,14 +1,20 @@
 import { describe, expect, test } from "vitest";
-import { choose, rand, randi, randSeed, shuffle } from "../engine/utils/random";
+import { Random } from "../engine/utils/random";
+
+const random = new Random(100);
+const [rand, randi, choose, shuffle] = [
+	random.rand.bind(random),
+	random.randi.bind(random),
+	random.choose.bind(random),
+	random.shuffle.bind(random),
+];
 
 describe("Random utilities test", () => {
-	const generator = randSeed(100);
-
 	test("rand should return number betwen lower and upper inclusive", () => {
 		const [lower, upper] = [10, 20];
 
 		for (let i = 0; i <= 100; i++) {
-			const choice = rand(generator, lower, upper);
+			const choice = rand(lower, upper);
 			expect(choice).toBeGreaterThanOrEqual(lower);
 			expect(choice).toBeLessThanOrEqual(upper);
 		}
@@ -17,7 +23,7 @@ describe("Random utilities test", () => {
 	test("randi should always return integer between lower and upper", () => {
 		// since rand has been tested no need to test for many times once is enough
 		const [lower, upper] = [10, 20];
-		const choice = randi(generator, lower, upper);
+		const choice = randi(lower, upper);
 
 		expect(Number.isInteger(choice)).toBe(true);
 	});
@@ -26,13 +32,13 @@ describe("Random utilities test", () => {
 		const list = [1, 2, 3, 4, 5];
 
 		for (let i = 0; i < 100; i++) {
-			expect(choose(generator, list)).toBeOneOf(list);
+			expect(choose(list)).toBeOneOf(list);
 		}
 	});
 
 	test("shuffle should shuffle and contain all the elements", () => {
 		const list = [1, 2, 3, 4, 5];
-		const shuffled = shuffle(generator, list);
+		const shuffled = shuffle(list);
 
 		console.log(shuffled);
 		const all_exists = list.every((x) => shuffled.includes(x));
