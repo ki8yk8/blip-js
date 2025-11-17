@@ -12,13 +12,20 @@ const object = e.add([
 
 e.tween(0, 90, 5, (value) => {
 	object.angle = value;
+});
+
+e.onKeyDown(" ", () => {
+	console.log("Space pressed");
+});
+
+e.onKeyPressed("ArrowUp", () => {
+	console.log("Arrow pressed");
 })
 
 e.onUpdate(() => {
 	// object.angle += 10 * e.dt;
 	// object.scale.x += 0.05 * e.dt;
 });
-
 
 // e.add([
 // 	e.rect(10, 10, { radius: 5 }),

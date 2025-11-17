@@ -218,6 +218,20 @@ class Engine {
 			func,
 		});
 	}
+
+	onKeyPressed(key, callback) {
+		this.keypress_callbacks.push({
+			key,
+			callback,
+		});
+	}
+
+	onKeyDown(key, callback) {
+		this.keydown_callbacks.push({
+			key,
+			callback,
+		});
+	}
 }
 
 export default Engine;
