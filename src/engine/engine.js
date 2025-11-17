@@ -40,6 +40,33 @@ class Engine {
 		this.all_tweens = [];
 		this.time = 0;
 
+		// keypresses
+		this.keys_down = new Set(); // all the keys currently down
+		this.keys_pressed = new Set(); // keys that are pressed in the frame
+		this.keypress_callbacks = [];
+		this.keydown_callbacks = [];
+		this.keyrelease_callbacks = [];
+
+		// window event listeners to handle the keys action
+		window.addEventListener("keydown", (e) => {
+			const key = e.key;
+
+			// if the key has not been down before then, this is the first time key has been pressed
+			if (!this.keys_down.has(key)) {
+				this.keys_pressed.add(key);
+			}
+
+			this.keys_down.add(key);
+		});
+
+		window.addEventListener("keyup", (e) => {
+			const key = e.key;
+
+			// remove the key from keydown
+			this.keys_down.delete(key);
+			this.keys_pressed.delete(key);
+		});
+
 		// adding the utils
 		this.vec2 = vec2;
 		this.toRadian = toRadian;
@@ -88,6 +115,24 @@ class Engine {
 	}
 
 	update(dt) {
+		// handling all the key callbacks
+		for (const e of this.keypress_callbacks) {
+			const { key, callback } = e;
+
+			if (this.keys_pressed.has(key)) {
+				callback();
+			}
+		}
+
+		for (const e of this.keydown_callbacks) {
+			const { key, callback } = e;
+
+			if (this.keys_down.has(key)) {
+				callback();
+			}
+		}
+
+		// updating the frame or re-rendering
 		for (const e of this.entities) {
 			if (e.update) e.update(dt, e);
 		}
@@ -112,6 +157,9 @@ class Engine {
 				this.all_tweens.splice(index, 1);
 			}
 		});
+
+		// new frame equals new keypressed set
+		this.keys_pressed.clear();
 	}
 
 	draw() {
