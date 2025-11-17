@@ -26,6 +26,7 @@ class Engine {
 		this.canvas.height = this.height;
 
 		this.entities = [];
+		this.on_update_functions = [];
 		this.time = 0;
 
 		// begin the render
@@ -50,6 +51,11 @@ class Engine {
 	update(dt) {
 		for (const e of this.entities) {
 			if (e.update) e.update(dt, e);
+		}
+
+		// calling all the update functions
+		for (const func of this.on_update_functions) {
+			func();
 		}
 	}
 
@@ -90,6 +96,10 @@ class Engine {
 		};
 
 		return { ...defaults };
+	}
+	
+	onUpdate(func) {
+		this.on_update_functions.push(func);
 	}
 }
 

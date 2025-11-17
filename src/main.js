@@ -12,7 +12,9 @@ const object = engine.add([
 	k.rotate(-20),
 ]);
 
-object.pos = k.vec2(100, 100);
+engine.onUpdate(() => {
+	object.angle += 10 * engine.dt;
+})
 
 // engine.add([
 // 	k.rect(10, 10, { radius: 5 }),
