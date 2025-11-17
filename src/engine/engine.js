@@ -1,3 +1,10 @@
+import { anchor } from "./components/anchor";
+import { pos } from "./components/pos";
+import { rect } from "./components/rect";
+import { rotate } from "./components/rotate";
+import { color, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
+import { vec2 } from "./vec2";
+
 class Engine {
 	constructor(
 		props = {
@@ -28,6 +35,20 @@ class Engine {
 		this.entities = [];
 		this.on_update_functions = [];
 		this.time = 0;
+
+		// adding the utils
+		this.vec2 = vec2;
+		this.toRadian = toRadian;
+		this.toDegree = toDegree;
+		this.rgbToHex = rgbToHex;
+		this.hexToRgb = hexToRgb;
+		this.color = color;
+
+		// adding the components
+		this.anchor = anchor;
+		this.pos = pos;
+		this.rect = rect;
+		this.rotate = rotate;
 
 		// begin the render
 		this.start();
@@ -69,7 +90,7 @@ class Engine {
 
 	add(components) {
 		// default values that are overrriden later if defined by the user
-		const entity = {...this.defaults()}; 
+		const entity = { ...this.defaults() };
 
 		for (const c of components) {
 			Object.assign(entity, c);
@@ -97,7 +118,7 @@ class Engine {
 
 		return { ...defaults };
 	}
-	
+
 	onUpdate(func) {
 		this.on_update_functions.push(func);
 	}

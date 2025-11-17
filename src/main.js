@@ -1,24 +1,22 @@
 import Engine from "./engine";
-import * as k from "./engine";
 
-// TODO: Later make sure that all the components are imported from this engine not the import
-const engine = new Engine();
+const e = new Engine();
 
-const object = engine.add([
-	k.rect(100, 200, { radius: [10, 10, 20, 0] }),
-	k.color(0, 0, 0),
-	k.pos(200, 200),
-	k.anchor("center"),
-	k.rotate(-20),
+const object = e.add([
+	e.rect(100, 200, { radius: [10, 10, 20, 0] }),
+	e.color(0, 0, 0),
+	e.pos(200, 200),
+	e.anchor("center"),
+	e.rotate(-20),
 ]);
 
-engine.onUpdate(() => {
-	object.angle += 10 * engine.dt;
-})
+e.onUpdate(() => {
+	object.angle += 10 * e.dt;
+});
 
-// engine.add([
-// 	k.rect(10, 10, { radius: 5 }),
-// 	k.color(255, 0, 0),
-// 	k.pos(200, 200),
-// 	k.anchor("center"),
+// e.add([
+// 	e.rect(10, 10, { radius: 5 }),
+// 	e.color(255, 0, 0),
+// 	e.pos(200, 200),
+// 	e.anchor("center"),
 // ]);
