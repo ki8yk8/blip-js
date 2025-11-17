@@ -24,6 +24,8 @@ export function rect(width, height, opt) {
 			ctx.translate(e.pos.x, e.pos.y);
 			// does the rotation
 			ctx.rotate(toRadian(e.angle));
+			// handles the scaling
+			ctx.scale(e.scale.x, e.scale.y);
 			ctx.beginPath();
 			// the coordinate are 0,0 since the coordinate origin is already at the anchor point
 			ctx.roundRect(

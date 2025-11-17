@@ -2,6 +2,7 @@ import { anchor } from "./components/anchor";
 import { pos } from "./components/pos";
 import { rect } from "./components/rect";
 import { rotate } from "./components/rotate";
+import { scale } from "./components/scale";
 import { color, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
 import { vec2 } from "./vec2";
 
@@ -49,6 +50,7 @@ class Engine {
 		this.pos = pos;
 		this.rect = rect;
 		this.rotate = rotate;
+		this.scale = scale;
 
 		// begin the render
 		this.start();
@@ -89,8 +91,12 @@ class Engine {
 	}
 
 	add(components) {
+		const entity = {};
+
 		// default values that are overrriden later if defined by the user
-		const entity = { ...this.defaults() };
+		for (const d of this.defaults()) {
+			Object.assign(entity, d);
+		}
 
 		for (const c of components) {
 			Object.assign(entity, c);
@@ -108,15 +114,13 @@ class Engine {
 	}
 
 	defaults() {
-		const defaults = {
-			pos: { x: 0, y: 0 },
-			anchor: "center",
-			color: { r: 255, g: 255, b: 255 },
-			angle: 0,
-			scale: 1,
-		};
-
-		return { ...defaults };
+		return [
+			this.pos(0, 0),
+			this.anchor("center"),
+			this.color(255, 255, 255),
+			this.rotate(0),
+			this.scale(1, 1),
+		]
 	}
 
 	onUpdate(func) {
