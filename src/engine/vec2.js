@@ -1,3 +1,5 @@
+import { toDegree, toRadian } from "./utils";
+
 export class Vec2 {
 	constructor(...props) {
 		const { x, y } = this.parse_props(props);
@@ -52,16 +54,63 @@ export class Vec2 {
 		return new Vec2(-this.x, -this.y);
 	}
 
-	scale() {}
-	dist() {}
-	sdist() {}
-	len() {}
-	unit() {}
-	dot() {}
-	cross() {}
-	angle() {}
-	angleBetween() {}
-	isZero() {}
-	eq() {}
-	rotate() {}
+	scale(x, y = undefined) {
+		if (!y) {
+			y = x;
+		}
+
+		return new Vec2(this.x * x, this.y * y);
+	}
+	dist(...props) {
+		return Math.sqrt(this.sdist(...props));
+	}
+	sdist(...props) {
+		const { x, y } = this.parse_props(props);
+
+		return (this.x - x) ** 2 + (this.y - y) ** 2;
+	}
+	len() {
+		return this.dist(Vec2(0, 0));
+	}
+	unit() {
+		const dist = this.len();
+
+		return Vec2({ x: this.x / dist, y: this.y / dist });
+	}
+	dot(...props) {
+		const { x, y } = this.parse_props(props);
+
+		return x * this.x + y * this.y;
+	}
+	cross(...props) {
+		const { x, y } = this.parse_props(props);
+
+		return x * this.y - y * this.x;
+	}
+	angle() {
+		return this.angleBetween(0, 0);
+	}
+	angleBetween(...props) {
+		const { x, y } = this.parse_props(props);
+
+		return toDegree(Math.atan2(x - this.x, y - this.y));
+	}
+	isZero() {
+		return this.x === 0 && this.y === 0;
+	}
+	eq(...props) {
+		const { x, y } = this.parse_props(props);
+
+		return this.x === x && this.y === y;
+	}
+	rotate(theta) {
+		const [x, y] = [this.x, this.y];
+		const angle = toRadian(theta);
+		const [s, c] = [Math.sin(angle), Math.cos(angle)];
+
+		const new_x = c * x - s * y;
+		const new_y = s * x + c * y;
+
+		return Vec2(new_x, new_y);
+	}
 }
