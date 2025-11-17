@@ -70,12 +70,12 @@ export class Vec2 {
 		return (this.x - x) ** 2 + (this.y - y) ** 2;
 	}
 	len() {
-		return this.dist(Vec2(0, 0));
+		return this.dist(new Vec2(0, 0));
 	}
 	unit() {
 		const dist = this.len();
 
-		return Vec2({ x: this.x / dist, y: this.y / dist });
+		return new Vec2({ x: this.x / dist, y: this.y / dist });
 	}
 	dot(...props) {
 		const { x, y } = this.parse_props(props);
@@ -85,7 +85,7 @@ export class Vec2 {
 	cross(...props) {
 		const { x, y } = this.parse_props(props);
 
-		return x * this.y - y * this.x;
+		return y * this.x - x * this.y;
 	}
 	angle() {
 		return this.angleBetween(0, 0);
@@ -111,6 +111,6 @@ export class Vec2 {
 		const new_x = c * x - s * y;
 		const new_y = s * x + c * y;
 
-		return Vec2(new_x, new_y);
+		return new Vec2(new_x, new_y);
 	}
 }

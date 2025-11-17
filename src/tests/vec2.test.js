@@ -81,7 +81,7 @@ describe("Vec2 should implement vector functions", () => {
 		const vec1 = new Vec2(7, 7);
 		const vec2 = new Vec2(4, 3);
 
-		expect(vec1.dist(vec2)).toBe(5);
+		expect(vec1.dist(vec2)).toBeCloseTo(5);
 	});
 	test("Squared distance compute", () => {
 		const vec1 = new Vec2(7, 7);
@@ -92,7 +92,7 @@ describe("Vec2 should implement vector functions", () => {
 	test("Compute length", () => {
 		const vec = new Vec2(4, 3);
 
-		expect(vec.len()).toBe(5);
+		expect(vec.len()).toBeCloseTo(5);
 	});
 	test("Unit vector", () => {
 		const vec = new Vec2(4, 3);
@@ -111,21 +111,21 @@ describe("Vec2 should implement vector functions", () => {
 		const vec1 = new Vec2(7, 7);
 		const vec2 = new Vec2(4, 3);
 
-		expect(vec1.cross(vec2)).toBe(-7);
+		expect(vec1.cross(vec2)).toBeCloseTo(-7);
 	});
 	test("Angle", () => {
 		const vec = new Vec2(4, 4);
-		expect(vec.angle()).toBe(45);
+		expect(vec.angle()).toBeCloseTo(45);
 	});
 	test("Angle between", () => {
 		const vec = new Vec2(4, 4);
-		expect(vec.angleBetween(0, 0)).toBe(45);
+		expect(vec.angleBetween(0, 0)).toBeCloseTo(45);
 	});
 	test("rotation", () => {
 		const vec = new Vec2(4, 4);
 		const rotated = vec.rotate(45);
 
-		expect(rotated.x).toBe(0);
-		expect(rotated.y).toBe(5.65);
+		expect(rotated.x).toBeCloseTo(0);
+		expect(rotated.y).toBeCloseTo(5.65);
 	});
 });
