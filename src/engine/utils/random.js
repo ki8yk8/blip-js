@@ -1,9 +1,25 @@
-export function rand(lower = 0, upper = 1) {
+export function rand(generator, lower = 0, upper = 1) {
 	return Math.random() * (upper - lower) + lower;
 }
 
-export function randi(lower = 0, upper = 1) {
+export function randi(generator, lower = 0, upper = 1) {
 	return Math.round(rand(lower, upper));
+}
+
+// Reference: https://en.wikipedia.org/wiki/Linear_congruential_generator
+export class RNG {
+	constructor(seed) {
+		this.x = seed;
+		this.a = 1664525;
+		this.m = 1013904223;
+	}
+
+	generate() {
+		this.x = (a * this.x + this.c) % m;
+
+		// normalizing between 0 and 1
+		return this.x / this.m;
+	}
 }
 
 export function randSeed(seed) {
@@ -12,15 +28,16 @@ export function randSeed(seed) {
 	}
 
 	// implement generator function here
+	return new RNG(seed).generate;
 }
 
-export function choose(list) {
+export function choose(generator, list) {
 	list = structuredClone(list); // avoid copy by reference
 	const random_index = randi(0, list.length - 1);
 	return list[random_index];
 }
 
-export function chooseMultiple(list, n = 1, replacement = true) {
+export function chooseMultiple(generator, list, n = 1, replacement = true) {
 	list = structuredClone(list);
 
 	if (n > list.length && !replacement) {
@@ -43,7 +60,7 @@ export function chooseMultiple(list, n = 1, replacement = true) {
 	return choices;
 }
 
-export function shuffle(list) {
-	list =  structuredClone(list);
+export function shuffle(generator, list) {
+	list = structuredClone(list);
 	return chooseMultiple(list, list.length, false);
 }
