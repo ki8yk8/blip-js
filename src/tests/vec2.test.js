@@ -98,8 +98,8 @@ describe("Vec2 should implement vector functions", () => {
 		const vec = new Vec2(4, 3);
 		const unit = vec.unit();
 
-		expect(unit.x).toBe(0.6);
-		expect(unit.y).toBe(0.8);
+		expect(unit.x).toBeCloseTo(0.8);
+		expect(unit.y).toBeCloseTo(0.6);
 	});
 	test("Dot product", () => {
 		const vec1 = new Vec2(7, 7);
@@ -126,6 +126,6 @@ describe("Vec2 should implement vector functions", () => {
 		const rotated = vec.rotate(45);
 
 		expect(rotated.x).toBeCloseTo(0);
-		expect(rotated.y).toBeCloseTo(5.65);
+		expect(rotated.y).toBeCloseTo(5.656854);
 	});
 });
