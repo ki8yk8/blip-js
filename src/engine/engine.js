@@ -37,6 +37,7 @@ class Engine {
 
 		this.entities = [];
 		this.on_update_functions = [];
+		this.all_tweens = [];
 		this.time = 0;
 
 		// adding the utils
@@ -95,6 +96,22 @@ class Engine {
 		for (const func of this.on_update_functions) {
 			func();
 		}
+
+		// calling all the tweens
+		this.all_tweens.forEach((tween, index) => {
+			const value = this.map(
+				this.time,
+				tween.start,
+				tween.from,
+				tween.end,
+				tween.to
+			);
+			tween.func(value);
+
+			if (tween.end < this.time) {
+				this.all_tweens.splice(index, 1);
+			}
+		});
 	}
 
 	draw() {
@@ -140,6 +157,18 @@ class Engine {
 
 	onUpdate(func) {
 		this.on_update_functions.push(func);
+	}
+
+	tween(from, to, duration, func) {
+		const [start, end] = [this.time, this.time + duration];
+
+		this.all_tweens.push({
+			start,
+			end,
+			from,
+			to,
+			func,
+		});
 	}
 }
 
