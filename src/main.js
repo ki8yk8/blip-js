@@ -12,7 +12,6 @@ const object = e.add([
 
 e.tween(0, 90, 5, (value) => {
 	object.angle = value;
-	console.log(value);
 })
 
 e.onUpdate(() => {

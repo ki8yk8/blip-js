@@ -77,8 +77,8 @@ class Engine {
 	}
 
 	loop(t) {
-		const dt = (t - this.time) / 1000; // in seconds
-		this.time = t; // total time elapsed
+		const dt = t / 1000 - this.time; // in seconds
+		this.time = t / 1000; // total time elapsed
 		this.dt = dt; // time elapsed since last render
 
 		this.update(dt);
