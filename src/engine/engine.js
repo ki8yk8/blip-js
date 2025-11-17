@@ -46,6 +46,7 @@ class Engine {
 	}
 
 	update(dt) {
+		console.log(this.entities[0].scale);
 		for (const e of this.entities) {
 			if (e.update) e.update(dt, e);
 		}
@@ -66,7 +67,8 @@ class Engine {
 			Object.assign(entity, c);
 		}
 
-		this.entities.push(this.add_defaults(entity));
+		Object.assign(entity, this.defaults());
+		this.entities.push(entity);
 		return entity;
 	}
 
@@ -77,7 +79,7 @@ class Engine {
 		return this.height;
 	}
 
-	add_defaults(entity) {
+	defaults() {
 		const defaults = {
 			pos: { x: 0, y: 0 },
 			anchor: "center",
@@ -86,7 +88,7 @@ class Engine {
 			scale: 1,
 		};
 
-		return { ...defaults, ...entity };
+		return {...defaults};
 	}
 }
 
