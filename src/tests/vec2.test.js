@@ -77,13 +77,55 @@ describe("Vec2 should have working arithmetic function", () => {
 });
 
 describe("Vec2 should implement vector functions", () => {
-	test.todo("Distance compute");
-	test.todo("Squared distance compute");
-	test.todo("Compute length");
-	test.todo("Unit vector");
-	test.todo("Dot product");
-	test.todo("Cross vector");
-	test.todo("Angle");
-	test.todo("Angle between");
-	test.todo("rotation");
+	test("Distance compute", () => {
+		const vec1 = new Vec2(7, 7);
+		const vec2 = new Vec2(4, 3);
+
+		expect(vec1.dist(vec2)).toBe(5);
+	});
+	test("Squared distance compute", () => {
+		const vec1 = new Vec2(7, 7);
+		const vec2 = new Vec2(4, 3);
+
+		expect(vec1.sdist(vec2)).toBe(25);
+	});
+	test("Compute length", () => {
+		const vec = new Vec2(4, 3);
+
+		expect(vec.len()).toBe(5);
+	});
+	test("Unit vector", () => {
+		const vec = new Vec2(4, 3);
+		const unit = vec.unit();
+
+		expect(unit.x).toBe(0.6);
+		expect(unit.y).toBe(0.8);
+	});
+	test("Dot product", () => {
+		const vec1 = new Vec2(7, 7);
+		const vec2 = new Vec2(4, 3);
+
+		expect(vec1.dot(vec2)).toBe(49);
+	});
+	test("Cross vector", () => {
+		const vec1 = new Vec2(7, 7);
+		const vec2 = new Vec2(4, 3);
+
+		expect(vec1.cross(vec2)).toBe(-7);
+	});
+	test("Angle", () => {
+		const vec = new Vec2(4, 4);
+		expect(vec.angle()).toBe(45);
+	});
+	test("Angle between", () => {
+		const vec = new Vec2(4, 4);
+		expect(vec.angleBetween(0, 0)).toBe(45);
+	});
+	test("rotation", () => {
+		const vec = new Vec2(4, 4);
+		const rotated = vec.rotate(45);
+
+		expect(rotated.x).toBe(0);
+		expect(rotated.y).toBe(5.65);
+	});
 });
