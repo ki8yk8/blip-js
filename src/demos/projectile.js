@@ -30,6 +30,7 @@ const press_space_hint = k.add([
 
 // acceleration due to gravity in pixels per second square
 const g = 200;
+const v = 400; // initial velocity of ball
 
 const ground_top = ground.pos.y - ground.height;
 const ball = k.add([
@@ -42,16 +43,28 @@ const ruler = k.add([
 	k.rect(100, 10),
 	k.pos(ball.pos.x, ball.pos.y),
 	k.anchor("left"),
-	k.color("#20bf55")
-])
+	k.color("#20bf55"),
+]);
 
 k.onKeyPressed("ArrowUp", () => {
 	let new_angle = ruler.angle - 10;
 	new_angle = k.clamp(new_angle, -90, 0);
 	ruler.angle = new_angle;
-})
+});
 k.onKeyPressed("ArrowDown", () => {
 	let new_angle = ruler.angle + 10;
 	new_angle = k.clamp(new_angle, -90, 0);
 	ruler.angle = new_angle;
+});
+k.onKeyPressed(" ", () => {
+	const angle = k.toRadian(ruler.angle);
+	const [vx, vy] = [v * Math.cos(angle), v * Math.sin(angle)];
+
+	ball.vel = k.vec2(vx, vy);
+	ball.acc = k.vec2(0, g);
+});
+
+ball.onCollide("ground", () => {
+	ball.acc = k.vec2(0, 0);
+	ball.vel = k.vec2(0, 0);
 })
