@@ -16,8 +16,9 @@ const ground = k.add([
 ]);
 
 const ground_top = ground.pos.y - ground.height;
-const g = 20;
+const g = 200;
 const time_taken = Math.sqrt((2 * (ground_top - 100)) / g);
+console.log(time_taken)
 
 k.onKeyPressed("ArrowUp", () => {
 	// 100 is padding for safety
@@ -53,7 +54,7 @@ k.onKeyPressed("ArrowDown", () => {
 	const start_time = k.time;
 	k.onUpdate(() => {
 		const new_y = (1 / 2) * g * Math.pow(start_time - k.time, 2);
-		ball.moveBy(0, new_y);
+		ball.moveTo(ball.pos.x, new_y+100);
 
 		// clamping the position to prevent the fall
 		ball.pos.y = k.clamp(ball.pos.y, 0, ground_top);
@@ -74,7 +75,7 @@ const arrow_up_msg = k.add([
 	k.color("#ffffff"),
 ]);
 const arrow_down_msg = k.add([
-	k.text("Press Arrow Down for without gravity"),
+	k.text("Press Arrow Down for with gravity"),
 	k.pos(k.width() / 2, k.height() / 3 + 30),
 	k.anchor("center"),
 	k.color("#ffffff"),
