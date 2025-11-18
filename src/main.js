@@ -22,17 +22,28 @@ const moving_object = e.add([
 	e.area(),
 ]);
 
-moving_object.move(-100, 0);
+const text = e.add([
+	e.text("Hello World", { size: 24, font: "Monospace" }),
+	e.pos(100, 100),
+	e.rotate(0),
+	e.color(255, 0, 0),
+]);
 
-object.onCollide("react", () => {
-	console.log("Collided with react");
-});
-object.onCollideUpdate("react", () => {
-	console.log("colliding");
-});
-object.onCollideEnd("react", () => {
-	console.log("Collision end");
-});
+// e.onUpdate(() => {
+// 	console.log(text.width);
+// })
+
+// moving_object.move(-100, 0);
+
+// object.onCollide("react", () => {
+// 	console.log("Collided with react");
+// });
+// object.onCollideUpdate("react", () => {
+// 	console.log("colliding");
+// });
+// object.onCollideEnd("react", () => {
+// 	console.log("Collision end");
+// });
 
 e.onUpdate(() => {
 	// console.log(object._collisions);
