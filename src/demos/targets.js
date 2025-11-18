@@ -40,9 +40,9 @@ function spawnTarget(x, y) {
 		k.tag("target"),
 	])
 
-	target.onCollide("ball", async () => {
-		await k.tween(1, 0, 0.5, (v) => target.scale = k.vec2(v, v));
-		// TODO: k.destroy(target);
+	target.onCollide("ball", () => {
+		k.tween(1, 0, 0.25, (v) => target.scale = k.vec2(v, v));
+		k.wait(0.25, () => k.destroy(target));
 	})
 }
 

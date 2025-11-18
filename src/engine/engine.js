@@ -314,6 +314,14 @@ class Engine {
 
 		return e1_x1 < e2_x2 && e1_x2 > e2_x1 && e1_y1 < e2_y2 && e1_y2 > e2_y1;
 	}
+
+	destroy(e) {
+		this.entities.splice(this.entities.indexOf(e), 1);
+	}
+
+	wait(seconds, callback) {
+		setTimeout(callback, seconds*1000);
+	}
 }
 
 export default Engine;
