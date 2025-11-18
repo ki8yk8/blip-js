@@ -72,11 +72,14 @@ k.onUpdate(() => {
 });
 
 const instructions = k.add([
-	k.text(
-		"Press h to see help, c to clear all targets, and arrow keys to catch the target"
-	),
-	k.pos(k.width() / 2, k.height() / 2),
+	k.text("Press 'c' to clear all targets, and arrow keys to catch the target"),
+	k.pos(k.width() / 2, 20),
 	k.anchor("center"),
 ]);
 
 // key functions; h = help, c = clear all target, and arrows
+k.onKeyPressed("c", () => {
+	k.get("target").forEach((e) => {
+		k.destroy(e);
+	});
+});
