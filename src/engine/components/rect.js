@@ -2,8 +2,8 @@ import { rgbToHex, toRadian } from "../utils";
 import { convertBasedOnAnchor } from "./anchor";
 
 export function rect(width, height, opt) {
-	const radius = opt["radius"] ?? [0, 0, 0, 0];
-	const fill = opt["fill"] ?? true;
+	const radius = opt?.["radius"] ?? [0, 0, 0, 0];
+	const fill = opt?.["fill"] ?? true;
 
 	return {
 		width: width,

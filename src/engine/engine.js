@@ -20,8 +20,8 @@ class Engine {
 			canvas: undefined,
 		}
 	) {
-		this.width = props.width;
-		this.height = props.height;
+		this.canvasWidth = props.width;
+		this.canvasHeight = props.height;
 		this.backgroundColor = props.backgroundColor;
 
 		this.canvas = props.canvas || document.createElement("canvas");
@@ -36,8 +36,8 @@ class Engine {
 		}
 
 		// setting the size
-		this.canvas.width = this.width;
-		this.canvas.height = this.height;
+		this.canvas.width = this.canvasWidth;
+		this.canvas.height = this.canvasHeight;
 
 		this.entities = [];
 		this.on_update_functions = [];
@@ -202,10 +202,10 @@ class Engine {
 	}
 
 	width() {
-		return this.width;
+		return this.canvasWidth;
 	}
 	height() {
-		return this.height;
+		return this.canvasHeight;
 	}
 
 	defaults() {
