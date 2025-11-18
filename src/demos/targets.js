@@ -9,7 +9,7 @@ const k = new Engine({
 const ball = k.add([
 	k.rect(80, 80, { radius: 40 }),
 	k.anchor("center"),
-	k.pos(k.width() / 2, k.height() - 80),
+	k.pos(k.width() / 2, k.height() / 2),
 	k.color("#ff9f1c"),
 	k.area(),
 	k.tag("ball"),
@@ -29,7 +29,11 @@ function moveBall(ball, s_x, s_y) {
 	ball.pos = k.vec2(x, y);
 }
 
-spawnTarget(100, 100);
+k.loop(2, () => {
+	const rnd_x = k.rand(100, k.width() - 100);
+	const rnd_y = k.rand(100, k.height() - 100);
+	spawnTarget(rnd_x, rnd_y);
+});
 
 function spawnTarget(x, y) {
 	const target = k.add([
@@ -38,13 +42,12 @@ function spawnTarget(x, y) {
 		k.pos(x, y),
 		k.area(),
 		k.tag("target"),
-	])
+	]);
 
 	target.onCollide("ball", () => {
-		k.tween(1, 0, 0.25, (v) => target.scale = k.vec2(v, v));
+		k.tween(1, 0, 0.25, (v) => (target.scale = k.vec2(v, v)));
 		k.wait(0.25, () => k.destroy(target));
-	})
+	});
 }
-
 
 // key functions; h = help, c = clear all target, and arrows

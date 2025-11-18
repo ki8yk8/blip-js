@@ -109,10 +109,10 @@ class Engine {
 	}
 
 	start() {
-		requestAnimationFrame(this.loop.bind(this));
+		requestAnimationFrame(this.renderLoop.bind(this));
 	}
 
-	loop(t) {
+	renderLoop(t) {
 		const dt = t / 1000 - this.time; // in seconds
 		this.time = t / 1000; // total time elapsed
 		this.dt = dt; // time elapsed since last render
@@ -120,7 +120,7 @@ class Engine {
 		this.update(dt);
 		this.draw();
 
-		requestAnimationFrame(this.loop.bind(this));
+		requestAnimationFrame(this.renderLoop.bind(this));
 	}
 
 	update(dt) {
@@ -321,6 +321,10 @@ class Engine {
 
 	wait(seconds, callback) {
 		setTimeout(callback, seconds*1000);
+	}
+
+	loop(seconds, callback) {
+		setInterval(callback, seconds*1000);
 	}
 }
 
