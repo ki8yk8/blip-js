@@ -70,4 +70,9 @@ function spawnTarget(x, y) {
 k.onUpdate(() => {
 	score.text = `Score: ${score.value}`
 })
+
+
+const instructions = k.add([
+	
+])
 // key functions; h = help, c = clear all target, and arrows
