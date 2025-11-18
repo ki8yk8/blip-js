@@ -4,6 +4,7 @@ import { convertBasedOnAnchor } from "./anchor";
 export function text(text, opts = { size: 18, font: "Monospace" }) {
 	const size = opts?.size ?? 18;
 	const font = opts?.font ?? "Monospace";
+	const maxWidth = opts.maxWidth;
 
 	return {
 		width: 0,
@@ -11,6 +12,7 @@ export function text(text, opts = { size: 18, font: "Monospace" }) {
 		text,
 		textSize: size,
 		font,
+		maxWidth,
 		draw(ctx, e) {
 			ctx.font = `${e.textSize}px ${e.font}`;
 			const metrics = ctx.measureText(e.text);
@@ -41,7 +43,8 @@ export function text(text, opts = { size: 18, font: "Monospace" }) {
 			ctx.fillText(
 				e.text,
 				anchored_pos.x - e.pos.x,
-				anchored_pos.y - e.pos.y + e.textSize * 0.8
+				anchored_pos.y - e.pos.y + e.textSize * 0.8,
+				this.maxWidth
 			);
 
 			// restores context from the stack

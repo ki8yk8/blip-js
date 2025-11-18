@@ -16,13 +16,13 @@ const ball = k.add([
 ]);
 
 const score = k.add([
-	k.text("Score: 0", {size: 32}),
+	k.text("Score: 0", { size: 32 }),
 	k.anchor("topleft"),
 	k.pos(50, 50),
 	{
 		value: 0,
-	}
-])
+	},
+]);
 
 const speed = 10;
 k.onKeyDown("ArrowLeft", () => moveBall(ball, -speed, 0));
@@ -68,11 +68,15 @@ function spawnTarget(x, y) {
 }
 
 k.onUpdate(() => {
-	score.text = `Score: ${score.value}`
-})
-
+	score.text = `Score: ${score.value}`;
+});
 
 const instructions = k.add([
-	
-])
+	k.text(
+		"Press h to see help, c to clear all targets, and arrow keys to catch the target"
+	),
+	k.pos(k.width() / 2, k.height() / 2),
+	k.anchor("center"),
+]);
+
 // key functions; h = help, c = clear all target, and arrows
