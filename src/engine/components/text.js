@@ -12,6 +12,7 @@ export function text(text, opts = { size: 18, font: "Monospace" }) {
 		textSize: size,
 		font,
 		draw(ctx, e) {
+			ctx.font = `${e.textSize}px ${e.font}`;
 			const metrics = ctx.measureText(e.text);
 			e.width = metrics.width;
 			e.height = e.textSize;
@@ -35,7 +36,6 @@ export function text(text, opts = { size: 18, font: "Monospace" }) {
 			// handles the scaling
 			ctx.scale(e.scale.x, e.scale.y);
 
-			ctx.font = `${e.textSize}px ${e.font}`;
 			// 0.8 is baseline fix
 			ctx.fillStyle = rgbToHex(e.color);
 			ctx.fillText(
