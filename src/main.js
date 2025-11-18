@@ -12,10 +12,10 @@ const object = e.add([
 ]);
 
 // playing with tags
-console.log(object.tags);
-console.log(object.is("animal"));
-object.untag("animal");
-console.log(object.is("animal"));
+// console.log(object.tags);
+// console.log(object.is("animal"));
+// object.untag("animal");
+// console.log(object.is("animal"));
 
 // getting an element
 const obj = e.get("demo")[0];

@@ -6,6 +6,14 @@ export function area() {
 			onStay: [],
 			onExit: [],
 		},
+		triggerCollisionOnEnter(e) {
+			for ({ tag, callback } in this._collision_events.onEnter) {
+				if (e.is(tag)) callback(e);
+			}
+		},
+		triggerColisisonOnStay(e) {},
+		triggerCollisionOnExit() {},
+
 		checkCollision(tag) {
 			const exists = this._collisions.find((e) => e.is(tag));
 

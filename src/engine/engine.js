@@ -250,7 +250,33 @@ class Engine {
 		});
 	}
 
-	handleCollisions() {}
+	handleCollisions() {
+		for (let a of this.entities) {
+			if (!("_collisions" in a)) continue;
+
+			for (let b of this.entities) {
+				if (a === b || !("_collisions" in b)) continue;
+
+				const overlapping = this.isOverlapping(a, b);
+
+				if (overlapping) {
+					if (a._collisions.includes(b)) {
+						// onStay
+					} else {
+						// onEnter
+						a._collisions.push(b);
+						a.triggerCollisionOnEnter(b);
+					}
+				} else {
+					if (a._collisions.includes(b)) {
+						// onExit
+						a._collisions.splice(a.indexOf(b), 1);
+					}
+				}
+			}
+		}
+	}
+
 	isOverlapping(e1, e2) {
 		// implements AABB Collision
 		// referece: https://dev.to/pratyush_mohanty_6b8f2749/the-math-behind-bounding-box-collision-detection-aabb-vs-obbseparate-axis-theorem-1gdn
