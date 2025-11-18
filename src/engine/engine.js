@@ -1,4 +1,4 @@
-import { anchor } from "./components/anchor";
+import { anchor, convertBasedOnAnchor } from "./components/anchor";
 import { area } from "./components/area";
 import { pos } from "./components/pos";
 import { rect } from "./components/rect";
@@ -166,6 +166,8 @@ class Engine {
 
 		// new frame equals new keypressed set
 		this.keys_pressed.clear();
+
+		this.handleCollisions();
 	}
 
 	draw() {
@@ -246,6 +248,36 @@ class Engine {
 			key,
 			callback,
 		});
+	}
+
+	handleCollisions() {}
+	isOverlapping(e1, e2) {
+		// implements AABB Collision
+		// referece: https://dev.to/pratyush_mohanty_6b8f2749/the-math-behind-bounding-box-collision-detection-aabb-vs-obbseparate-axis-theorem-1gdn
+		const e1_pos = convertBasedOnAnchor(
+			e1.pos.x,
+			e1.pos.y,
+			e1.width,
+			e1.height,
+			e1.anchor
+		);
+		const e2_pos = convertBasedOnAnchor(
+			e2.pos.x,
+			e2.pos.y,
+			e2.width,
+			e2.height,
+			e2.anchor
+		);
+
+		const { x: e1_x1, y: e1_y1 } = e1_pos;
+		const e1_x2 = e1_x1 + e1.width;
+		const e1_y2 = e1_y1 + e1.height;
+
+		const { x: e2_x1, y: e2_y1 } = e2_pos;
+		const e2_x2 = e2_x1 + e2.width;
+		const e2_y2 = e2_y1 + e2.height;
+
+		return e1_x1 < e2_x2 && e1_x2 > e2_x1 && e1_y1 < e2_y2 && e1_y2 > e2_y1;
 	}
 }
 
