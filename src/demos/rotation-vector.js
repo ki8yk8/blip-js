@@ -36,3 +36,19 @@ k.onUpdate(() => {
 	player_head.pos = player.pos.add(head_offset.rotate(player.angle));
 	player_head.angle = player.angle;
 });
+
+k.onKeyPressed(" ", () => {
+	const bullet = k.add([
+		k.rect(5, 10),
+		k.pos(player_head.pos.add(0, -10)),
+		k.rotate(player_head.angle),
+	]);
+
+	bullet.vel = k.vec2(0, -100).rotate(player.angle);
+
+	k.onUpdate(() => {
+		if (bullet.pos.x > k.width + 100) {
+			k.destroy(bullet);
+		}
+	});
+});
