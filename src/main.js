@@ -17,6 +17,10 @@ console.log(object.is("animal"));
 object.untag("animal");
 console.log(object.is("animal"));
 
+// getting an element
+const obj = e.get("demo")[0];
+obj.color = { r: 255, g: 0, b: 0 };
+
 e.tween(0, 90, 5, (value) => {
 	object.angle = value;
 });
@@ -40,9 +44,9 @@ e.onUpdate(() => {
 	// object.scale.x += 0.05 * e.dt;
 });
 
-// e.add([
-// 	e.rect(10, 10, { radius: 5 }),
-// 	e.color(255, 0, 0),
-// 	e.pos(200, 200),
-// 	e.anchor("center"),
-// ]);
+e.add([
+	e.rect(10, 10, { radius: 5 }),
+	e.color(255, 0, 0),
+	e.pos(200, 200),
+	e.anchor("center"),
+]);

@@ -208,6 +208,11 @@ class Engine {
 		];
 	}
 
+	get(tag) {
+		console.log(this.entities[0])
+		return this.entities.filter((e) => "tags" in e && e["tags"].includes(tag));
+	}
+
 	onUpdate(func) {
 		this.on_update_functions.push(func);
 	}
