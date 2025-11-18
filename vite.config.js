@@ -11,6 +11,7 @@ export default defineConfig({
 				demo3: resolve(__dirname, "src/demos/gravity-with-vel.html"),
 				demo4: resolve(__dirname, "src/demos/projectile.html"),
 				demo5: resolve(__dirname, "src/demos/targets.html"),
+				demo6: resolve(__dirname, "src/demos/rotation-vector.html")
 			},
 		},
 	},
