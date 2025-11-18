@@ -10,6 +10,9 @@ const ball = k.add([
 	k.rect(80, 80, { radius: 40 }),
 	k.anchor("center"),
 	k.pos(k.width() / 2, k.height() - 80),
+	k.color("#ff9f1c"),
+	k.area(),
+	k.tag("ball"),
 ]);
 
 const speed = 10;
@@ -25,3 +28,23 @@ function moveBall(ball, s_x, s_y) {
 
 	ball.pos = k.vec2(x, y);
 }
+
+spawnTarget(100, 100);
+
+function spawnTarget(x, y) {
+	const target = k.add([
+		k.rect(50, 50),
+		k.color("#e71d36"),
+		k.pos(x, y),
+		k.area(),
+		k.tag("target"),
+	])
+
+	target.onCollide("ball", async () => {
+		await k.tween(1, 0, 0.5, (v) => target.scale = k.vec2(v, v));
+		// TODO: k.destroy(target);
+	})
+}
+
+
+// key functions; h = help, c = clear all target, and arrows
