@@ -8,8 +8,7 @@ export function area() {
 		},
 		triggerCollisionOnEnter(e) {
 			for (const on_enter of this._collision_events.onEnter) {
-				console.log(on_enter);
-				const {tag, callback} = on_enter;
+				const { tag, callback } = on_enter;
 
 				if (e.is(tag)) callback(e);
 			}
@@ -25,24 +24,45 @@ export function area() {
 		getCollisions() {
 			return this._collisions;
 		},
-		onCollide(tag, callback) {
-			console.log(tag, callback);
+		onCollide(tag, callback = undefined) {
+			if (callback === undefined) {
+				callback = tag;
+				tag = "*";
+			}
+
+			if (typeof tag !== "string" || typeof callback !== "function") {
+				throw new Error(
+					"Tag should be string and callback should be a function"
+				);
+			}
+
 			this._collision_events.onEnter.push({ tag, callback });
 		},
-		onCollide(callback) {
-			this._collision_events.onEnter.push({ tag: "*", callback });
-		},
-		onCollideUpdate(tag, callback) {
+		onCollideUpdate(tag, callback = undefined) {
+			if (callback === undefined) {
+				callback = tag;
+				tag = "*";
+			}
+
+			if (typeof tag !== "string" || typeof callback !== "function") {
+				throw new Error(
+					"Tag should be string and callback should be a function"
+				);
+			}
 			this._collision_events.onStay.push({ tag, callback });
 		},
-		onCollideUpdate(callback) {
-			this._collision_events.onStay.push({ tag: "*", callback });
-		},
-		onCollideEnd(tag, callback) {
+		onCollideEnd(tag, callback = undefined) {
+			if (callback === undefined) {
+				callback = tag;
+				tag = "*";
+			}
+
+			if (typeof tag !== "string" || typeof callback !== "function") {
+				throw new Error(
+					"Tag should be string and callback should be a function"
+				);
+			}
 			this._collision_events.onExit.push({ tag, callback });
-		},
-		onCollideEnd(callback) {
-			this._collision_events.onExit.push({ tag: "*", callback });
 		},
 	};
 }

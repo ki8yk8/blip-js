@@ -270,7 +270,7 @@ class Engine {
 				} else {
 					if (a._collisions.includes(b)) {
 						// onExit
-						a._collisions.splice(a.indexOf(b), 1);
+						a._collisions.splice(a._collisions.indexOf(b), 1);
 					}
 				}
 			}
