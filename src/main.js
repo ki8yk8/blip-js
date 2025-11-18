@@ -7,9 +7,30 @@ const object = e.add([
 	e.color(0, 0, 0),
 	e.pos(200, 200),
 	e.anchor("center"),
-	e.rotate(-20),
+	e.rotate(0),
 	e.tag(["animal", "rectangle", "demo"]),
+	e.area(),
 ]);
+
+const moving_object = e.add([
+	e.rect(100, 200, { radius: [10, 10, 20, 0] }),
+	e.color(0, 0, 0),
+	e.pos(600, 200),
+	e.anchor("center"),
+	e.rotate(0),
+	e.tag(["react"]),
+	e.area(),
+]);
+
+moving_object.move(-100, 0);
+
+object.onCollide("react", () => {
+	console.log("hello");
+})
+
+e.onUpdate(() => {
+	// console.log(object._collisions);
+})
 
 // playing with tags
 // console.log(object.tags);
@@ -21,9 +42,9 @@ const object = e.add([
 const obj = e.get("demo")[0];
 obj.color = { r: 255, g: 0, b: 0 };
 
-e.tween(0, 90, 5, (value) => {
-	object.angle = value;
-});
+// e.tween(0, 90, 5, (value) => {
+// 	object.angle = value;
+// });
 
 e.onKeyDown(" ", () => {
 	console.log("Space pressed");

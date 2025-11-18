@@ -7,7 +7,10 @@ export function area() {
 			onExit: [],
 		},
 		triggerCollisionOnEnter(e) {
-			for ({ tag, callback } in this._collision_events.onEnter) {
+			for (const on_enter of this._collision_events.onEnter) {
+				console.log(on_enter);
+				const {tag, callback} = on_enter;
+
 				if (e.is(tag)) callback(e);
 			}
 		},
@@ -23,22 +26,23 @@ export function area() {
 			return this._collisions;
 		},
 		onCollide(tag, callback) {
+			console.log(tag, callback);
 			this._collision_events.onEnter.push({ tag, callback });
 		},
 		onCollide(callback) {
-			this.onCollide("*", callback);
+			this._collision_events.onEnter.push({ tag: "*", callback });
 		},
 		onCollideUpdate(tag, callback) {
 			this._collision_events.onStay.push({ tag, callback });
 		},
 		onCollideUpdate(callback) {
-			this.onCollideUpdate("*", callback);
+			this._collision_events.onStay.push({ tag: "*", callback });
 		},
 		onCollideEnd(tag, callback) {
 			this._collision_events.onExit.push({ tag, callback });
 		},
 		onCollideEnd(callback) {
-			this.onCollideEnd("*", callback);
+			this._collision_events.onExit.push({ tag: "*", callback });
 		},
 	};
 }

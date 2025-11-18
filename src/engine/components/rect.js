@@ -6,6 +6,8 @@ export function rect(width, height, opt) {
 	const fill = opt["fill"] ?? true;
 
 	return {
+		width: width,
+		height: height,
 		rect: { width, height, radius, fill },
 		draw(ctx, e) {
 			const anchored_pos = convertBasedOnAnchor(
