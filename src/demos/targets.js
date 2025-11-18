@@ -37,16 +37,21 @@ k.loop(2, () => {
 
 function spawnTarget(x, y) {
 	const target = k.add([
-		k.rect(50, 50),
+		k.rect(50, 50, { radius: [20, 0, 20, 0] }),
 		k.color("#e71d36"),
 		k.pos(x, y),
 		k.area(),
+		k.rotate(0),
 		k.tag("target"),
 	]);
 
 	target.onCollide("ball", () => {
 		k.tween(1, 0, 0.25, (v) => (target.scale = k.vec2(v, v)));
 		k.wait(0.25, () => k.destroy(target));
+	});
+
+	k.onUpdate(() => {
+		target.angle += 30 * k.dt;
 	});
 }
 
