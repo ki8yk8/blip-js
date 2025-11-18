@@ -1,4 +1,5 @@
 import { anchor } from "./components/anchor";
+import { area } from "./components/area";
 import { pos } from "./components/pos";
 import { rect } from "./components/rect";
 import { rotate } from "./components/rotate";
@@ -89,6 +90,7 @@ class Engine {
 		this.rotate = rotate;
 		this.scale = scale;
 		this.tag = tag;
+		this.area = area;
 
 		// random utilities
 		this.random = new Random();
@@ -209,7 +211,10 @@ class Engine {
 	}
 
 	get(tag) {
-		console.log(this.entities[0])
+		if (tag === "*") {
+			return this.entities;
+		}
+
 		return this.entities.filter((e) => "tags" in e && e["tags"].includes(tag));
 	}
 

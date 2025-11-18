@@ -17,6 +17,8 @@ export function tag(tags = []) {
 			this.tags.splice(tag_index, 1);
 		},
 		is(tag) {
+			if (tag === "*") return true;
+			
 			return this.tags.includes(tag);
 		},
 	};
