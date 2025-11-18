@@ -22,6 +22,7 @@ class Engine {
 	) {
 		this.width = props.width;
 		this.height = props.height;
+		this.backgroundColor = props.backgroundColor;
 
 		this.canvas = props.canvas || document.createElement("canvas");
 
@@ -174,6 +175,10 @@ class Engine {
 
 	draw() {
 		this.canvas_ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+		// adding the background color
+		this.canvas_ctx.fillStyle = this.backgroundColor;
+		this.canvas_ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 		for (const e of this.entities) {
 			if (e.draw) e.draw(this.canvas_ctx, e);
