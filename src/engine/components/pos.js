@@ -4,6 +4,7 @@ export function pos(x, y) {
 	return {
 		pos: vec2(x, y),
 		vel: vec2(0, 0),
+		acc: vec2(0, 0),
 		move(...props) {
 			const vel = vec2(...props);
 			this.vel = vel;
@@ -16,6 +17,7 @@ export function pos(x, y) {
 		},
 		update(dt) {
 			this.pos = this.pos.add(this.vel.x * dt, this.vel.y * dt);
+			this.vel = this.vel.add(this.acc.scale(dt));
 		},
 	};
 }
