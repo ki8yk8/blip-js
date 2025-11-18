@@ -3,6 +3,7 @@ import { pos } from "./components/pos";
 import { rect } from "./components/rect";
 import { rotate } from "./components/rotate";
 import { scale } from "./components/scale";
+import { tag } from "./components/tags";
 import { color, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
 import { clamp, map, max, min } from "./utils/numbers";
 import { Random } from "./utils/random";
@@ -87,6 +88,7 @@ class Engine {
 		this.rect = rect;
 		this.rotate = rotate;
 		this.scale = scale;
+		this.tag = tag;
 
 		// random utilities
 		this.random = new Random();
@@ -202,6 +204,7 @@ class Engine {
 			this.color(255, 255, 255),
 			this.rotate(0),
 			this.scale(1, 1),
+			this.tag(),
 		];
 	}
 

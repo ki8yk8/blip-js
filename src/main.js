@@ -8,7 +8,14 @@ const object = e.add([
 	e.pos(200, 200),
 	e.anchor("center"),
 	e.rotate(-20),
+	e.tag(["animal", "rectangle", "demo"]),
 ]);
+
+// playing with tags
+console.log(object.tags);
+console.log(object.is("animal"));
+object.untag("animal");
+console.log(object.is("animal"));
 
 e.tween(0, 90, 5, (value) => {
 	object.angle = value;
@@ -26,7 +33,7 @@ e.onKeyPressed("ArrowUp", () => {
 e.onKeyPressed("ArrowDown", () => {
 	object.moveBy(100, 100);
 	console.log(object.pos);
-})
+});
 
 e.onUpdate(() => {
 	// object.angle += 10 * e.dt;
