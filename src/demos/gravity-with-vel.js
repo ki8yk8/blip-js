@@ -15,7 +15,6 @@ const ground = k.add([
 	k.tag("ground"),
 ]);
 
-const ground_top = ground.pos.y - ground.height;
 const g = 200;
 
 k.onKeyPressed(" ", () => {
@@ -31,11 +30,13 @@ k.onKeyPressed(" ", () => {
 	]);
 
 	//this with gravity
-	const start_time = k.time;
 	k.onUpdate(() => {
-		// clamping the position to prevent the fall
+		// v = u + gt
+		if (!ball.checkCollision("ground")) {
+			ball.vel.y = ball.vel.y + g * k.dt;
+		}
 	});
-	
+
 	ball.onCollide("ground", () => {
 		ball.vel.y = 0;
 	});
