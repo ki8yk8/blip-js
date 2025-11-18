@@ -19,6 +19,8 @@ const player_head = k.add([
 	k.color("#20bf55"),
 ]);
 
+const head_offset = player_head.pos.sub(player.pos);
+
 const instructions = k.add([
 	k.text("Press left and right arrow key to rotate player and space to shoot"),
 	k.pos(k.width() / 2, 30),
@@ -26,7 +28,11 @@ const instructions = k.add([
 
 k.onKeyDown("ArrowLeft", () => {
 	player.angle -= 100 * k.dt;
-})
+});
 k.onKeyDown("ArrowRight", () => {
 	player.angle += 100 * k.dt;
-})
+});
+k.onUpdate(() => {
+	player_head.pos = player.pos.add(head_offset.rotate(player.angle));
+	player_head.angle = player.angle;
+});
