@@ -15,6 +15,15 @@ const ball = k.add([
 	k.tag("ball"),
 ]);
 
+const score = k.add([
+	k.text("Score: 0", {size: 32}),
+	k.anchor("topleft"),
+	k.pos(50, 50),
+	{
+		value: 0,
+	}
+])
+
 const speed = 10;
 k.onKeyDown("ArrowLeft", () => moveBall(ball, -speed, 0));
 k.onKeyDown("ArrowRight", () => moveBall(ball, speed, 0));
@@ -29,7 +38,7 @@ function moveBall(ball, s_x, s_y) {
 	ball.pos = k.vec2(x, y);
 }
 
-k.loop(2, () => {
+k.loop(1, () => {
 	const rnd_x = k.rand(100, k.width() - 100);
 	const rnd_y = k.rand(100, k.height() - 100);
 	spawnTarget(rnd_x, rnd_y);
@@ -46,13 +55,19 @@ function spawnTarget(x, y) {
 	]);
 
 	target.onCollide("ball", () => {
+		score.value++;
 		k.tween(1, 0, 0.25, (v) => (target.scale = k.vec2(v, v)));
 		k.wait(0.25, () => k.destroy(target));
 	});
 
 	k.onUpdate(() => {
-		target.angle += 30 * k.dt;
+		if (target) {
+			target.angle += 30 * k.dt;
+		}
 	});
 }
 
+k.onUpdate(() => {
+	score.text = `Score: ${score.value}`
+})
 // key functions; h = help, c = clear all target, and arrows
