@@ -24,14 +24,15 @@ const moving_object = e.add([
 
 const text = e.add([
 	e.text("Hello World", { size: 24, font: "Monospace" }),
-	e.pos(100, 100),
+	e.pos(200, 200),
+	e.anchor("center"),
 	e.rotate(0),
-	e.color(255, 0, 0),
+	e.color(0, 0, 255),
 ]);
 
-// e.onUpdate(() => {
-// 	console.log(text.width);
-// })
+e.onUpdate(() => {
+	// console.log(text.width, text.height);
+});
 
 // moving_object.move(-100, 0);
 
@@ -84,7 +85,7 @@ e.onUpdate(() => {
 
 e.add([
 	e.rect(10, 10, { radius: 5 }),
-	e.color(255, 0, 0),
+	e.color(0, 255, 0),
 	e.pos(200, 200),
 	e.anchor("center"),
 ]);

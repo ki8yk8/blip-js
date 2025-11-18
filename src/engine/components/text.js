@@ -6,14 +6,15 @@ export function text(text, opts = { size: 18, font: "Monospace" }) {
 	const font = opts?.font ?? "Monospace";
 
 	return {
-		width: size,
+		width: 0,
 		height: size,
 		text,
 		textSize: size,
 		font,
 		draw(ctx, e) {
-			this.width = ctx.measureText(e.text).width;
-			this.height = size;
+			const metrics = ctx.measureText(e.text);
+			e.width = metrics.width;
+			e.height = e.textSize;
 
 			const anchored_pos = convertBasedOnAnchor(
 				e.pos.x,
@@ -34,12 +35,14 @@ export function text(text, opts = { size: 18, font: "Monospace" }) {
 			// handles the scaling
 			ctx.scale(e.scale.x, e.scale.y);
 
-			ctx.font = `${this.textSize}px ${this.font}`;
+			ctx.font = `${e.textSize}px ${e.font}`;
+			// 0.8 is baseline fix
 			ctx.fillStyle = rgbToHex(e.color);
-			ctx.fillText(this.text, anchored_pos.x, anchored_pos.y);
-
-			// resetting to its original position and rotation angle
-			ctx.translate(-anchored_pos.x, -anchored_pos.y);
+			ctx.fillText(
+				e.text,
+				anchored_pos.x - e.pos.x,
+				anchored_pos.y - e.pos.y + e.textSize * 0.8
+			);
 
 			// restores context from the stack
 			ctx.restore();
