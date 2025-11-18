@@ -25,12 +25,18 @@ const moving_object = e.add([
 moving_object.move(-100, 0);
 
 object.onCollide("react", () => {
-	console.log("hello");
-})
+	console.log("Collided with react");
+});
+object.onCollideUpdate("react", () => {
+	console.log("colliding");
+});
+object.onCollideEnd("react", () => {
+	console.log("Collision end");
+});
 
 e.onUpdate(() => {
 	// console.log(object._collisions);
-})
+});
 
 // playing with tags
 // console.log(object.tags);

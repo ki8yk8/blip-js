@@ -262,6 +262,7 @@ class Engine {
 				if (overlapping) {
 					if (a._collisions.includes(b)) {
 						// onStay
+						a.triggerCollisionOnStay(b);
 					} else {
 						// onEnter
 						a._collisions.push(b);
@@ -271,6 +272,7 @@ class Engine {
 					if (a._collisions.includes(b)) {
 						// onExit
 						a._collisions.splice(a._collisions.indexOf(b), 1);
+						a.triggerCollisionOnExit(b);
 					}
 				}
 			}

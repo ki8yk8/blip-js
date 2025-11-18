@@ -13,9 +13,20 @@ export function area() {
 				if (e.is(tag)) callback(e);
 			}
 		},
-		triggerColisisonOnStay(e) {},
-		triggerCollisionOnExit() {},
+		triggerCollisionOnStay(e) {
+			for (const on_enter of this._collision_events.onStay) {
+				const { tag, callback } = on_enter;
 
+				if (e.is(tag)) callback(e);
+			}
+		},
+		triggerCollisionOnExit(e) {
+			for (const on_enter of this._collision_events.onExit) {
+				const { tag, callback } = on_enter;
+
+				if (e.is(tag)) callback(e);
+			}
+		},
 		checkCollision(tag) {
 			const exists = this._collisions.find((e) => e.is(tag));
 
