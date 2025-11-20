@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Game Engine
 
 ## Features
@@ -99,3 +100,5 @@ The engine uses Linear Congurential generation algorithm for generation of rando
 4. `toRadian(degree)` and `toDegree(radian)`
 
 All these functions are implemented from scratch during Axiom V1. 
+=======
+>>>>>>> b76097c (initializes the repository with my own game engine)

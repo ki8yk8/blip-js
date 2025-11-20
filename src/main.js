@@ -1,6 +1,7 @@
 import Engine from "./engine";
 
 const e = new Engine();
+<<<<<<< HEAD
 
 const object = e.add([
 	e.rect(100, 200, { radius: [10, 10, 20, 0] }),
@@ -89,3 +90,5 @@ e.add([
 	e.pos(200, 200),
 	e.anchor("center"),
 ]);
+=======
+>>>>>>> b76097c (initializes the repository with my own game engine)
