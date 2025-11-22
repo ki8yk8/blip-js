@@ -1,3 +1,11 @@
-import Engine from "./engine";
+import Engine, { COLORS } from "./engine";
+import Ray from "./objects/ray";
 
-const e = new Engine();
+const k = new Engine({
+	width: window.innerWidth,
+	height: window.innerHeight,
+	canvas: document.getElementById("game-canvas"),
+	backgroundColor: COLORS.BLACK,
+});
+
+const ray = Ray({ k });
