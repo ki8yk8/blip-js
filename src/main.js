@@ -1,4 +1,5 @@
 import Engine, { COLORS } from "./engine";
+import Snowboard from "./objects/snowboard";
 
 const k = new Engine({
 	width: window.innerWidth,
@@ -6,3 +7,5 @@ const k = new Engine({
 	canvas: document.getElementById("game-canvas"),
 	backgroundColor: COLORS.BLACK,
 });
+
+const snowboard = Snowboard({ k });
