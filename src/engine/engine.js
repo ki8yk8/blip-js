@@ -8,6 +8,7 @@ import { sprite } from "./components/sprite";
 import { tag } from "./components/tags";
 import { text } from "./components/text";
 import { timer } from "./components/timer";
+import { visibility } from "./components/visibility";
 import { color, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
 import { clamp, map, max, min } from "./utils/numbers";
 import { Random } from "./utils/random";
@@ -104,6 +105,7 @@ class Engine {
 		this.area = area;
 		this.timer = timer;
 		this.text = text;
+		this.visibility = visibility;
 
 		// random utilities
 		this.random = new Random();
@@ -191,6 +193,10 @@ class Engine {
 		this.canvas_ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
 		for (const e of this.entities) {
+			if ("visible" in e && !e.visible) {
+				continue;
+			}
+
 			if ("sprite" in e) {
 				if (!e.loaded) {
 					e.loaded = true;
@@ -245,6 +251,7 @@ class Engine {
 			this.rotate(0),
 			this.scale(1, 1),
 			this.tag(),
+			this.visibility(),
 			{
 				_exist: true,
 				exists() {
