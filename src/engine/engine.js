@@ -291,7 +291,7 @@ class Engine {
 			return this.entities;
 		}
 
-		return this.entities.filter((e) => "tags" in e && e["tags"].includes(tag));
+		return this.entities.filter((e) => "tags" in e && e["tags"].has(tag));
 	}
 
 	onUpdate(func) {
