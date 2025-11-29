@@ -337,7 +337,9 @@ class Engine {
 		});
 	}
 
-	isKeyDown(key) {
+	isKeyDown(key = "*") {
+		if (key === "*") return this.keys_down.size === 0;
+
 		return this.keys_down.has(key) ? true : false;
 	}
 
