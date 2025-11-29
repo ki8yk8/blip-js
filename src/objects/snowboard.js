@@ -18,19 +18,30 @@ export default function Snowboard({ k }) {
 
 	const movement_keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 
+	const turn_speed = 100;
+	const forward_acc = 100;
+	const drag = 4;
+
 	k.onUpdate(() => {
-		if (k.isKeyDown("ArrowUp")) {
-			snowboard.acc = snowboard.acc.add(0, -10);
-		}
+		// handle turning thursts
 		if (k.isKeyDown("ArrowLeft")) {
-			snowboard.acc = snowboard.acc.add(-5, 0);
+			snowboard.angle -= turn_speed * k.dt;
 		}
 		if (k.isKeyDown("ArrowRight")) {
-			snowboard.acc = snowboard.acc.add(5, 0);
+			snowboard.angle += turn_speed * k.dt;
 		}
 
-		if (movement_keys.every((key) => !k.isKeyDown(key))) {
+		const acc_vectors = k.vec2(0, -1).rotate(snowboard.angle);
+
+		if (k.isKeyDown("ArrowUp")) {
+			snowboard.acc = acc_vectors.scale(forward_acc);
+		} else {
 			snowboard.acc = k.vec2(0, 0);
+		}
+
+		if (!snowboard.vel.eq(0, 0)) {
+			const drag_force = snowboard.vel.scale(-drag);
+			snowboard.acc = snowboard.acc.add(drag_force);
 		}
 	});
 
