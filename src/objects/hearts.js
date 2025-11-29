@@ -8,6 +8,7 @@ export function Hearts({ k }) {
 		k.sprite("heart"),
 		k.anchor("center"),
 		k.pos(rnd_x, rnd_y),
+		k.rotate(0),
 		k.scale(0.8),
 		k.area(),
 		"heart",
@@ -21,6 +22,14 @@ export function Hearts({ k }) {
 
 		hearts.pos = k.vec2(rnd_x, rnd_y);
 	});
+
+	k.animate(
+		hearts,
+		"scale",
+		[k.vec2(0.8), k.vec2(0.9), k.vec2(0.7), k.vec2(0.8)],
+		2
+	);
+	k.animate(hearts, "angle", [0, 360], 4);
 
 	return hearts;
 }
