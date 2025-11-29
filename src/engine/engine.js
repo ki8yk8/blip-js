@@ -1,6 +1,7 @@
 import { anchor, convertBasedOnAnchor } from "./components/anchor";
 import { area } from "./components/area";
 import { opacity } from "./components/opacity";
+import { particles } from "./components/particles";
 import { pos } from "./components/pos";
 import { rect } from "./components/rect";
 import { rotate } from "./components/rotate";
@@ -107,6 +108,7 @@ class Engine {
 		this.map = map;
 
 		// adding the components
+		this.particles = particles;
 		this.anchor = anchor;
 		this.pos = pos;
 		this.rect = rect;
@@ -249,6 +251,7 @@ class Engine {
 				Object.assign(entity, c);
 			}
 		}
+		entity.init?.(this);
 
 		this.entities.push(entity);
 		return entity;
@@ -278,7 +281,7 @@ class Engine {
 				},
 				destroy() {
 					this._exist = false;
-				}
+				},
 			},
 		];
 	}

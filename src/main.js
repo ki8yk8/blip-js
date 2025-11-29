@@ -8,5 +8,5 @@ const k = new Engine({
 	backgroundColor: COLORS.BLACK,
 });
 
-const [snowboard, emit] = Snowboard({ k });
-emit();
+const snowboard = Snowboard({ k });
+snowboard.emit();
