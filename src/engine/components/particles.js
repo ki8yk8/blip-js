@@ -26,7 +26,7 @@ export function particles(props = {}) {
 			for (let i = 0; i < n; i++) {
 				particles.push(
 					k.add([
-						k.rect(10, 10, { radius: 0 }),
+						k.rect(10, 10, { radius: 10 }),
 						k.pos(this.pos),
 						k.rotate(0),
 						k.scale(1),

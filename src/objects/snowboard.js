@@ -1,7 +1,7 @@
 export default function Snowboard({ k }) {
 	const snowboard = k.add([
 		k.rect(20, 50, { radius: [9, 9, 2, 2] }),
-		k.color("BROWN"),
+		k.color("#384559"),
 		k.pos(k.width() / 2, k.height() - 100),
 		k.anchor("bot"),
 		k.particles({
