@@ -29,6 +29,10 @@ export class Vec2 {
 		throw new Error("Props should be either x, y or [x, y] or {x: , y:}");
 	}
 
+	static fromAngle(degree) {
+		return new Vec2(1, 0).rotate(degree);
+	}
+
 	clone() {
 		return new Vec2(this.x, this.y);
 	}
