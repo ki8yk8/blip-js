@@ -22,3 +22,5 @@ k.loadSprite("heart", "/sprites/star.png");
 
 registerHomeScreen({ k, constants, state });
 registerGameScene({ k, constants, state });
+
+k.go("home");
