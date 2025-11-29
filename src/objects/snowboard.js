@@ -26,7 +26,19 @@ export default function Snowboard({ k }) {
 			colors: [k.Color("RED"), k.Color("GREEN")],
 		}),
 	]);
+	const right_emitter = k.add([
+		k.rect(4, 4),
+		k.color("ORANGE"),
+		k.pos(snowboard.pos.add(snowboard.width / 2, (-snowboard.height * 2) / 3)),
+		k.particles({
+			spread: 10,
+			direction: 0,
+			lifetime: 0.2,
+			colors: [k.Color("RED"), k.Color("GREEN")],
+		}),
+	]);
 	const left_thruster_offset = left_emitter.pos.sub(snowboard.pos);
+	const right_thruster_offset = right_emitter.pos.sub(snowboard.pos);
 
 	const turn_speed = 100;
 	const forward_acc = 300;
@@ -39,9 +51,29 @@ export default function Snowboard({ k }) {
 	};
 
 	k.onUpdate(() => {
+		// handling the position of the left and right thrusters
+		right_emitter.pos = snowboard.pos.add(
+			right_thruster_offset.rotate(snowboard.angle)
+		);
+		right_emitter.angle = snowboard.angle;
+		right_emitter.particles.direction = snowboard.angle;
+
+		// for left emitter
+		left_emitter.pos = snowboard.pos.add(
+			left_thruster_offset.rotate(snowboard.angle)
+		);
+		left_emitter.angle = snowboard.angle;
+		left_emitter.particles.direction = -180 + snowboard.angle;
+		
+		snowboard.particles.direction = 90 + snowboard.angle;
+
 		// handle turning thursts
 		if (k.isKeyDown("ArrowLeft")) {
 			snowboard.angle -= turn_speed * k.dt;
+			if (Math.abs(last_emitted.right_thruster - k.time) > 0.1) {
+				right_emitter.emit(3);
+				last_emitted.right_thruster = k.time;
+			}
 		}
 		if (k.isKeyDown("ArrowRight")) {
 			snowboard.angle += turn_speed * k.dt;
@@ -50,12 +82,6 @@ export default function Snowboard({ k }) {
 				left_emitter.emit(3);
 				last_emitted.left_thruster = k.time;
 			}
-
-			left_emitter.pos = snowboard.pos.add(
-				left_thruster_offset.rotate(snowboard.angle)
-			);
-			left_emitter.angle = snowboard.angle;
-			left_emitter.particles.direction = -180 + snowboard.angle;
 		}
 
 		// accleartion at every frame
@@ -64,6 +90,11 @@ export default function Snowboard({ k }) {
 
 		if (k.isKeyDown("ArrowUp")) {
 			acc = acc.add(forward.scale(forward_acc));
+
+			if (Math.abs(last_emitted.snowboard - k.time) > 0.1) {
+				snowboard.emit(3);
+				last_emitted.snowboard = k.time;
+			}
 		}
 
 		if (!snowboard.vel.nearlyEq(k.vec2(0, 0), 0.1)) {
