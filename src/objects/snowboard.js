@@ -11,7 +11,7 @@ export default function Snowboard({ k }) {
 
 	const properties = {
 		scale: [vec2(0.2), vec2(1)],
-		opacities: [1.0, 0.0],
+		opacities: [1.0, 0.1],
 		angle: [0, 360],
 		speed: 100,
 		lifetime: 1,
@@ -61,11 +61,9 @@ export default function Snowboard({ k }) {
 				particle.moveTo(p);
 			});
 
-			k.wait(properties.lifetime, () => (particle.visible = false));
+			k.wait(properties.lifetime, () => particle.destroy());
 		});
 	}
-
-	k.wait(1, () => snowboard.destroy());
 
 	return [snowboard, emit];
 }
