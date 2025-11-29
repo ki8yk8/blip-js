@@ -1,8 +1,6 @@
 import Engine from "./engine";
-import Background from "./objects/background";
-import { spawnBoulders } from "./objects/boulders";
-import { Hearts } from "./objects/hearts";
-import Snowboard from "./objects/snowboard";
+import { registerGameScene } from "./scenes/game";
+import { registerHomeScreen } from "./scenes/homescreen";
 
 const k = new Engine({
 	width: window.innerWidth,
@@ -22,13 +20,5 @@ const constants = {
 
 k.loadSprite("heart", "/sprites/star.png");
 
-Background({ k, random_patches: 20 });
-
-const snowboard = Snowboard({ k, state });
-spawnBoulders(k, snowboard.pos);
-
-k.loop(constants.heart_spawn_rate, () => {
-	if (k.get("heart").length <= constants.max_hearts) {
-		Hearts({ k, state });
-	}
-});
+registerHomeScreen({ k, constants, state });
+registerGameScene({ k, constants, state });
