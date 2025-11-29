@@ -27,13 +27,8 @@ Background({ k, random_patches: 20 });
 const snowboard = Snowboard({ k, state });
 spawnBoulders(k, snowboard.pos);
 
-const h = Hearts({ k, state });
-
-const tag_object = k.add(["hello"]);
-console.log(tag_object);
-
 k.loop(constants.heart_spawn_rate, () => {
-	// if (k.get("heart").length <= constants.max_hearts) {
-	// 	Hearts({ k, state });
-	// }
+	if (k.get("heart").length <= constants.max_hearts) {
+		Hearts({ k, state });
+	}
 });
