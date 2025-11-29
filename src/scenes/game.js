@@ -16,9 +16,16 @@ export function registerGameScene({ k, state, constants }) {
 			}
 		});
 
+		k.add([
+			k.rect(200, 50, { radius: 10 }),
+			k.color("BLACK"),
+			k.pos(30, 40),
+			k.anchor("topleft"),
+		]);
+
 		const score = k.add([
 			k.text("Score: 0", { size: 28 }),
-			k.color("GREEN"),
+			k.color("WHITE"),
 			k.pos(50, 50),
 			k.anchor("topleft"),
 		]);
@@ -30,6 +37,6 @@ export function registerGameScene({ k, state, constants }) {
 				score.text = `Score: ${prev_points}`;
 				score.loaded = false;
 			}
-		})
+		});
 	});
 }
