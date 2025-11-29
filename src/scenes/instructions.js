@@ -14,7 +14,11 @@ export function registerInstructionsScreen({ k }) {
 			k.color("BROWN"),
 		]);
 
-		const instructions = ["Instruction 1", "Instruction 2", "Instruction 3"];
+		const instructions = [
+			"You are the snowboard and you have thrusters on your board as main thruster, left and right one. These are for movements around the scene.",
+			"Your goal is to capture the stars and increase your score. You will also get the random spawn of the boost to increase your acceleration.",
+			"If you hit the rail guards, your health decreases based on the velocity. Also, watch out for the different spawning skeletons, that could impact your health, and if your health runs out you lose.",
+		];
 		let index = 0;
 
 		const instruction_objects = k.add([
@@ -22,8 +26,10 @@ export function registerInstructionsScreen({ k }) {
 				size: 24,
 				maxWidth: k.min(k.width() - 50, 400),
 				align: "center",
+				lineHeight: 36,
 			}),
 			k.pos(k.width() / 2, logo.pos.y + logo.height / 2 + 50),
+			k.anchor("top"),
 			k.color("BLACK"),
 		]);
 
