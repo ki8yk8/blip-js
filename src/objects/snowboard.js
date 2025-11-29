@@ -4,7 +4,9 @@ export default function Snowboard({ k }) {
 		k.color("WHITE"),
 		k.pos(k.width() / 2, k.height() - 100),
 		k.anchor("bot"),
-		k.particles({}),
+		k.particles({
+			scale: 0,
+		}),
 		"snowboard",
 	]);
 

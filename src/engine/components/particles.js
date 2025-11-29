@@ -20,7 +20,6 @@ export function particles(props) {
 		},
 		emit(n = 10) {
 			const k = this.engine;
-			console.log(properties.colors)
 
 			const particles = [];
 			for (let i = 0; i < n; i++) {
@@ -31,7 +30,11 @@ export function particles(props) {
 						k.rotate(0),
 						k.scale(1),
 						k.visibility(true),
-						k.color(properties.colors?.[0]),
+						k.color(
+							Array.isArray(properties.colors)
+								? properties.colors[0]
+								: properties.colors
+						),
 						k.opacity(properties.opacities[0]),
 						k.anchor("center"),
 					])
@@ -60,7 +63,10 @@ export function particles(props) {
 					properties.lifetime
 				);
 				k.animate(particle, "angle", properties.angle, properties.lifetime);
-				k.animate(particle, "color", properties.colors, properties.lifetime);
+
+				if (Array.isArray(properties.colors)) {
+					k.animate(particle, "color", properties.colors, properties.lifetime);
+				}
 
 				k.tween(particle.pos, target, properties.lifetime, (p) => {
 					particle.moveTo(p);
