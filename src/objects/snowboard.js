@@ -1,14 +1,14 @@
 export default function Snowboard({ k }) {
 	const snowboard = k.add([
 		k.rect(20, 50, { radius: [9, 9, 2, 2] }),
-		k.color("WHITE"),
+		k.color("BROWN"),
 		k.pos(k.width() / 2, k.height() - 100),
 		k.anchor("bot"),
 		k.particles({
 			spread: 60,
 			direction: 90,
 			lifetime: 0.3,
-			colors: [k.Color("RED"), k.Color("GREEN")],
+			colors: [k.Color("SKYBLUE"), k.Color("PURPLE")],
 		}),
 		k.area(),
 		"snowboard",
@@ -16,25 +16,25 @@ export default function Snowboard({ k }) {
 
 	// left thruster and right thrusters particles emitter
 	const left_emitter = k.add([
-		k.rect(4, 4),
-		k.color("ORANGE"),
 		k.pos(snowboard.pos.add(-snowboard.width / 2, (-snowboard.height * 2) / 3)),
 		k.particles({
+			scale: [k.vec2(0.2), k.vec2(0.6)],
 			spread: 10,
 			direction: -180,
-			lifetime: 0.2,
-			colors: [k.Color("RED"), k.Color("GREEN")],
+			speed: 20,
+			lifetime: 0.1,
+			colors: [k.Color("SKYBLUE"), k.Color("PURPLE")],
 		}),
 	]);
 	const right_emitter = k.add([
-		k.rect(4, 4),
-		k.color("ORANGE"),
 		k.pos(snowboard.pos.add(snowboard.width / 2, (-snowboard.height * 2) / 3)),
 		k.particles({
+			scale: [k.vec2(0.2), k.vec2(0.6)],
 			spread: 10,
 			direction: 0,
-			lifetime: 0.2,
-			colors: [k.Color("RED"), k.Color("GREEN")],
+			speed: 20,
+			lifetime: 0.1,
+			colors: [k.Color("SKYBLUE"), k.Color("PURPLE")],
 		}),
 	]);
 	const left_thruster_offset = left_emitter.pos.sub(snowboard.pos);
@@ -64,7 +64,7 @@ export default function Snowboard({ k }) {
 		);
 		left_emitter.angle = snowboard.angle;
 		left_emitter.particles.direction = -180 + snowboard.angle;
-		
+
 		snowboard.particles.direction = 90 + snowboard.angle;
 
 		// handle turning thursts
