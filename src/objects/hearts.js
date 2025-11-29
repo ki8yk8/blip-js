@@ -1,4 +1,4 @@
-export function Hearts({ k }) {
+export function Hearts({ k, state }) {
 	const [rnd_x, rnd_y] = [
 		k.rand(200, k.width() - 200),
 		k.rand(200, k.height() - 200),
@@ -30,6 +30,11 @@ export function Hearts({ k }) {
 		2
 	);
 	k.animate(hearts, "angle", [0, 360], 4);
+
+	hearts.onCollide("snowboard", () => {
+		state.points++;
+		k.destroy(hearts);
+	});
 
 	return hearts;
 }

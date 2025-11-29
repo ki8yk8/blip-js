@@ -11,11 +11,15 @@ const k = new Engine({
 	backgroundColor: "#DDE7F7",
 });
 
+const state = {
+	points: 0,
+};
+
 k.loadSprite("heart", "/sprites/star.png");
 
 Background({ k, random_patches: 20 });
 
-const snowboard = Snowboard({ k });
+const snowboard = Snowboard({ k, state });
 spawnBoulders(k, snowboard.pos);
 
-Hearts({ k });
+Hearts({ k, state });
