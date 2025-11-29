@@ -1,3 +1,5 @@
+import { vec2, Vec2 } from "../engine/vec2";
+
 export default function Snowboard({ k }) {
 	const snowboard = k.add([
 		k.rect(20, 100, { radius: [50, 50, 0, 0] }),
@@ -16,7 +18,7 @@ export default function Snowboard({ k }) {
 	const properties = {
 		scale: [1, 0],
 		angle: [0, 360],
-		speed: 10,
+		speed: 100,
 		lifetime: 1,
 		direction: 0,
 		spread: 40,
@@ -41,8 +43,18 @@ export default function Snowboard({ k }) {
 	function emit() {
 		particles.forEach((particle, index) => {
 			particle.visible = true;
-			const fire_angle = k.map(index, 0, 0, 4, properties.spread);
+			const fire_angle = k.map(
+				index,
+				0,
+				-properties.spread / 2,
+				particles.length - 1,
+				properties.spread / 2
+			);
 			particle.fire_angle = fire_angle + properties.direction;
+			const direction = Vec2.fromAngle(particle.fire_angle);
+			const target = particle.pos.add(
+				direction.scale(properties.speed * properties.lifetime)
+			);
 
 			k.animate(particle, "scale", properties.scale, properties.lifetime);
 			k.animate(particle, "angle", properties.angle, properties.lifetime);
@@ -50,9 +62,7 @@ export default function Snowboard({ k }) {
 
 			k.tween(
 				particle.pos,
-				particle.pos
-					.add(properties.lifetime * properties.speed, 0)
-					.rotate(particle.fire_angle),
+				target,
 				properties.lifetime,
 				(p) => {
 					particle.moveTo(p);
