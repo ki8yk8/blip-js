@@ -1,6 +1,6 @@
 import Engine, { COLORS } from "./engine";
 import Background from "./objects/background";
-import Boulder from "./objects/boulders";
+import { spawnBoulders } from "./objects/boulders";
 import Snowboard from "./objects/snowboard";
 
 const k = new Engine({
@@ -10,6 +10,7 @@ const k = new Engine({
 	backgroundColor: "#DDE7F7",
 });
 
-const snowboard = Snowboard({ k });
-const boulder = Boulder({ k });
 Background({ k });
+
+spawnBoulders(k);
+const snowboard = Snowboard({ k });

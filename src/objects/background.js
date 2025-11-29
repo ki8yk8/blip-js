@@ -1,5 +1,4 @@
 export default function Background({ k, random_patches = 10 }) {
-	// border = A24B55
 	const patches_colors = ["#93B1CD", "#78B3DD", "WHITE"];
 
 	for (let i = 0; i < random_patches; i++) {
