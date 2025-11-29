@@ -15,10 +15,28 @@ export default function Snowboard({ k }) {
 	]);
 
 	// left thruster and right thrusters particles emitter
+	const left_emitter = k.add([
+		k.rect(4, 4),
+		k.color("ORANGE"),
+		k.pos(snowboard.pos.add(-snowboard.width / 2, (-snowboard.height * 2) / 3)),
+		k.particles({
+			spread: 10,
+			direction: -180,
+			lifetime: 0.2,
+			colors: [k.Color("RED"), k.Color("GREEN")],
+		}),
+	]);
+	const left_thruster_offset = left_emitter.pos.sub(snowboard.pos);
 
 	const turn_speed = 100;
 	const forward_acc = 300;
 	const drag = 4;
+
+	const last_emitted = {
+		snowboard: k.time,
+		left_thruster: k.time,
+		right_thruster: k.time,
+	};
 
 	k.onUpdate(() => {
 		// handle turning thursts
@@ -27,6 +45,16 @@ export default function Snowboard({ k }) {
 		}
 		if (k.isKeyDown("ArrowRight")) {
 			snowboard.angle += turn_speed * k.dt;
+
+			if (Math.abs(last_emitted.left_thruster - k.time) > 0.1) {
+				left_emitter.emit(3);
+				last_emitted.left_thruster = k.time;
+			}
+
+			left_emitter.pos = snowboard.pos.add(
+				left_thruster_offset.rotate(snowboard.angle)
+			);
+			left_emitter.angle = snowboard.angle;
 		}
 
 		// accleartion at every frame
