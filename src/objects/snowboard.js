@@ -18,11 +18,11 @@ export default function Snowboard({ k }) {
 		angle: [0, 360],
 		speed: 100,
 		lifetime: 4,
-		direction: 0,
-		spread: 360,
+		direction: -90,
+		spread: 40,
 		colors: [k.colors.RED, k.colors.ORANGE],
 	};
-	
+
 	const particles = [];
 	for (let i = 0; i < 4; i++) {
 		particles.push(
@@ -41,8 +41,8 @@ export default function Snowboard({ k }) {
 	function emit() {
 		particles.forEach((particle, index) => {
 			particle.visible = true;
-			const fire_angle = k.map(index, 0, 0, 4, 360);
-			particle.fire_angle = fire_angle;
+			const fire_angle = k.map(index, 0, 0, 4, properties.spread);
+			particle.fire_angle = fire_angle + properties.direction;
 
 			k.animate(particle, "scale", properties.scale, properties.lifetime);
 			k.animate(particle, "angle", properties.angle, properties.lifetime);
