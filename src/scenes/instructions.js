@@ -34,6 +34,23 @@ export function registerInstructionsScreen({ k }) {
 			k.color("GREEN"),
 		]);
 
+		k.onKeyPress("ArrowLeft", () => {
+			handlePageChange(-1);
+		});
+		k.onKeyPress("ArrowRight", () => {
+			handlePageChange(1);
+		});
+
+		function handlePageChange(increment = 1) {
+			index = k.clamp(index + increment, 0, instructions.length - 1);
+
+			pagination.text = `Page: ${index + 1}/${instructions.length}`;
+			pagination.loaded = false;
+
+			instruction_objects.text = instructions[index];
+			instruction_objects.loaded = false;
+		}
+
 		// animating the objects
 		k.animate(hint, "angle", [0, 2, 0, -2, 0], 4);
 		k.animate(
