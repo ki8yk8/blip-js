@@ -101,3 +101,16 @@ export function color(...props) {
 export function Color(...props) {
 	return color(...props).color;
 }
+
+export function isColor(color) {
+	if (
+		typeof color === "object" &&
+		"r" in color &&
+		"g" in color &&
+		"b" in color
+	) {
+		return true;
+	}
+
+	return false;
+}
