@@ -65,5 +65,7 @@ export default function Snowboard({ k }) {
 		});
 	}
 
+	k.wait(1, () => snowboard.destroy());
+
 	return [snowboard, emit];
 }

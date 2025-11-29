@@ -10,7 +10,15 @@ import { tag } from "./components/tags";
 import { text } from "./components/text";
 import { timer } from "./components/timer";
 import { visibility } from "./components/visibility";
-import { Color, color, COLORS, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
+import {
+	Color,
+	color,
+	COLORS,
+	hexToRgb,
+	rgbToHex,
+	toDegree,
+	toRadian,
+} from "./utils";
 import { clamp, map, max, min } from "./utils/numbers";
 import { Random } from "./utils/random";
 import { vec2 } from "./vec2";
@@ -159,6 +167,12 @@ class Engine {
 
 		// updating the frame or re-rendering
 		for (const e of this.entities) {
+			// destroying the entity if _exist = false
+			const index = this.entities.indexOf(e);
+			if (!e._exist && index !== -1) {
+				this.entities.splice(index, 1);
+			}
+
 			if (e.update) e.update(dt, e);
 		}
 
@@ -262,6 +276,9 @@ class Engine {
 				exists() {
 					return this._exist;
 				},
+				destroy() {
+					this._exist = false;
+				}
 			},
 		];
 	}
@@ -413,12 +430,7 @@ class Engine {
 
 	destroy(e) {
 		if (!e.exists()) return;
-		e._exists = false;
-
-		const index = this.entities.indexOf(e);
-		if (index !== -1) {
-			this.entities.splice(index, 1);
-		}
+		e._exist = false;
 	}
 
 	scene(name, callback) {
