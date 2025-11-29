@@ -15,5 +15,21 @@ export function registerGameScene({ k, state, constants }) {
 				Hearts({ k, state });
 			}
 		});
+
+		const score = k.add([
+			k.text("Score: 0", { size: 28 }),
+			k.color("GREEN"),
+			k.pos(50, 50),
+			k.anchor("topleft"),
+		]);
+
+		let prev_points = state.points;
+		k.onUpdate(() => {
+			if (prev_points !== state.points) {
+				prev_points = state.points;
+				score.text = `Score: ${prev_points}`;
+				score.loaded = false;
+			}
+		})
 	});
 }
