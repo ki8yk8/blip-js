@@ -5,6 +5,8 @@ export default function Boulder({ k, pos }) {
 		k.rect(100, 100, { radius: [40, 30, 50, 20] }),
 		k.pos(pos),
 		k.color("#243A56"),
+		k.area(),
+		"boulder",
 	]);
 
 	k.add([

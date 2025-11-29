@@ -1,20 +1,25 @@
+import { get_random_pos } from "../utils/pos";
+
 export default function Background({ k, random_patches = 10 }) {
 	const patches_colors = ["#93B1CD", "#78B3DD", "WHITE"];
 
-	for (let i = 0; i < random_patches; i++) {
-		const [x, y] = [
-			k.rand(100, k.width() - 100),
-			k.rand(100, k.height() - 100),
-		];
+	get_random_pos({
+		n: random_patches,
+		x_min: 100,
+		x_max: k.width() - 100,
+		y_min: 100,
+		y_max: k.height() - 100,
+		gap: 200,
+	}).forEach((pos) => {
 		k.add([
 			k.rect(k.rand(30, 60), k.rand(30, 80), { radius: k.rand(10, 40) }),
 			k.color(k.choose(patches_colors)),
-			k.pos(x, y),
+			k.pos(k.vec2(pos)),
 			k.rotate(k.rand(0, 360)),
 			k.opacity(k.rand(0.2, 0.6)),
 			"patches",
 		]);
-	}
+	});
 
 	// drawing the border bars
 	const top_border = k.add([

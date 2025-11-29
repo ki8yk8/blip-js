@@ -1,4 +1,4 @@
-import Engine, { COLORS } from "./engine";
+import Engine from "./engine";
 import Background from "./objects/background";
 import { spawnBoulders } from "./objects/boulders";
 import Snowboard from "./objects/snowboard";
@@ -10,7 +10,7 @@ const k = new Engine({
 	backgroundColor: "#DDE7F7",
 });
 
-Background({ k });
+Background({ k, random_patches: 20 });
 
 const snowboard = Snowboard({ k });
 spawnBoulders(k, snowboard.pos);
