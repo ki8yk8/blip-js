@@ -323,7 +323,7 @@ class Engine {
 		});
 	}
 
-	onKeyPressed(key, callback) {
+	onKeyPress(key, callback) {
 		this.keypress_callbacks.push({
 			key,
 			callback,
@@ -335,6 +335,14 @@ class Engine {
 			key,
 			callback,
 		});
+	}
+
+	isKeyDown(key) {
+		return this.keys_down.has(key) ? true : false;
+	}
+
+	isKeyPressed(key) {
+		return this.keys_pressed.has(key) ? true : false;
 	}
 
 	handleCollisions() {
