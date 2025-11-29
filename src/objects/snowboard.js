@@ -55,6 +55,7 @@ export default function Snowboard({ k }) {
 				left_thruster_offset.rotate(snowboard.angle)
 			);
 			left_emitter.angle = snowboard.angle;
+			left_emitter.particles.direction = -180 + snowboard.angle;
 		}
 
 		// accleartion at every frame

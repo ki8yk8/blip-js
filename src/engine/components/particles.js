@@ -1,7 +1,7 @@
 import { COLORS } from "../utils";
 import { vec2, Vec2 } from "../vec2";
 
-export function particles(props={}) {
+export function particles(props = {}) {
 	const properties = {
 		scale: props.scale ?? [vec2(0.2), vec2(1)],
 		opacities: props.opacities ?? [1.0, 0.1],
@@ -18,6 +18,7 @@ export function particles(props={}) {
 		init(engine) {
 			this.engine = engine;
 		},
+		particles: { direction: properties.direction, spread: properties.spread },
 		emit(n = 10) {
 			const k = this.engine;
 
@@ -49,7 +50,7 @@ export function particles(props={}) {
 					particles.length - 1,
 					properties.spread / 2
 				);
-				particle.fire_angle = fire_angle + properties.direction;
+				particle.fire_angle = fire_angle + this.particles.direction;
 				const direction = Vec2.fromAngle(particle.fire_angle);
 				const target = particle.pos.add(
 					direction.scale(properties.speed * properties.lifetime)
