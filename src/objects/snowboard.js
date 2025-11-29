@@ -50,6 +50,13 @@ export default function Snowboard({ k }) {
 		right_thruster: k.time,
 	};
 
+	snowboard.onCollide("boulder", (boulder) => {
+		console.log("Collided with boulder, be careful");
+	});
+	snowboard.onCollide("bar", (bar) => {
+		console.log("Collided with the bar");
+	});
+
 	k.onUpdate(() => {
 		// handling the position of the left and right thrusters
 		right_emitter.pos = snowboard.pos.add(
