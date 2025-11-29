@@ -16,9 +16,9 @@ export default function Snowboard({ k }) {
 	const properties = {
 		scale: [1, 0],
 		angle: [0, 360],
-		speed: 100,
-		lifetime: 4,
-		direction: -90,
+		speed: 10,
+		lifetime: 1,
+		direction: 0,
 		spread: 40,
 		colors: [k.Color(k.colors.RED), k.Color(k.colors.ORANGE)],
 	};
@@ -46,6 +46,7 @@ export default function Snowboard({ k }) {
 
 			k.animate(particle, "scale", properties.scale, properties.lifetime);
 			k.animate(particle, "angle", properties.angle, properties.lifetime);
+			k.animate(particle, "color", properties.colors, properties.lifetime);
 
 			k.tween(
 				particle.pos,
@@ -57,10 +58,6 @@ export default function Snowboard({ k }) {
 					particle.moveTo(p);
 				}
 			);
-
-			k.tween(properties.colors[0], properties.colors[1], 0.5, (c) => {
-				console.log(c);
-			});
 
 			k.wait(properties.lifetime, () => (particle.visible = false));
 		});

@@ -18,9 +18,9 @@ export function map(v, s1, d1, s2, d2) {
 		return d1.add(d2.sub(d1).scale((v - s1) / (s2 - s1)));
 	} else if (isColor(d1) && isColor(d2)) {
 		return {
-			r: map(v, s1, d1.r, s2, d2.r),
-			g: map(v, s1, d1.g, s2, d2.g),
-			b: map(v, s1, d1.b, s2, d2.b),
+			r: Math.floor(map(v, s1, d1.r, s2, d2.r)),
+			g: Math.floor(map(v, s1, d1.g, s2, d2.g)),
+			b: Math.floor(map(v, s1, d1.b, s2, d2.b)),
 		};
 	}
 
