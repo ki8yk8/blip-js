@@ -25,4 +25,4 @@ registerHomeScreen({ k, constants, state });
 registerGameScene({ k, constants, state });
 registerInstructionsScreen({ k, constants, state });
 
-k.go("instructions");
+k.go("home");
