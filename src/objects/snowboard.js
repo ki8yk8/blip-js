@@ -9,14 +9,9 @@ export default function Snowboard({ k }) {
 		"snowboard",
 	]);
 
-	// particles should have property
-	// scale: 1 to 0
-	// speed: 100
-	// angle: 0 to 360
-	// lifetime: 0.75, 1.5
-	// direction: 0, and spread: 360
 	const properties = {
 		scale: [vec2(0.2), vec2(1)],
+		opacities: [1.0, 0.0],
 		angle: [0, 360],
 		speed: 100,
 		lifetime: 1,
@@ -35,6 +30,7 @@ export default function Snowboard({ k }) {
 				k.scale(1),
 				k.visibility(false),
 				k.color(properties.colors?.[0] ?? "WHITE"),
+				k.opacity(properties.opacities?.[0] ?? 1),
 				k.anchor("center"),
 				"particle",
 			])
@@ -57,6 +53,7 @@ export default function Snowboard({ k }) {
 			);
 
 			k.animate(particle, "scale", properties.scale, properties.lifetime);
+			k.animate(particle, "opacity", properties.opacities, properties.lifetime);
 			k.animate(particle, "angle", properties.angle, properties.lifetime);
 			k.animate(particle, "color", properties.colors, properties.lifetime);
 

@@ -28,6 +28,8 @@ export function rect(width, height, opt) {
 			ctx.rotate(toRadian(e.angle));
 			// handles the scaling
 			ctx.scale(e.scale.x, e.scale.y);
+			ctx.globalAlpha = e.opacity;
+			
 			ctx.beginPath();
 			// the coordinate are 0,0 since the coordinate origin is already at the anchor point
 			ctx.roundRect(
@@ -41,9 +43,6 @@ export function rect(width, height, opt) {
 				ctx.fillStyle = rgbToHex(e.color) || "#ffffff";
 				ctx.fill();
 			}
-			// resetting to its original position and rotation angle
-			ctx.translate(-anchored_pos.x, -anchored_pos.y);
-
 			ctx.closePath();
 
 			// restores context from the stack

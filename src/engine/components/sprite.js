@@ -31,6 +31,8 @@ export function sprite(name, opt) {
 			ctx.rotate(toRadian(e.angle));
 			// handles the scaling
 			ctx.scale(e.scale.x, e.scale.y);
+			ctx.globalAlpha = e.opacity;
+			
 			ctx.beginPath();
 			// the coordinate are 0,0 since the coordinate origin is already at the anchor point
 			// drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)

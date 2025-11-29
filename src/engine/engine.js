@@ -1,5 +1,6 @@
 import { anchor, convertBasedOnAnchor } from "./components/anchor";
 import { area } from "./components/area";
+import { opacity } from "./components/opacity";
 import { pos } from "./components/pos";
 import { rect } from "./components/rect";
 import { rotate } from "./components/rotate";
@@ -89,6 +90,7 @@ class Engine {
 		this.rgbToHex = rgbToHex;
 		this.hexToRgb = hexToRgb;
 		this.color = color;
+		this.opacity = opacity;
 		this.colors = COLORS;
 		this.Color = Color;
 		this.clamp = clamp;
@@ -250,6 +252,7 @@ class Engine {
 			this.pos(0, 0),
 			this.anchor("center"),
 			this.color(255, 255, 255),
+			this.opacity(1),
 			this.rotate(0),
 			this.scale(1, 1),
 			this.tag(),
