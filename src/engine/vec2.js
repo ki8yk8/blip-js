@@ -109,6 +109,16 @@ export class Vec2 {
 
 		return this.x === x && this.y === y;
 	}
+	nearlyEq(ref, precision = 0.001) {
+		if (
+			Math.abs(ref.x - this.x) <= precision &&
+			Math.abs(ref.y - this.y) <= precision
+		) {
+			return true;
+		}
+
+		return false;
+	}
 	rotate(theta) {
 		const [x, y] = [this.x, this.y];
 		const angle = toRadian(theta);

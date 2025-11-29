@@ -16,10 +16,8 @@ export default function Snowboard({ k }) {
 
 	// left thruster and right thrusters particles emitter
 
-	const movement_keys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-
 	const turn_speed = 100;
-	const forward_acc = 100;
+	const forward_acc = 300;
 	const drag = 4;
 
 	k.onUpdate(() => {
@@ -31,18 +29,20 @@ export default function Snowboard({ k }) {
 			snowboard.angle += turn_speed * k.dt;
 		}
 
-		const acc_vectors = k.vec2(0, -1).rotate(snowboard.angle);
+		// accleartion at every frame
+		let acc = k.vec2(0, 0);
+		const forward = k.vec2(0, -1).rotate(snowboard.angle);
 
 		if (k.isKeyDown("ArrowUp")) {
-			snowboard.acc = acc_vectors.scale(forward_acc);
-		} else {
-			snowboard.acc = k.vec2(0, 0);
+			acc = acc.add(forward.scale(forward_acc));
 		}
 
-		if (!snowboard.vel.eq(0, 0)) {
+		if (!snowboard.vel.nearlyEq(k.vec2(0, 0), 0.1)) {
 			const drag_force = snowboard.vel.scale(-drag);
-			snowboard.acc = snowboard.acc.add(drag_force);
+			acc = acc.add(drag_force);
 		}
+
+		snowboard.acc = acc;
 	});
 
 	return snowboard;
