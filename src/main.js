@@ -9,4 +9,3 @@ const k = new Engine({
 });
 
 const snowboard = Snowboard({ k });
-snowboard.emit();

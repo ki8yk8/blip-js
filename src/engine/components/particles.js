@@ -1,7 +1,7 @@
 import { COLORS } from "../utils";
 import { vec2, Vec2 } from "../vec2";
 
-export function particles(props) {
+export function particles(props={}) {
 	const properties = {
 		scale: props.scale ?? [vec2(0.2), vec2(1)],
 		opacities: props.opacities ?? [1.0, 0.1],
