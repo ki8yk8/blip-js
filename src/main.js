@@ -12,5 +12,5 @@ const k = new Engine({
 
 Background({ k });
 
-spawnBoulders(k);
 const snowboard = Snowboard({ k });
+spawnBoulders(k, snowboard.pos);
