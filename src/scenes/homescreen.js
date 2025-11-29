@@ -91,5 +91,16 @@ export function registerHomeScreen({ k, state, constants }) {
 				index++;
 			}
 		});
+		k.onKeyPress("Enter", () => {
+			switch (index) {
+				case 0:
+					k.go("game");
+					break;
+
+				case 1:
+					k.go("instructions");
+					break;
+			}
+		});
 	});
 }
