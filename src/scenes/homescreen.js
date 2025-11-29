@@ -23,16 +23,73 @@ export function registerHomeScreen({ k, state, constants }) {
 
 		// adding the menu buttons
 		const menu_items = ["Start Game", "Instruction"];
+		const menu_objects = [];
+		let index = 0;
+
 		menu_items.forEach((item, index) => {
 			// rectangle background
 			const background = k.add([
 				k.rect(500, 80),
-				k.pos(k.width() / 2, logo.pos.y + 150 + 100 * index + 8 * index),
+				k.pos(k.width() / 2, logo.pos.y + 150 + 100 * index + 4 * index),
 				k.color("SKYBLUE"),
+				k.rotate(0),
+				k.scale(1),
 			]);
 
 			// rectangle text
-			const text = k.add([k.text(item, { size: 48 }), k.pos(background.pos)]);
+			const text = k.add([
+				k.text(item, { size: 48 }),
+				k.pos(background.pos),
+				k.rotate(0),
+				k.scale(1),
+			]);
+
+			menu_objects.push({
+				background,
+				text,
+			});
+		});
+
+		// adding the controls
+		function handleMenuItemChanged(menu_objects, index, active = true) {
+			const item = menu_objects[index];
+			const { background, text } = item;
+
+			if (active) {
+				background.angle = 2;
+				text.angle = 2;
+
+				background.color = k.Color("GREEN");
+
+				background.scale = k.vec2(1.05);
+			} else {
+				background.angle = 0;
+				text.angle = 0;
+
+				background.color = k.Color("SKYBLUE");
+
+				background.scale = k.vec2(1);
+			}
+		}
+
+		// by default first item is active and others are inactive
+		handleMenuItemChanged(menu_objects, 0, true);
+		handleMenuItemChanged(menu_objects, 1, false);
+
+		// handling the key presses
+		k.onKeyPress("ArrowUp", () => {
+			if (index !== 0) {
+				handleMenuItemChanged(menu_objects, index, false);
+				handleMenuItemChanged(menu_objects, index - 1, true);
+				index--;
+			}
+		});
+		k.onKeyPress("ArrowDown", () => {
+			if (index < menu_objects.length - 1) {
+				handleMenuItemChanged(menu_objects, index, false);
+				handleMenuItemChanged(menu_objects, index + 1, true);
+				index++;
+			}
 		});
 	});
 }
