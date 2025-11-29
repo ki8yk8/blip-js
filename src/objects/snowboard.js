@@ -17,15 +17,17 @@ export default function Snowboard({ k }) {
 		scale: [1, 0],
 		angle: [0, 360],
 		speed: 100,
-		lifetime: 1.5,
+		lifetime: 10,
 		direction: 0,
 		spread: 360,
+		colors: [k.colors.RED, k.colors.ORANGE],
 	};
 	const particles = [];
-	for (let i = 0; i < 100; i++) {
+	for (let i = 0; i < 4; i++) {
 		particles.push(
 			k.add([
 				k.rect(10, 10, { radius: 0 }),
+				k.pos(k.width() / 2, k.height() / 2),
 				k.rotate(0),
 				k.scale(1),
 				k.visibility(false),
@@ -35,11 +37,19 @@ export default function Snowboard({ k }) {
 		);
 	}
 	function emit() {
-		particles.visible = true;
-
 		particles.forEach((particle) => {
+			particle.visible = true;
+
 			k.animate(particle, "scale", properties.scale, properties.lifetime);
 			k.animate(particle, "angle", properties.angle, properties.lifetime);
+			k.tween(
+				particle.pos,
+				particle.pos.add(0, properties.lifetime * properties.speed),
+				properties.lifetime,
+				(p) => {
+					particle.moveTo(p);
+				}
+			);
 
 			k.wait(properties.lifetime, () => (particle.visible = false));
 		});
