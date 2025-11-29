@@ -20,7 +20,7 @@ export default function Snowboard({ k }) {
 		lifetime: 4,
 		direction: -90,
 		spread: 40,
-		colors: [k.colors.RED, k.colors.ORANGE],
+		colors: [k.Color(k.colors.RED), k.Color(k.colors.ORANGE)],
 	};
 
 	const particles = [];
@@ -57,6 +57,10 @@ export default function Snowboard({ k }) {
 					particle.moveTo(p);
 				}
 			);
+
+			k.tween(properties.colors[0], properties.colors[1], 0.5, (c) => {
+				console.log(c);
+			});
 
 			k.wait(properties.lifetime, () => (particle.visible = false));
 		});

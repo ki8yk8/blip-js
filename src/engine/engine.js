@@ -9,7 +9,7 @@ import { tag } from "./components/tags";
 import { text } from "./components/text";
 import { timer } from "./components/timer";
 import { visibility } from "./components/visibility";
-import { color, COLORS, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
+import { Color, color, COLORS, hexToRgb, rgbToHex, toDegree, toRadian } from "./utils";
 import { clamp, map, max, min } from "./utils/numbers";
 import { Random } from "./utils/random";
 import { vec2 } from "./vec2";
@@ -90,6 +90,7 @@ class Engine {
 		this.hexToRgb = hexToRgb;
 		this.color = color;
 		this.colors = COLORS;
+		this.Color = Color;
 		this.clamp = clamp;
 		this.min = min;
 		this.max = max;

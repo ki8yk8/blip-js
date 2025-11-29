@@ -97,3 +97,7 @@ export function color(...props) {
 		);
 	}
 }
+
+export function Color(...props) {
+	return color(...props).color;
+}
