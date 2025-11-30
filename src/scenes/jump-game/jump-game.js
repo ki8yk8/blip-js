@@ -7,6 +7,7 @@ export function registerJumpGameScene({ k, constants, state }) {
 		]);
 
 		const levels = 5;
+		const reached_level = window.localStorage.getItem("jumpLevel") ?? 1;
 		const level_bg = k.add([
 			k.rect(300, 250, { radius: 10 }),
 			k.pos(k.width() / 2, k.height() / 2),
@@ -34,20 +35,20 @@ export function registerJumpGameScene({ k, constants, state }) {
 				book_page.pos.sub(-book_page.width / 2 + 30, book_page.height / 2 - 20)
 			),
 			k.scale(0.6),
-			k.visibility(true),
+			k.visibility(false),
 		]);
 		const locked_text = k.add([
 			k.text("Locked !!!"),
 			k.pos(book_page.pos.add(0, book_page.height / 2 - 20)),
 			k.color("BROWN"),
-			k.visibility(true),
+			k.visibility(false),
 		]);
 
 		const arrow_left = k.add([
 			k.sprite("arrow"),
 			k.pos(level_bg.pos.sub(level_bg.width / 2, 0)),
 			k.rotate(-180),
-			k.visibility(true),
+			k.visibility(false),
 		]);
 		const arrow_right = k.add([
 			k.sprite("arrow"),
@@ -55,6 +56,46 @@ export function registerJumpGameScene({ k, constants, state }) {
 			k.rotate(0),
 			k.visibility(true),
 		]);
+
+		let selected = 1;
+		k.onKeyPress("ArrowRight", () => {
+			selected = k.clamp(selected + 1, 1, levels);
+			renderBookBasedOnSelected(selected);
+		});
+		k.onKeyPress("ArrowLeft", () => {
+			selected = k.clamp(selected - 1, 1, levels);
+			renderBookBasedOnSelected(selected);
+		});
+
+		function renderBookBasedOnSelected(selected) {
+			arrow_left.visible = true;
+			arrow_right.visible = true;
+			if (selected >= levels) {
+				arrow_right.visible = false;
+			}
+			if (selected <= 1) {
+				arrow_left.visible = false;
+			}
+
+			level_text.text = `${selected}`;
+			level_text.loaded = false;
+
+			if (selected > reached_level) {
+				locked.visible = true;
+				locked_text.visible = true;
+				level_text.color = k.Color("BROWN");
+			} else {
+				locked.visible = false;
+				locked_text.visible = false;
+				level_text.color = k.Color("GREEN");
+			}
+		}
+
+		k.onKeyPress("Enter", () => {
+			if (selected <= reached_level) {
+				k.go(`jump-game-level-${selected}`);
+			}
+		});
 
 		const instruction = k.add([
 			k.text("Press arrow key to change level and press enter to play it", {
