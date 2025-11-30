@@ -1,3 +1,4 @@
+import Igloo from "../../objects/igloo";
 import Lift from "../../objects/lift";
 import Platform from "../../objects/platform";
 import SnowBlocks from "../../objects/snow-blocks";
@@ -35,6 +36,13 @@ export function registerJumpGameLevel4Scene({ k, constants, state }) {
 			Spikes({ k, pos: k.vec2(x, k.height() - 64) });
 		}
 		Lift({ k, pos: p1.pos.add(140, 64), vertical: false, min: 0, max: 230 });
+
+		const p3 = Platform({ k, n: 8, pos: p2.pos.sub(400, 80) });
+		const p4 = Platform({ k, n: 8, pos: p3.pos.sub(-100, 140) });
+
+		Lift({ k, pos: p3.pos.sub(240, -16), min: 0, max: -120 });
+
+		Igloo({ k, pos: p4.pos.add(150, 0), rotate: true });
 
 		function goNextLevel() {
 			window.localStorage.setItem(
