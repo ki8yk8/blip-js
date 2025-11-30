@@ -1,5 +1,13 @@
 export function registerHomeScreen({ k, state, constants }) {
 	k.scene("home", () => {
+		// adding cool sprites
+		k.add([
+			k.sprite("snow-block"),
+			k.pos(k.width()/2, k.height()),
+			k.scale(1),
+			k.anchor("bot"),
+		])
+
 		const logo = k.add([
 			k.text("Ski Downhill", { size: 64 }),
 			k.pos(k.width() / 2, 100),

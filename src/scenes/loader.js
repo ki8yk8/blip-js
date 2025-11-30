@@ -4,34 +4,39 @@ export function registerLoaderScene({ k, constants, state }) {
 			heart: "/sprites/star.png",
 			fuel: "/sprites/fuel.png",
 			ghost: "/sprites/ghosty.png",
-			grass: "/sprites/grass.png",
 			portal: "/sprites/portal.png",
 			spike: "/sprites/spike.png",
-			steel: "/sprites/steel.png",
 
 			// snow assets
-			grass1: "/sprites/grass1.png",
-			grass2: "/sprites/grass2.png",
-			igloo: "/sprites/igloo.png",
-			"snow-block": "/sprites/snow-block.png",
-			"snow-platform-left": "/sprites/snow-platform-left.png",
-			"snow-platform-right": "/sprites/snow-platform-right.png",
-			"snow-platform": "/sprites/snow-platform.png",
-			"snow-wall-circular-left": "/sprites/snow-wall-circular-left.png",
-			"snow-wall-cricular-right": "/sprites/snow-wall-circular-right.png",
-			"snow-wall-circular-masked-left":
-				"/sprites/snow-wall-circular-masked-left.png",
-			"snow-wall-circular-masked-right":
-				"/sprites/snow-wall-circular-masked-right.png",
-			"snow-wall-left": "/sprites/snow-wall-left.png",
-			snowman: "/sprites/snowman.png",
-			soil: "/sprites/soil-block.png",
-			stone1: "/sprites/stone1.png",
-			stone2: "/sprites/stone2.png",
-			stone3: "/sprites/stone3.png",
-			stone4: "/sprites/stone4.png",
-			"tree-long": "/sprites/tree-long.png",
-			"tree-small": "/sprites/tree-small.png",
+			grass1: "/sprites/snow_100 1.png",
+			grass2: "/sprites/snow_101 1.png",
+
+			igloo: "/sprites/snow_115 1.png",
+
+			"snow-block": "/sprites/snow_73 1.png",
+			"snow-block-left": "/sprites/snow_53 1.png",
+			"snow-block-middle": "/sprites/snow_54 1.png",
+			"snow-block-right": "/sprites/snow_55 1.png",
+
+			"snow-wall-circular-left": "/sprites/snow_56 1.png",
+			"snow-wall-cricular-right": "/sprites/snow_57 1.png",
+			"snow-wall-circular-masked-left": "/sprites/snow_76 1.png",
+			"snow-wall-circular-masked-right": "/sprites/snow_77 1.png",
+
+			"snow-platform-left": "/sprites/snow_78 1.png",
+			"snow-platform-right": "/sprites/snow_59 1.png",
+			"snow-platform": "/sprites/snow_79 1.png",
+
+			soil: "/sprites/snow_74 1.png",
+			stone1: "/sprites/snow_104 1.png",
+			stone2: "/sprites/snow_106 1.png",
+			stone3: "/sprites/snow_117 1.png",
+			stone4: "/sprites/snow_118 1.png",
+
+			"tree-long": "/sprites/snow_97 1.png",
+			"tree-small": "/sprites/snow_108 1.png",
+
+			snowman: "/sprites/snow_113 1.png",
 		};
 
 		const progress_bar_bg = k.add([
@@ -73,7 +78,7 @@ export function registerLoaderScene({ k, constants, state }) {
 				increaseProgress();
 			}
 
-			k.go("jump-game");
+			k.go("home");
 		})();
 	});
 }
