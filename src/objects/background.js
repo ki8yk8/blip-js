@@ -30,7 +30,6 @@ export default function Background({ k, random_patches = 10 }) {
 		k.color("#a24b55"),
 		k.pos(k.width() / 2, 30),
 		k.anchor("bot"),
-		k.area(),
 	]);
 	for (
 		let i = 0;
@@ -50,14 +49,35 @@ export default function Background({ k, random_patches = 10 }) {
 		k.pos(k.width() / 2, top_border.pos.y),
 		k.anchor("bot"),
 		k.color("BLACK"),
+		k.opacity(0),
 		k.area(),
 		"bar",
 	]);
 
 	const bot_border = k.add([
-		k.rect(k.width(), 8),
+		k.rect(k.width(), BAR_WIDTH),
 		k.color("#a24b55"),
 		k.pos(k.width() / 2, k.height() - 30),
+		k.anchor("top"),
+	]);
+	for (
+		let i = 0;
+		i <= Math.floor((bot_border.width - BAR_GAP * 2) / (BAR_WIDTH + BAR_GAP));
+		i++
+	) {
+		k.add([
+			k.rect(BAR_WIDTH, 30),
+			k.pos(BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, k.height() - 30),
+			k.anchor("top"),
+			k.color("#a24b55"),
+		]);
+	}
+	k.add([
+		k.rect(k.width(), bot_border.pos.y),
+		k.pos(k.width() / 2, bot_border.pos.y),
+		k.anchor("top"),
+		k.color("BLACK"),
+		k.opacity(0),
 		k.area(),
 		"bar",
 	]);
@@ -66,6 +86,25 @@ export default function Background({ k, random_patches = 10 }) {
 		k.rect(8, k.height()),
 		k.color("#a24b55"),
 		k.pos(30, k.height() / 2),
+	]);
+	for (
+		let i = 0;
+		i <= Math.floor((k.height() - BAR_GAP * 2) / (BAR_WIDTH + BAR_GAP));
+		i++
+	) {
+		k.add([
+			k.rect(30, BAR_WIDTH),
+			k.pos(30, BAR_GAP + (BAR_GAP + BAR_WIDTH) * i),
+			k.anchor("right"),
+			k.color("#a24b55"),
+		]);
+	}
+	k.add([
+		k.rect(30, k.height()),
+		k.pos(30, k.height() / 2),
+		k.anchor("right"),
+		k.color("BLACK"),
+		k.opacity(0),
 		k.area(),
 		"bar",
 	]);
@@ -74,6 +113,25 @@ export default function Background({ k, random_patches = 10 }) {
 		k.rect(8, k.height()),
 		k.color("#a24b55"),
 		k.pos(k.width() - 30, k.height() / 2),
+	]);
+	for (
+		let i = 0;
+		i <= Math.floor((k.height() - BAR_GAP * 2) / (BAR_WIDTH + BAR_GAP));
+		i++
+	) {
+		k.add([
+			k.rect(30, BAR_WIDTH),
+			k.pos(k.width() - 30, BAR_GAP + (BAR_GAP + BAR_WIDTH) * i),
+			k.anchor("left"),
+			k.color("#a24b55"),
+		]);
+	}
+	k.add([
+		k.rect(30, k.height()),
+		k.pos(k.width() - 30, k.height() / 2),
+		k.anchor("left"),
+		k.color("BLACK"),
+		k.opacity(0),
 		k.area(),
 		"bar",
 	]);
