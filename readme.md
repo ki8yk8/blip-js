@@ -25,6 +25,10 @@ There are three engines in the snowboard as;
 
 - The physics resolver is quite buggy, I wanted to introduce the concept of body and handle physics properly. But, my technical ability didn't supported me. I will look at this next time. Maximum of 1 hour was invested. But the code is pushed in another branch. [See branch Snow Boarding Physics](https://github.com/ki8yk8/blip-js/tree/game-snowboaring-physics). For now, I will handle the physics manually through area.
 
+## Gift
+
+- Press `s key` 3 times while on main menu, to unlock the stage 2 directly. No need to complete the stage 1.
+
 ## Credits
 
 - Sprites downloaded from [https://opengameart.org/content/2d-platformer-snow-pack](https://opengameart.org/content/2d-platformer-snow-pack) Tio Aimar @ opengameart.org

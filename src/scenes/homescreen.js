@@ -135,5 +135,14 @@ export function registerHomeScreen({ k, state, constants }) {
 					break;
 			}
 		});
+
+		let s_pressed = 0;
+		k.onKeyPress("s", () => {
+			s_pressed++;
+
+			if (s_pressed === 3) {
+				k.go("jump-game-unlock");
+			}
+		});
 	});
 }
