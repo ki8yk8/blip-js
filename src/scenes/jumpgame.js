@@ -6,7 +6,7 @@ import Snowball from "../objects/snowball";
 import Stone from "../objects/stone";
 
 function getRanodmPos(k) {
-	return k.vec2(k.rand(64, k.width() - 64), k.height() - 64);
+	return k.vec2(k.rand(300, k.width() - 64), k.height() - 64);
 }
 
 export function registerJumpGameScene({ k, constants, state }) {
