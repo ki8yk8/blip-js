@@ -50,19 +50,22 @@ export function registerLoaderScene({ k, constants, state }) {
 			k.pos(progress_bar_bg.pos.add(-progress_bar_bg.width / 2 + 6, 0)),
 			k.anchor("left"),
 		]);
+		const loaded_text = k.add([
+			k.text(`Loading...${0}%`, { size: 32 }),
+			k.pos(progress_bar_bg.pos),
+			k.anchor("center"),
+			k.color("RED"),
+		]);
 
 		let loaded = 0;
 		const total = Object.keys(to_load_sprites).length;
 
 		// 0 => 10, 100 => progress_bar_bg.width-12
 		function increaseProgress() {
-			const width = k.map(
-				(loaded / total) * 100,
-				0,
-				10,
-				100,
-				progress_bar_bg.width - 12
-			);
+			const p = (loaded / total) * 100;
+			const width = k.map(0, 10, 100, progress_bar_bg.width - 12);
+			loaded_text.text = `Loading...${p.toFixed(2)}%`;
+			loaded_text.loaded = false;
 			progress_bar.width = width;
 			progress_bar.rect.width = width;
 		}
@@ -79,7 +82,7 @@ export function registerLoaderScene({ k, constants, state }) {
 				increaseProgress();
 			}
 
-			k.go("jump-game-level-1");
+			k.go("jump-game-level-2");
 		})();
 	});
 }

@@ -2,6 +2,7 @@ import Engine from "./engine";
 import { registerGameScene } from "./scenes/game";
 import { registerHomeScreen } from "./scenes/homescreen";
 import { registerInstructionsScreen } from "./scenes/instructions";
+import { registerJumpGameLevel2Scene } from "./scenes/jump-game/level-2-game";
 import { registerJumpGameLevel1Scene } from "./scenes/jump-game/level1-game";
 import { registerLoaderScene } from "./scenes/loader";
 import { registerGameOverScene } from "./scenes/over";
@@ -42,5 +43,6 @@ registerGameOverScene({ k, constants, state });
 registerLoaderScene({ k, state, constants });
 
 registerJumpGameLevel1Scene({ k, constants, state });
+registerJumpGameLevel2Scene({ k, constants, state });
 
 k.go("loading");
