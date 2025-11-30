@@ -25,6 +25,7 @@ export function registerInstructionsScreen({ k }) {
 			"You are the snowboard and you have thrusters on your board as main thruster, left and right one. These are for movements around the scene.",
 			"Your goal is to capture the stars and increase your score. You will also get the random spawn of the boost to increase your acceleration.",
 			"If you hit the rail guards, your health decreases based on the velocity. Also, watch out for the different spawning skeletons, that could impact your health, and if your health runs out you lose.",
+			"If you score certain points, you will unlock another super secret winter game. Try to unlock and play the game.",
 		];
 		let index = 0;
 
