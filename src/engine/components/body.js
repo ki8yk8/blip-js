@@ -24,7 +24,9 @@ export function body(props = {}) {
 				(e) => "isStatic" in e && e.isStatic
 			);
 
-			if (static_object.length > 0) this.vel = vec2(0, 0);
+			if (static_object.length > 0) {
+				this.vel = this.vel.neg().scale(0.6);
+			}
 		},
 	};
 }
