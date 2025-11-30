@@ -31,7 +31,6 @@ export default function Background({ k, random_patches = 10 }) {
 		k.pos(k.width() / 2, 30),
 		k.anchor("bot"),
 		k.area(),
-		"bar",
 	]);
 	for (
 		let i = 0;
@@ -44,9 +43,16 @@ export default function Background({ k, random_patches = 10 }) {
 			k.anchor("bot"),
 			k.color("#a24b55"),
 			k.area(),
-			"bar",
 		]);
 	}
+	k.add([
+		k.rect(k.width(), top_border.pos.y),
+		k.pos(k.width() / 2, top_border.pos.y),
+		k.anchor("bot"),
+		k.color("BLACK"),
+		k.area(),
+		"bar",
+	]);
 
 	const bot_border = k.add([
 		k.rect(k.width(), 8),
