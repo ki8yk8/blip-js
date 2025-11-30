@@ -7,6 +7,7 @@ export default function Fuel({ k, constants, state }) {
 		k.sprite("fuel"),
 		k.pos(rand_x, rand_y),
 		k.area(),
+		k.scale(0.8),
 		"fuel",
 	]);
 

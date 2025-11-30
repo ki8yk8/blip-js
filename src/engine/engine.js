@@ -453,7 +453,7 @@ class Engine {
 	scene(name, callback) {
 		this.scenes[name] = callback;
 	}
-	go(name) {
+	go(name, ...props) {
 		if (!(name in this.scenes)) {
 			throw new Error(`Could not find the scene, got ${name}`);
 		}
@@ -482,7 +482,7 @@ class Engine {
 		this.waits = [];
 
 		// call the scene callback
-		this.scenes[name]();
+		this.scenes[name](...props);
 	}
 
 	loadSprite(name, src) {
