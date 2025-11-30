@@ -20,3 +20,7 @@ There are three engines in the snowboard as;
 - Press `Space key` or `Arrow Up` to jump,
 - Use your `Arrow left` and `Arrow right` keys to move left and right,
 - Once, you collide with the cannon, press `Arrow Up` and `Arrow Down` key to adjust the cannon angle and press `Space` to shoot.
+
+## Credits
+
+- Sprites downloaded from [https://opengameart.org/content/2d-platformer-snow-pack](https://opengameart.org/content/2d-platformer-snow-pack) Tio Aimar @ opengameart.org
