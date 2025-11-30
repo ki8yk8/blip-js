@@ -59,7 +59,7 @@ export function registerJumpGameScene({ k, constants, state }) {
 
 		let selected = n;
 		renderBookBasedOnSelected(selected);
-		
+
 		k.onKeyPress("ArrowRight", () => {
 			selected = k.clamp(selected + 1, 1, levels);
 			renderBookBasedOnSelected(selected);
@@ -100,12 +100,16 @@ export function registerJumpGameScene({ k, constants, state }) {
 		});
 
 		const instruction = k.add([
-			k.text("Press arrow key to change level and press enter to play it", {
+			k.text("Press arrow key to change level and press enter to play it. Press `q` to return to main menu.", {
 				maxWidth: 500,
 				align: "center",
 			}),
 			k.pos(k.width() / 2, k.height() - 100),
 			k.color("BROWN"),
 		]);
+
+		k.onKeyPress("q", () => {
+			k.go("home");
+		})
 	});
 }
