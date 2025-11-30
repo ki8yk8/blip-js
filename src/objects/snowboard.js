@@ -1,4 +1,4 @@
-export default function Snowboard({ k, state }) {
+export default function Snowboard({ k, state, constants }) {
 	const snowboard = k.add([
 		k.rect(20, 50, { radius: [9, 9, 2, 2] }),
 		k.color("#384559"),
@@ -95,16 +95,18 @@ export default function Snowboard({ k, state }) {
 
 		snowboard.particles.direction = 90 + snowboard.angle;
 
-		// handle turning thursts
+		// handle turning thursts; the left and right thruster consume less fuel than the main one
 		if (k.isKeyDown("ArrowLeft")) {
 			snowboard.angle -= turn_speed * k.dt;
 			if (Math.abs(last_emitted.right_thruster - k.time) > 0.1) {
 				right_emitter.emit(3);
 				last_emitted.right_thruster = k.time;
 			}
+			state.fuel -= constants.rotation_fuel_rate * k.dt;
 		}
 		if (k.isKeyDown("ArrowRight")) {
 			snowboard.angle += turn_speed * k.dt;
+			state.fuel -= constants.rotation_fuel_rate * k.dt;
 
 			if (Math.abs(last_emitted.left_thruster - k.time) > 0.1) {
 				left_emitter.emit(3);
@@ -118,6 +120,7 @@ export default function Snowboard({ k, state }) {
 
 		if (k.isKeyDown("ArrowUp")) {
 			acc = acc.add(forward.scale(forward_acc));
+			state.fuel -= constants.main_fuel_rate * k.dt;
 
 			if (Math.abs(last_emitted.snowboard - k.time) > 0.1) {
 				snowboard.emit(3);

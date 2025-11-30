@@ -13,11 +13,14 @@ const k = new Engine({
 const state = {
 	points: 0,
 	health: 100,
+	fuel: 100,
 };
 
 const constants = {
 	heart_spawn_rate: 4,
 	max_hearts: 2,
+	rotation_fuel_rate: 2.5,
+	main_fuel_rate: 5,
 };
 
 k.loadSprite("heart", "/sprites/star.png");

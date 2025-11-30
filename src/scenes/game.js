@@ -8,7 +8,7 @@ export function registerGameScene({ k, state, constants }) {
 	k.scene("game", () => {
 		Background({ k, random_patches: 20 });
 
-		const snowboard = Snowboard({ k, state });
+		const snowboard = Snowboard({ k, state, constants });
 		spawnBoulders(k, snowboard.pos);
 		const health_progress = Progress({
 			k,
@@ -24,7 +24,7 @@ export function registerGameScene({ k, state, constants }) {
 			pos: health_progress.pos.add(0, 80),
 			color: "PURPLE",
 			getPercent() {
-				return 100;
+				return state.fuel;
 			},
 		});
 
