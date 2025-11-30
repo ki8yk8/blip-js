@@ -1,5 +1,8 @@
 import { get_random_pos } from "../utils/pos";
 
+const BAR_GAP = 30;
+const BAR_WIDTH = 8;
+
 export default function Background({ k, random_patches = 10 }) {
 	const patches_colors = ["#93B1CD", "#78B3DD", "WHITE"];
 
@@ -23,12 +26,27 @@ export default function Background({ k, random_patches = 10 }) {
 
 	// drawing the border bars
 	const top_border = k.add([
-		k.rect(k.width(), 8),
+		k.rect(k.width(), BAR_WIDTH),
 		k.color("#a24b55"),
 		k.pos(k.width() / 2, 30),
+		k.anchor("bot"),
 		k.area(),
 		"bar",
 	]);
+	for (
+		let i = 0;
+		i <= Math.floor((top_border.width - BAR_GAP * 2) / (BAR_WIDTH + BAR_GAP));
+		i++
+	) {
+		k.add([
+			k.rect(BAR_WIDTH, 30),
+			k.pos(BAR_GAP + (BAR_GAP + BAR_WIDTH) * i, 30),
+			k.anchor("bot"),
+			k.color("#a24b55"),
+			k.area(),
+			"bar",
+		]);
+	}
 
 	const bot_border = k.add([
 		k.rect(k.width(), 8),
