@@ -48,6 +48,10 @@ export function registerHomeScreen({ k, state, constants }) {
 
 		// adding the menu buttons
 		const menu_items = ["Start Game", "Instruction"];
+		if (window.localStorage.getItem("portalOpened")) {
+			menu_items.push("Jump Game");
+		}
+
 		const menu_objects = [];
 		let index = 0;
 
@@ -56,7 +60,7 @@ export function registerHomeScreen({ k, state, constants }) {
 			const background = k.add([
 				k.rect(500, 80),
 				k.pos(k.width() / 2, logo.pos.y + 150 + 100 * index + 4 * index),
-				k.color("SKYBLUE"),
+				k.color(index === 2 ? "RED" : "SKYBLUE"),
 				k.rotate(0),
 				k.scale(1),
 			]);
@@ -84,14 +88,14 @@ export function registerHomeScreen({ k, state, constants }) {
 				background.angle = 2;
 				text.angle = 2;
 
-				background.color = k.Color("GREEN");
+				background.color = k.Color(index == 2 ? "ORANGE" : "GREEN");
 
 				background.scale = k.vec2(1.05);
 			} else {
 				background.angle = 0;
 				text.angle = 0;
 
-				background.color = k.Color("SKYBLUE");
+				background.color = k.Color(index == 2 ? "RED" : "SKYBLUE");
 
 				background.scale = k.vec2(1);
 			}
@@ -124,6 +128,10 @@ export function registerHomeScreen({ k, state, constants }) {
 
 				case 1:
 					k.go("instructions");
+					break;
+
+				case 2:
+					k.go("jump-game-level-1");
 					break;
 			}
 		});
