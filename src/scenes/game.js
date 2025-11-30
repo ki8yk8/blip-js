@@ -80,6 +80,12 @@ export function registerGameScene({ k, state, constants }) {
 			() => [state.fuel]
 		);
 
+		k.onUpdate(() => {
+			if (state.health <= 0 || state.fuel <= 0) {
+				k.go("over", state.points);
+			}
+		});
+
 		Ghost({ k, constants, state });
 	});
 }
