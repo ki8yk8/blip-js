@@ -4,11 +4,52 @@ const DELAY = 0.8;
 
 export function registerGameOverScene({ k, state, constants }) {
 	k.scene("over", (score) => {
-		const snowblocks = SnowBlocks({ k, n: 12, pos: k.vec2(k.width() / 2, k.height()) });
+		const snowblocks = SnowBlocks({
+			k,
+			n: 12,
+			pos: k.vec2(k.width() / 2, k.height()),
+		});
 
 		// squence of long and small trees
-		console.log(snowblocks)
-		
+		const tree1 = k.add([
+			k.sprite("tree-long"),
+			k.pos(snowblocks.pos.add(-snowblocks.width / 2 + 50, -snowblocks.height)),
+			k.anchor("bot"),
+		]);
+		const tree2 = k.add([
+			k.sprite("tree-small"),
+			k.pos(tree1.pos.add(50, 0)),
+			k.anchor("bot"),
+		]);
+		const tree3 = k.add([
+			k.sprite("tree-long"),
+			k.pos(tree2.pos.add(50, 0)),
+			k.anchor("bot"),
+		]);
+		const igloo = k.add([
+			k.sprite("igloo"),
+			k.pos(tree3.pos.add(50, 0)),
+			k.anchor("bot"),
+		]);
+		const tree4 = k.add([
+			k.sprite("tree-small"),
+			k.pos(snowblocks.pos.add(snowblocks.width / 2 - 200, -snowblocks.height)),
+			k.anchor("bot"),
+		]);
+		const tree5 = k.add([
+			k.sprite("tree-long"),
+			k.pos(tree4.pos.add(35, 0)),
+			k.anchor("bot"),
+		]);
+		const snowman = k.add([
+			k.sprite("snowman"),
+			k.pos(tree5.pos.add(100, 0)),
+			k.anchor("bot"),
+			k.rotate(0),
+		]);
+
+		k.animate(snowman, "angle", [0, -2, 2, -2, 2, 0], 2);
+
 		const score_title = k.add([
 			k.text("You Scored", { size: 32 }),
 			k.pos(k.width() / 2, 200),
