@@ -49,7 +49,7 @@ export function registerLoaderScene({ k, constants, state }) {
 				increaseProgress();
 			}
 
-			k.go("game");
+			k.go("jump-game");
 		})();
 	});
 }
