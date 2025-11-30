@@ -1,9 +1,7 @@
+import Igloo from "../../objects/igloo";
+import Platform from "../../objects/platform";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
-
-function getRanodmPos(k) {
-	return k.vec2(k.rand(300, k.width() - 64), k.height() - 64);
-}
 
 export function registerJumpGameLevel2Scene({ k, constants, state }) {
 	k.scene("jump-game-level-2", () => {
@@ -15,13 +13,31 @@ export function registerJumpGameLevel2Scene({ k, constants, state }) {
 		});
 
 		// level 2
+		const p1 = Platform({
+			k,
+			n: 1,
+			pos: k.vec2((k.width() * 2) / 3, k.height() - 100),
+		});
+		const p2 = Platform({ k, n: 1, pos: p1.pos.add(72, -32) });
+		const p3 = Platform({ k, n: 2, pos: p2.pos.add(-180, -32) });
+		const p4 = Platform({ k, n: 6, pos: p3.pos.add(-250, 32) });
+
+		Igloo({ k, pos: p4.pos.add(-40, 0) });
 
 		const snowball = Snowball({
 			k,
-			pos: k.vec2((k.width() * 2) / 3, 100),
+			pos: k.vec2(100, 500),
 			constants,
 			state,
-			onWin: () => k.go("jump-game-level-2"),
+			onWin: goNextLevel,
 		});
+
+		function goNextLevel() {
+			window.localStorage.setItem(
+				"jumpLevel",
+				k.max(window.localStorage.getItem("jumpLevel") ?? 1, 3)
+			);
+			k.go("jump-game", 3);
+		}
 	});
 }
