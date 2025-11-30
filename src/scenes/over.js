@@ -46,6 +46,20 @@ export function registerGameOverScene({ k, state, constants }) {
 			k.text("Press space to continue"),
 			k.pos(k.width() / 2, k.height() - 200),
 			k.color("BROWN"),
+			k.scale(1),
+			k.rotate(0),
 		]);
+
+		k.animate(
+			hint,
+			"scale",
+			[k.vec2(1), k.vec2(1.1), k.vec2(1), k.vec2(0.9), k.vec2(1)],
+			2
+		);
+		k.animate(hint, "angle", [0, -4, 0, 4, 0], 2);
+
+		k.onKeyPress(" ", () => {
+			k.go("home");
+		});
 	});
 }
