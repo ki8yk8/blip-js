@@ -1,6 +1,7 @@
 export function registerLoaderScene({ k, constants, state }) {
 	k.scene("loading", () => {
 		const to_load_sprites = {
+			life: "/sprites/heart.png",
 			heart: "/sprites/star.png",
 			fuel: "/sprites/fuel.png",
 			ghost: "/sprites/ghosty.png",

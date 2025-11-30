@@ -27,6 +27,9 @@ const state = {
 };
 
 const constants = {
+	health_spawn_rate: 10,
+	health_increases: 50,
+	health_stays: 6,
 	heart_spawn_rate: 4,
 	max_hearts: 2,
 	rotation_fuel_rate: 2.5,
