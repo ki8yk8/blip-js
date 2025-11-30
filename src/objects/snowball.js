@@ -10,8 +10,7 @@ export default function Snowball({ k, constants, state }) {
 	snowball.acc = k.vec2(0, 200);
 
 	snowball.onCollide("snowblock", () => {
-		snowball.acc = k.vec2(0, 200);
-		snowball.vel = snowball.vel.scale(0.4).neg();
+		snowball.vel = snowball.vel.scale(0.2).neg();
 	});
 
 	// do not let snowball cross the boundary ever
@@ -24,11 +23,28 @@ export default function Snowball({ k, constants, state }) {
 		snowball.pos.y = k.clamp(snowball.pos.y, snowball.height, k.height() - 64);
 	});
 
-	k.onKeyDown(" ", () => {
-		if (snowball.checkCollision("snowblock")) {
-			snowball.acc = k.vec2(0, 200);
+	// handle movement left and right
+	const drag = 0.3;
+	k.onUpdate(() => {
+		if (!snowball.checkCollision("snowblock")) return;
+
+		// on press space jump
+		if (k.isKeyDown(" ")) {
 			snowball.vel = snowball.vel.add(0, -200);
 		}
+		if (k.isKeyDown("ArrowRight")) {
+			snowball.acc = snowball.acc.add(500, 0);
+		}
+		if (k.isKeyDown("ArrowLeft")) {
+			snowball.acc = snowball.acc.add(-500, 0);
+		}
+
+		// if no acceleration given then 0
+		if (!k.isKeyDown("ArrowLeft") && !k.isKeyDown("ArrowRight")) {
+			snowball.acc.x = 0;
+		}
+
+		// snowball.vel.x = k.clamp(snowball.vel.x * (1 - drag), 0, 1000);
 	});
 
 	return snowball;
