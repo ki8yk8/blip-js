@@ -4,7 +4,7 @@ export function body(props = {}) {
 	return {
 		vel: vec2(0, 0),
 		acc: vec2(0, 0),
-		mass: 1,
+		mass: props.mass ?? 1,
 		isStatic: props?.isStatic ?? false,
 		init(engine) {
 			if (this.acc) {
