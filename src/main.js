@@ -21,9 +21,11 @@ const constants = {
 	max_hearts: 2,
 	rotation_fuel_rate: 2.5,
 	main_fuel_rate: 5,
+	fuel_fills: 50,
 };
 
 k.loadSprite("heart", "/sprites/star.png");
+k.loadSprite("fuel", "/sprites/fuel.png");
 
 registerHomeScreen({ k, constants, state });
 registerGameScene({ k, constants, state });
