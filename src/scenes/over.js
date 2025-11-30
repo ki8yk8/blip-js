@@ -59,6 +59,13 @@ export function registerGameOverScene({ k, state, constants }) {
 		k.animate(hint, "angle", [0, -4, 0, 4, 0], 2);
 
 		k.onKeyPress(" ", () => {
+			// resets the state
+			state = {
+				points: 0,
+				health: 100,
+				fuel: 100,
+			};
+
 			k.go("home");
 		});
 	});
