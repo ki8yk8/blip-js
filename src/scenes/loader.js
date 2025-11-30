@@ -84,7 +84,7 @@ export function registerLoaderScene({ k, constants, state }) {
 				increaseProgress();
 			}
 
-			k.go("home");
+			k.go("game");
 		})();
 	});
 }

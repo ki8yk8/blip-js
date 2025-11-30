@@ -86,6 +86,14 @@ export function registerGameScene({ k, state, constants }) {
 			}
 		});
 
-		Ghost({ k, constants, state });
+		let first = true;
+		k.loop(constants.ghost_spawns, () => {
+			if (first) {
+				first = false;
+				return;
+			}
+
+			Ghost({ k, constants, state });
+		});
 	});
 }

@@ -36,6 +36,7 @@ const constants = {
 	fuel_threshold: 60,
 	fuel_stays: 5,
 	portal_opens: 5,
+	ghost_spawns: 10,
 	ghost_speed: 100,
 	ghost_hits: 40,
 	ghost_stays: 5,

@@ -17,6 +17,7 @@ export default function Ghost({ k, constants, state }) {
 	let should_follow = false;
 	k.onUpdate(() => {
 		const snowboard = k.get("snowboard")[0];
+		if (!snowboard) return;
 
 		if (k.time > last_evaluated_time + constants.evaluation_time) {
 			last_evaluated_time = k.time;
