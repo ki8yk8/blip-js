@@ -6,6 +6,8 @@ export function registerLoaderScene({ k, constants, state }) {
 			ghost: "/sprites/ghosty.png",
 			portal: "/sprites/portal.png",
 			spike: "/sprites/spike.png",
+			key: "/sprites/key.png",
+			arrow: "/sprites/arrow.png",
 
 			// snow assets
 			grass1: "/sprites/snow_100 1.png",

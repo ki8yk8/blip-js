@@ -28,6 +28,34 @@ export function registerJumpGameScene({ k, constants, state }) {
 			k.color("GREEN"),
 		]);
 
+		const locked = k.add([
+			k.sprite("key"),
+			k.pos(
+				book_page.pos.sub(-book_page.width / 2 + 30, book_page.height / 2 - 20)
+			),
+			k.scale(0.6),
+			k.visibility(true),
+		]);
+		const locked_text = k.add([
+			k.text("Locked !!!"),
+			k.pos(book_page.pos.add(0, book_page.height / 2 - 20)),
+			k.color("BROWN"),
+			k.visibility(true),
+		]);
+
+		const arrow_left = k.add([
+			k.sprite("arrow"),
+			k.pos(level_bg.pos.sub(level_bg.width / 2, 0)),
+			k.rotate(-180),
+			k.visibility(true),
+		]);
+		const arrow_right = k.add([
+			k.sprite("arrow"),
+			k.pos(level_bg.pos.add(level_bg.width / 2, 0)),
+			k.rotate(0),
+			k.visibility(true),
+		]);
+
 		const instruction = k.add([
 			k.text("Press arrow key to change level and press enter to play it", {
 				maxWidth: 500,
