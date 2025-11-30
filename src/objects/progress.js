@@ -1,7 +1,6 @@
-const BAR_WIDTH = 10;
 const BAR_GAP = 2;
 
-export default function Progress({ k }) {
+export default function Progress({ k, n_bars = 20 }) {
 	const bg_rect = k.add([
 		k.rect(200, 50, { radius: 2 }),
 		k.anchor("topleft"),
@@ -18,8 +17,9 @@ export default function Progress({ k }) {
 	]);
 
 	// 2*4 => means 4 is padding on left and right
-	const n_bars =
-		Math.floor(bg_rect.width - 4 * 2 + BAR_GAP) / (BAR_WIDTH + BAR_GAP);
+	// + BAR_GAP because the last bar doesn't need a padding
+	const BAR_WIDTH =
+		(bg_rect.width - 2 * 4 - n_bars * BAR_GAP + BAR_GAP) / n_bars;
 
 	for (let i = 0; i < n_bars; i++) {
 		k.add([
