@@ -3,6 +3,7 @@ import { registerGameScene } from "./scenes/game";
 import { registerHomeScreen } from "./scenes/homescreen";
 import { registerInstructionsScreen } from "./scenes/instructions";
 import { registerJumpGameScene } from "./scenes/jumpgame";
+import { registerLoaderScene } from "./scenes/loader";
 import { registerGameOverScene } from "./scenes/over";
 
 const k = new Engine({
@@ -30,18 +31,11 @@ const constants = {
 	portal_opens: 5,
 };
 
-k.loadSprite("heart", "/sprites/star.png");
-k.loadSprite("fuel", "/sprites/fuel.png");
-k.loadSprite("ghost", "./sprites/ghosty.png");
-k.loadSprite("grass", "./sprites/grass.png");
-k.loadSprite("portal", "/sprites/portal.png");
-k.loadSprite("spike", "/sprites/spike.png");
-k.loadSprite("steel", "/sprites/steel.png");
-
 registerHomeScreen({ k, constants, state });
 registerGameScene({ k, constants, state });
 registerInstructionsScreen({ k, constants, state });
 registerGameOverScene({ k, constants, state });
 registerJumpGameScene({ k, constants, state });
+registerLoaderScene({ k, state, constants });
 
-k.go("home");
+k.go("loading");
