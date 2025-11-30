@@ -4,6 +4,19 @@ export function registerHomeScreen({ k, state, constants }) {
 	k.scene("home", () => {
 		// adding cool sprites
 		SnowBlocks({ k, n: 10, pos: k.vec2(k.width() / 2, k.height()) });
+		const igloo = k.add([
+			k.sprite("igloo"),
+			,
+			k.pos(k.width() / 2, k.height() - 64),
+			k.anchor("bot"),
+		]);
+		k.add([k.sprite("stone1"), k.pos(igloo.pos.add(-100, 0)), k.anchor("bot")]);
+		k.add([
+			k.sprite("tree-long"),
+			k.pos(igloo.pos.add(-50, 0)),
+			k.anchor("bot"),
+		]);
+		k.add([k.sprite("snowman"), k.anchor("bot"), k.pos(igloo.pos.add(200, 0))]);
 
 		const logo = k.add([
 			k.text("Ski Downhill", { size: 64 }),
