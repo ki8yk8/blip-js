@@ -200,6 +200,7 @@ class Engine {
 
 			if (tween.end < this.time) {
 				this.all_tweens.splice(index, 1);
+				tween.resolve();
 			}
 		});
 
@@ -305,12 +306,15 @@ class Engine {
 	tween(from, to, duration, func) {
 		const [start, end] = [this.time, this.time + duration];
 
-		this.all_tweens.push({
-			start,
-			end,
-			from,
-			to,
-			func,
+		return new Promise((resolve) => {
+			this.all_tweens.push({
+				start,
+				end,
+				from,
+				to,
+				func,
+				resolve,
+			});
 		});
 	}
 
@@ -492,12 +496,26 @@ class Engine {
 		const image = new Image();
 		image.src = src;
 
-		this.sprites[name] = image;
+		return new Promise((resolve, reject) => {
+			image.onload = () => {
+				this.sprites[name] = image;
+				resolve();
+			};
+
+			image.onerror = () => {
+				reject(new Error(`Failed to load sprite ${name} from ${src}`));
+			};
+		});
 	}
 
 	wait(seconds, callback) {
-		const timeout = setTimeout(callback, seconds * 1000);
-		this.waits.push(timeout);
+		return new Promise((resolve) => {
+			const timeout = setTimeout(() => {
+				callback();
+				resolve();
+			}, seconds * 1000);
+			this.waits.push(timeout);
+		});
 	}
 
 	loop(seconds, callback) {
