@@ -5,7 +5,7 @@ export default function Health({ k, constants, state }) {
 	];
 
 	const health = k.add([
-		k.sprite("health"),
+		k.sprite("life"),
 		k.pos(rand_x, rand_y),
 		k.rotate(0),
 		k.scale(1),
@@ -21,13 +21,13 @@ export default function Health({ k, constants, state }) {
 		4
 	);
 
-	k.onCollide("snowboard", () => {
+	health.onCollide("snowboard", () => {
 		state.health += constants.health_increases;
 		k.destroy(health);
 	});
 
 	// when the health appears on top of boulder then respawn the health at another location
-	k.onCollide("boulder", () => {
+	health.onCollide("boulder", () => {
 		const [rand_x, rand_y] = [
 			k.rand(200, k.width() - 200),
 			k.rand(200, k.height() - 200),

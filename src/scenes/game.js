@@ -2,6 +2,7 @@ import Background from "../objects/background";
 import { spawnBoulders } from "../objects/boulders";
 import Fuel from "../objects/fuel";
 import Ghost from "../objects/ghost";
+import Health from "../objects/health";
 import { Hearts } from "../objects/hearts";
 import Portal from "../objects/portal";
 import Progress from "../objects/progress";
@@ -13,23 +14,6 @@ export function registerGameScene({ k, state, constants }) {
 
 		const snowboard = Snowboard({ k, state, constants });
 		spawnBoulders(k, snowboard.pos);
-		const health_progress = Progress({
-			k,
-			title: "Health",
-			color: "GREEN",
-			getPercent() {
-				return state.health;
-			},
-		});
-		const fuel_progress = Progress({
-			k,
-			title: "Fuel",
-			pos: health_progress.pos.add(0, 80),
-			color: "PURPLE",
-			getPercent() {
-				return state.fuel;
-			},
-		});
 
 		k.loop(constants.heart_spawn_rate, () => {
 			if (k.get("heart").length <= constants.max_hearts) {
@@ -94,6 +78,34 @@ export function registerGameScene({ k, state, constants }) {
 			}
 
 			Ghost({ k, constants, state });
+		});
+
+		let first_health = true;
+		k.loop(constants.health_spawn_rate, () => {
+			if (first_health) {
+				first_health = false;
+				return;
+			}
+
+			Health({ k, constants, state });
+		});
+		
+		const health_progress = Progress({
+			k,
+			title: "Health",
+			color: "GREEN",
+			getPercent() {
+				return state.health;
+			},
+		});
+		const fuel_progress = Progress({
+			k,
+			title: "Fuel",
+			pos: health_progress.pos.add(0, 80),
+			color: "PURPLE",
+			getPercent() {
+				return state.fuel;
+			},
 		});
 	});
 }
