@@ -11,6 +11,7 @@ export default function Snowboard({ k, state, constants }) {
 			colors: [k.Color("SKYBLUE"), k.Color("PURPLE")],
 		}),
 		k.area(),
+		k.body(),
 		k.opacity(1),
 		"snowboard",
 	]);
@@ -18,6 +19,7 @@ export default function Snowboard({ k, state, constants }) {
 	// left thruster and right thrusters particles emitter
 	const left_emitter = k.add([
 		k.pos(snowboard.pos.add(-snowboard.width / 2, (-snowboard.height * 2) / 3)),
+		k.body(),
 		k.particles({
 			scale: [k.vec2(0.2), k.vec2(0.6)],
 			spread: 10,
@@ -29,6 +31,7 @@ export default function Snowboard({ k, state, constants }) {
 	]);
 	const right_emitter = k.add([
 		k.pos(snowboard.pos.add(snowboard.width / 2, (-snowboard.height * 2) / 3)),
+		k.body(),
 		k.particles({
 			scale: [k.vec2(0.2), k.vec2(0.6)],
 			spread: 10,

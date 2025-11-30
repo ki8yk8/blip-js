@@ -1,5 +1,6 @@
 import { anchor, convertBasedOnAnchor } from "./components/anchor";
 import { area } from "./components/area";
+import { body } from "./components/body";
 import { opacity } from "./components/opacity";
 import { particles } from "./components/particles";
 import { pos } from "./components/pos";
@@ -71,6 +72,8 @@ class Engine {
 		this.loops = [];
 		this.waits = [];
 
+		this._gravity = 100;
+
 		// window event listeners to handle the keys action
 		window.addEventListener("keydown", (e) => {
 			e.preventDefault();
@@ -107,6 +110,7 @@ class Engine {
 		this.min = min;
 		this.max = max;
 		this.map = map;
+		this.body = body;
 
 		// adding the components
 		this.particles = particles;
@@ -253,10 +257,11 @@ class Engine {
 			} else if (Array.isArray(c) && c.every((i) => typeof i === "string")) {
 				Object.assign(entity, this.tag(c));
 			} else {
+				c.init?.(this);
+
 				Object.assign(entity, c);
 			}
 		}
-		entity.init?.(this);
 
 		this.entities.push(entity);
 		return entity;
@@ -353,6 +358,11 @@ class Engine {
 
 	isKeyPressed(key) {
 		return this.keys_pressed.has(key) ? true : false;
+	}
+
+	setGravity() {
+		// in pixels per second square
+		this._gravity = 100;
 	}
 
 	handleCollisions() {

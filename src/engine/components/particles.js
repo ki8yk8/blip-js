@@ -37,6 +37,7 @@ export function particles(props = {}) {
 								: properties.colors
 						),
 						k.opacity(properties.opacities[0]),
+						k.body(),
 						k.anchor("center"),
 					])
 				);

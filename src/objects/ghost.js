@@ -10,6 +10,7 @@ export default function Ghost({ k, constants, state }) {
 		k.pos(rand_x, rand_y),
 		k.rotate(0),
 		k.area(),
+		k.body(),
 		"ghost",
 	]);
 
