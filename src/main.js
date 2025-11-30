@@ -29,6 +29,8 @@ const constants = {
 	fuel_threshold: 60,
 	fuel_stays: 5,
 	portal_opens: 5,
+	ghost_speed: 150,
+	ghost_stays: 5,
 };
 
 registerHomeScreen({ k, constants, state });

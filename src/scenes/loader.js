@@ -40,13 +40,16 @@ export function registerLoaderScene({ k, constants, state }) {
 		const entries = Object.entries(to_load_sprites);
 		(async () => {
 			for (const [name, path] of entries) {
-				await k.wait(0.15, () => {});
+				await k.wait(
+					process.env.NODE_ENV === "development" ? 0 : 0.15,
+					() => {}
+				);
 				await k.loadSprite(name, path);
 				loaded++;
 				increaseProgress();
 			}
 
-			k.go("home")
+			k.go("game");
 		})();
 	});
 }

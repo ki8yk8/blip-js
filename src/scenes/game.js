@@ -1,6 +1,7 @@
 import Background from "../objects/background";
 import { spawnBoulders } from "../objects/boulders";
 import Fuel from "../objects/fuel";
+import Ghost from "../objects/ghost";
 import { Hearts } from "../objects/hearts";
 import Portal from "../objects/portal";
 import Progress from "../objects/progress";
@@ -78,5 +79,7 @@ export function registerGameScene({ k, state, constants }) {
 			},
 			() => [state.fuel]
 		);
+
+		Ghost({ k, constants, state });
 	});
 }
