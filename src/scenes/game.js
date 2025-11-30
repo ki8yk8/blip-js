@@ -1,6 +1,7 @@
 import Background from "../objects/background";
 import { spawnBoulders } from "../objects/boulders";
 import { Hearts } from "../objects/hearts";
+import Progress from "../objects/progress";
 import Snowboard from "../objects/snowboard";
 
 export function registerGameScene({ k, state, constants }) {
@@ -9,6 +10,7 @@ export function registerGameScene({ k, state, constants }) {
 
 		const snowboard = Snowboard({ k, state });
 		spawnBoulders(k, snowboard.pos);
+		Progress({ k });
 
 		k.loop(constants.heart_spawn_rate, () => {
 			if (k.get("heart").length <= constants.max_hearts) {
