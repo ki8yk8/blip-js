@@ -1,3 +1,5 @@
+import { vec2 } from "../vec2";
+
 export function area() {
 	return {
 		_collisions: [],
@@ -34,6 +36,25 @@ export function area() {
 		},
 		getCollisions() {
 			return this._collisions;
+		},
+		getCollisionNormal(other) {
+			const center_a = this.pos.add(vec2(this.width / 2, this.height / 2));
+			const center_b = other.pos.add(vec2(other.width / 2, other.height / 2));
+
+			const delta = center_a.sub(center_b);
+
+			const [half_a, half_b] = [this.pos.scale(0.5), other.pos.scale(0.5)];
+
+			const overlap_x = half_a.x + half_b.x - Math.abs(delta.x);
+			const overap_y = half_a.y + half_b.y - Math.abs(delta.y);
+
+			if (overlap_x < 0 || overap_y < 0) return null;
+
+			if (overlap_x < overap_y) {
+				return delta.x > 0 ? vec2(1, 0) : vec2(-1, 0);
+			} else {
+				return delta.y > 0 ? vec2(0, 1) : vec2(0, -1);
+			}
 		},
 		onCollide(tag, callback = undefined) {
 			if (callback === undefined) {

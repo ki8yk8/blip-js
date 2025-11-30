@@ -7,16 +7,16 @@ export function body(props = {}) {
 		mass: props.mass ?? 1,
 		isStatic: props?.isStatic ?? false,
 		init(engine) {
-			if (this.acc) {
-				this.acc = this.acc.add(vec2(0, engine._gravity));
-			} else {
-				this.acc = vec2(0, engine._gravity);
-			}
+			this.acc = vec2(0, engine._gravity);
 		},
 		jump(...props) {
 			const force = vec2(props);
+
+			const ground_collisions = this.getCollisions().filter(
+				(e) => "isStatic" in e && e.isStatic
+			);
 			// collision should only occur when the object is touching the ground
-			if (this.getCollisions().length > 0) {
+			if (ground_collisions.length > 0) {
 				const impulse = force.scale(1 / this.mass);
 				this.vel = this.vel.add(impulse);
 			}
@@ -33,9 +33,26 @@ export function body(props = {}) {
 				(e) => "isStatic" in e && e.isStatic
 			);
 
-			if (static_object.length > 0) {
-				this.vel = this.vel.neg().scale(0.6);
+			for (const obj of static_object) {
+				const normal = this.getCollisionNormal(obj);
+				if (!normal) continue;
+
+				const vel_along_normal = this.vel.dot(normal);
+				if (vel_along_normal < 0) {
+					// here bounce = 0 means stop and we can have soft bounce with bounce = 0.6
+					const bounce = 0;
+					this.vel = this.vel.add(
+						normal.scale(-vel_along_normal * (1 + bounce))
+					);
+				}
 			}
+			// CHECK if this conflicts with the another vel of pos
+			this.pos = this.pos.add(this.vel.scale(dt));
+		},
+		isOnGround() {
+			return this.getCollisions().some(
+				(e) => e.isStatic && this.getCollisionsNormal(e).y < 0
+			);
 		},
 	};
 }

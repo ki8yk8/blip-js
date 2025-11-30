@@ -384,12 +384,10 @@ class Engine {
 						a._collisions.push(b);
 						a.triggerCollisionOnEnter(b);
 					}
-				} else {
-					if (a._collisions.includes(b)) {
-						// onExit
-						a._collisions.splice(a._collisions.indexOf(b), 1);
-						a.triggerCollisionOnExit(b);
-					}
+				} else if (a._collisions.includes(b)) {
+					// onExit
+					a._collisions = a._collisions.filter((e) => e !== b);
+					a.triggerCollisionOnExit(b);
 				}
 			}
 		}
