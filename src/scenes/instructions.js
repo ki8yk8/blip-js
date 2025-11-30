@@ -1,9 +1,37 @@
+import { letItSnow } from "../objects/snow";
+
 export function registerInstructionsScreen({ k }) {
 	k.scene("instructions", () => {
+		const snowman = k.add([
+			k.sprite("snowman"),
+			k.anchor("bot"),
+			k.pos(k.width() - 32, k.height()),
+			k.rotate(-15),
+		]);
+
+		k.animate(snowman, "angle", [-15, -10, -15, -20, -15], 5);
 		const logo = k.add([
 			k.text("Instructions", { size: 48 }),
 			k.pos(k.width() / 2, 100),
 			k.color("PURPLE"),
+		]);
+
+		// adding trees on the left corner
+		const tree1 = k.add([
+			k.sprite("tree-long"),
+			k.anchor("bot"),
+			k.pos(40, k.height()),
+		]);
+		k.add([k.sprite("stone4"), k.anchor("bot"), k.pos(tree1.pos.add(72, 0))]);
+		const tree2 = k.add([
+			k.sprite("tree-long"),
+			k.anchor("bot"),
+			k.pos(tree1.pos.add(64, 0)),
+		]);
+		const tree3 = k.add([
+			k.sprite("tree-small"),
+			k.anchor("bot"),
+			k.pos(tree1.pos.add(tree2.pos).scale(0.5)),
 		]);
 
 		const another_hint = k.add([
@@ -84,5 +112,7 @@ export function registerInstructionsScreen({ k }) {
 		k.onKeyPress(" ", () => {
 			k.go("home");
 		});
+
+		letItSnow({ k });
 	});
 }

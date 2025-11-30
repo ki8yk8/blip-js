@@ -1,6 +1,33 @@
+import { letItSnow } from "../../objects/snow";
+
 export function registerJumpGameUnlockScene({ k, constants, state }) {
 	k.scene("jump-game-unlock", () => {
 		window.localStorage.setItem("portalOpened", true);
+
+		const tree1 = k.add([
+			k.sprite("tree-small"),
+			k.pos(k.width() - 150, k.height()),
+			k.anchor("bot"),
+		]);
+		const tree2 = k.add([
+			k.sprite("tree-long"),
+			k.pos(tree1.pos.add(48, 0)),
+			k.anchor("bot"),
+		]);
+		k.add([
+			k.sprite("stone2"),
+			k.pos(tree1.pos.add(tree2.pos).scale(0.5).add(20, 0)),
+			k.anchor("bot"),
+		]);
+		k.add([k.sprite("grass2"), k.pos(tree1.pos.add(10, 0)), k.anchor("bot")]);
+
+		const snowman = k.add([
+			k.sprite("snowman"),
+			k.anchor("bot"),
+			k.pos(0, k.height()),
+			k.rotate(10),
+		]);
+		k.animate(snowman, "angle", [10, 6, 10, 14, 10], 4);
 
 		// welcome text for the jump game
 		const welcome_text = k.add([
@@ -47,5 +74,7 @@ export function registerJumpGameUnlockScene({ k, constants, state }) {
 		k.onKeyPress(" ", () => {
 			k.go("jump-game");
 		});
+
+		letItSnow({ k });
 	});
 }
