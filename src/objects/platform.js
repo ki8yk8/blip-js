@@ -10,6 +10,15 @@ export default function Platform({ k, n, pos, constants }) {
 			k.area(),
 			"snowblock",
 		]);
+		k.add([
+			k.rect(64, 32),
+			k.color("BLACK"),
+			k.pos(pos.add(0, -64)),
+			k.anchor("top"),
+			k.opacity(0),
+			k.area(),
+			"platform",
+		]);
 		return platform;
 	} else if (n > 1) {
 		let left_pos = pos.sub((n * 64) / 2 - 32, 0);
@@ -38,6 +47,15 @@ export default function Platform({ k, n, pos, constants }) {
 			k.anchor("top"),
 			k.area(),
 			"snowblock",
+		]);
+		k.add([
+			k.rect(n*64, 32),
+			k.color("BLACK"),
+			k.pos(pos.add(0, -64)),
+			k.anchor("top"),
+			k.opacity(0),
+			k.area(),
+			"platform",
 		]);
 
 		return platform;

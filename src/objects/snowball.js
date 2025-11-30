@@ -21,6 +21,15 @@ export default function Snowball({ k, constants, state }) {
 		}
 	});
 
+	snowball.onCollide("platform", (e) => {
+		// head (ball) to tail (platform) collision
+		const [s_bbox, e_bbox] = [k.bbox(snowball), k.bbox(e)];
+
+		if (Math.abs(s_bbox[0].y - e_bbox[2].y) < 5) {
+			snowball.vel.y = 0;
+		}
+	});
+
 	// do not let snowball cross the boundary ever
 	k.onUpdate(() => {
 		snowball.pos.x = k.clamp(
