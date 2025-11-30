@@ -2,6 +2,7 @@ import Engine from "./engine";
 import { registerGameScene } from "./scenes/game";
 import { registerHomeScreen } from "./scenes/homescreen";
 import { registerInstructionsScreen } from "./scenes/instructions";
+import { registerJumpGameScene } from "./scenes/jumpgame";
 import { registerGameOverScene } from "./scenes/over";
 
 const k = new Engine({
@@ -41,5 +42,6 @@ registerHomeScreen({ k, constants, state });
 registerGameScene({ k, constants, state });
 registerInstructionsScreen({ k, constants, state });
 registerGameOverScene({ k, constants, state });
+registerJumpGameScene({ k, constants, state });
 
 k.go("game");
