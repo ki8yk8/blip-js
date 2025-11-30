@@ -1,5 +1,6 @@
 import Igloo from "../../objects/igloo";
 import Platform from "../../objects/platform";
+import { letItSnow } from "../../objects/snow";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
 import Spikes from "../../objects/spikes";
@@ -50,6 +51,7 @@ export function registerJumpGameLevel3Scene({ k, constants, state }) {
 		Spikes({ k, pos: p2.pos });
 		Spikes({ k, pos: p4.pos });
 
+		letItSnow({ k });
 		function goNextLevel() {
 			window.localStorage.setItem(
 				"jumpLevel",

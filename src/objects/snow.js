@@ -1,6 +1,4 @@
-export default function Snow({ k, constants }) {
-	const N = 20;
-
+export default function Snow({ k, N }) {
 	let snow_particles = [];
 	for (let i = 0; i < N; i++) {
 		const w = k.rand(5, 10);
@@ -25,4 +23,12 @@ export default function Snow({ k, constants }) {
 			return e.pos.x > k.width() || e.pos.x < 0 || e.pos.y > k.height();
 		});
 	});
+}
+
+export async function letItSnow({ k }) {
+	const N = k.rand(1, 5);
+	const t = k.rand(1, 4);
+
+	await k.wait(t, () => Snow({ k, N }));
+	letItSnow({ k });
 }

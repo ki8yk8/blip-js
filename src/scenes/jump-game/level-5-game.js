@@ -1,5 +1,6 @@
 import Igloo from "../../objects/igloo";
 import Platform from "../../objects/platform";
+import { letItSnow } from "../../objects/snow";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
 
@@ -44,6 +45,7 @@ export function registerJumpGameLevel5Scene({ k, constants, state }) {
 
 		Igloo({ k, pos: p8.pos.add(80, 0), rotate: true });
 
+		letItSnow({ k });
 		function goNextLevel() {
 			k.go("jump-completed");
 		}

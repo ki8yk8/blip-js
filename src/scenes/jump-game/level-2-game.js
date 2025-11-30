@@ -1,5 +1,6 @@
 import Igloo from "../../objects/igloo";
 import Platform from "../../objects/platform";
+import { letItSnow } from "../../objects/snow";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
 
@@ -32,6 +33,7 @@ export function registerJumpGameLevel2Scene({ k, constants, state }) {
 			onWin: goNextLevel,
 		});
 
+		letItSnow({ k });
 		function goNextLevel() {
 			window.localStorage.setItem(
 				"jumpLevel",
