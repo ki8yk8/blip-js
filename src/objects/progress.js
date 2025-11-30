@@ -18,23 +18,15 @@ export default function Progress({ k }) {
 	]);
 
 	// 2*4 => means 4 is padding on left and right
-	const n_bars = (bg_rect.width - 2 * 4 + BAR_GAP) / (BAR_WIDTH + BAR_GAP);
+	const n_bars =
+		Math.floor(bg_rect.width - 4 * 2 + BAR_GAP) / (BAR_WIDTH + BAR_GAP);
 
-	// for (let i = 0; i<n_bars; i++) {
-	// nearest one
-	k.add([
-		k.rect(BAR_WIDTH, bg_rect.height - 2 * 4),
-		k.anchor("topleft"),
-		k.pos(bg_rect.pos.add(4, 4)),
-		k.color("GREEN"),
-	]);
-
-	// farthest one
-	k.add([
-		k.rect(BAR_WIDTH, bg_rect.height - 2 * 4),
-		k.anchor("topleft"),
-		k.pos(bg_rect.pos.add(4 + (BAR_WIDTH + BAR_GAP) * (n_bars - 1), 4)),
-		k.color("GREEN"),
-	]);
-	// }
+	for (let i = 0; i < n_bars; i++) {
+		k.add([
+			k.rect(BAR_WIDTH, bg_rect.height - 2 * 4),
+			k.anchor("topleft"),
+			k.pos(bg_rect.pos.add(4 + (BAR_WIDTH + BAR_GAP) * i, 4)),
+			k.color("GREEN"),
+		]);
+	}
 }
