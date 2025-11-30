@@ -30,13 +30,12 @@ export function registerGameScene({ k, state, constants }) {
 			k.anchor("topleft"),
 		]);
 
-		let prev_points = state.points;
-		k.onUpdate(() => {
-			if (prev_points !== state.points) {
-				prev_points = state.points;
-				score.text = `Score: ${prev_points}`;
+		k.useEffect(
+			() => {
+				score.text = `Score: ${state.points}`;
 				score.loaded = false;
-			}
-		});
+			},
+			() => [state.points]
+		);
 	});
 }

@@ -11,6 +11,7 @@ import { tag } from "./components/tags";
 import { text } from "./components/text";
 import { timer } from "./components/timer";
 import { visibility } from "./components/visibility";
+import useEffect from "./hooks/useEffect";
 import {
 	Color,
 	color,
@@ -129,6 +130,9 @@ class Engine {
 		this.chooseMultiple = this.random.chooseMultiple.bind(this.random);
 		this.shuffle = this.random.shuffle.bind(this.random);
 		this.randSeed = this.random.randSeed.bind(this.random);
+
+		// adding hooks
+		this.useEffect = useEffect.bind(null, this);
 
 		// begin the render
 		this.start();
