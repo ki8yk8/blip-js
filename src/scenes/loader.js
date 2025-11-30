@@ -84,7 +84,7 @@ export function registerLoaderScene({ k, constants, state }) {
 				increaseProgress();
 			}
 
-			k.go("jump-game-level-5");
+			k.go("jump-completed");
 		})();
 	});
 }
