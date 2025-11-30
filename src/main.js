@@ -12,6 +12,7 @@ const k = new Engine({
 
 const state = {
 	points: 0,
+	health: 100,
 };
 
 const constants = {

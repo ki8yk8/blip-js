@@ -10,7 +10,14 @@ export function registerGameScene({ k, state, constants }) {
 
 		const snowboard = Snowboard({ k, state });
 		spawnBoulders(k, snowboard.pos);
-		Progress({ k });
+		const health_progress = Progress({
+			k,
+			getPercent() {
+				return [state.health];
+			},
+		});
+
+		k.wait(1, () => (state.health = 80));
 
 		k.loop(constants.heart_spawn_rate, () => {
 			if (k.get("heart").length <= constants.max_hearts) {
