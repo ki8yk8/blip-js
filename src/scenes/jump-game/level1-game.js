@@ -37,7 +37,15 @@ export function registerJumpGameLevel1Scene({ k, constants, state }) {
 			pos: k.vec2((k.width() * 2) / 3, 100),
 			constants,
 			state,
-			onWin: () => k.go("jump-game-level-2"),
+			onWin: goNextLevel,
 		});
+
+		function goNextLevel() {
+			window.localStorage.setItem(
+				"jumpLevel",
+				k.max(window.localStorage.getItem("jumpLevel") ?? 1, 2)
+			);
+			k.go("jump-game", 2);
+		}
 	});
 }

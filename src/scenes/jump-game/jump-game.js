@@ -1,5 +1,5 @@
 export function registerJumpGameScene({ k, constants, state }) {
-	k.scene("jump-game", () => {
+	k.scene("jump-game", (n = 1) => {
 		const logo = k.add([
 			k.text("Snowball Jump", { size: 68, align: "center" }),
 			k.pos(k.width() / 2, 100),
@@ -57,7 +57,9 @@ export function registerJumpGameScene({ k, constants, state }) {
 			k.visibility(true),
 		]);
 
-		let selected = 1;
+		let selected = n;
+		renderBookBasedOnSelected(selected);
+		
 		k.onKeyPress("ArrowRight", () => {
 			selected = k.clamp(selected + 1, 1, levels);
 			renderBookBasedOnSelected(selected);
