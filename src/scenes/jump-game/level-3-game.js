@@ -1,3 +1,5 @@
+import Igloo from "../../objects/igloo";
+import Platform from "../../objects/platform";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
 
@@ -18,6 +20,29 @@ export function registerJumpGameLevel3Scene({ k, constants, state }) {
 			state,
 			onWin: goNextLevel,
 		});
+
+		const p1 = Platform({
+			k,
+			n: 8,
+			pos: k.vec2(k.width() / 2 + 120, k.height() - 100),
+		});
+		const p2 = Platform({
+			k,
+			n: 8,
+			pos: p1.pos.sub(140, 48),
+		});
+		const p3 = Platform({
+			k,
+			n: 2,
+			pos: p2.pos.sub(320, 10),
+		});
+		const p4 = Platform({
+			k,
+			n: 9,
+			pos: p3.pos.add(400, -20),
+		})
+
+		Igloo({k, pos: p4.pos.add(190, 0)});
 
 		function goNextLevel() {
 			window.localStorage.setItem(
