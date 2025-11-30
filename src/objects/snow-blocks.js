@@ -7,6 +7,7 @@ export default function SnowBlocks({ k, pos, n }) {
 			k.pos(pos),
 			k.anchor("bot"),
 			k.area(),
+			k.body({ isStatic: true }),
 			"snowblock",
 		]);
 		return block;
@@ -32,10 +33,11 @@ export default function SnowBlocks({ k, pos, n }) {
 		return k.add([
 			k.rect(n * 64, 64),
 			k.pos(pos),
-			k.opacity(0.0),
+			k.opacity(0),
 			k.color("BLACK"),
 			k.anchor("bot"),
 			k.area(),
+			k.body({ isStatic: true }),
 			"snowblock",
 		]);
 	}

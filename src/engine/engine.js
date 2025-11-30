@@ -184,7 +184,6 @@ class Engine {
 			}
 
 			if (e.resolvePhysics) e.resolvePhysics(dt);
-
 			if (e.update) e.update(dt, e);
 		}
 

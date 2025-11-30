@@ -14,7 +14,17 @@ export function body(props = {}) {
 		},
 		jump(force) {},
 		resolvePhysics(dt) {
+			if (this.isStatic) return;
+
 			this.vel = this.vel.add(this.acc.scale(dt));
+
+			// if collided with static object then velocity should be zero
+			const in_collision = this.getCollisions();
+			const static_object = in_collision.filter(
+				(e) => "isStatic" in e && e.isStatic
+			);
+
+			if (static_object.length > 0) this.vel = vec2(0, 0);
 		},
 	};
 }
