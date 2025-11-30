@@ -4,8 +4,21 @@ export default function Snowball({ k, constants, state }) {
 		k.anchor("bot"),
 		k.pos(k.width() / 2, 100),
 		k.area(),
+		k.color("#D8F2F4"),
 		"snowball",
 	]);
+
+	const particles = k.add([
+		k.rect(10, 10),
+		k.pos(0, 0),
+		k.particles({
+			spread: 360,
+			colors: [k.Color("RED"), k.Color("PURPLE")],
+			lifetime: 2,
+			speed: 50,
+		}),
+	]);
+
 	const max_velocity = 300;
 	const gravity = 200;
 	const drag = 0.1;
@@ -28,6 +41,31 @@ export default function Snowball({ k, constants, state }) {
 		if (Math.abs(s_bbox[0].y - e_bbox[2].y) < 5) {
 			snowball.vel.y = 0;
 		}
+	});
+
+	snowball.onCollide("igloo", async () => {
+		// animating the snowball
+		function jump() {
+			snowball.vel.y = -jump_force / 2;
+			snowball.vel.x = 0;
+			snowball.acc.x = 0;
+		}
+		function confetti() {
+			particles.pos = snowball.pos;
+			particles.emit(20);
+		}
+
+		jump();
+		await k.wait(0.8, jump);
+		confetti();
+		await k.wait(0.5, jump);
+		confetti();
+		await k.wait(0.5, jump);
+		confetti();
+		await k.wait(0.5, jump);
+
+		// new level starts
+		console.log("level complete");
 	});
 
 	// do not let snowball cross the boundary ever
