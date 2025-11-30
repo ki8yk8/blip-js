@@ -131,7 +131,7 @@ export function registerHomeScreen({ k, state, constants }) {
 					break;
 
 				case 2:
-					k.go("jump-game-level-1");
+					k.go("jump-game");
 					break;
 			}
 		});
