@@ -1,3 +1,4 @@
+import { vec2 } from "../vec2";
 import { rgbToHex, toRadian } from "../utils";
 import { convertBasedOnAnchor } from "./anchor";
 
@@ -29,7 +30,7 @@ export function rect(width, height, opt) {
 			// handles the scaling
 			ctx.scale(e.scale.x, e.scale.y);
 			ctx.globalAlpha = e.opacity;
-			
+
 			ctx.beginPath();
 			// the coordinate are 0,0 since the coordinate origin is already at the anchor point
 			ctx.roundRect(

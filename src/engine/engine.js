@@ -290,6 +290,86 @@ class Engine {
 			},
 		];
 	}
+	bbox(e) {
+		const anchored_pos = convertBasedOnAnchor(
+			e.pos.x,
+			e.pos.y,
+			e.width,
+			e.height,
+			e.anchor
+		);
+		const tl_pos = vec2(anchored_pos);
+
+		const bboxes = [
+			tl_pos,
+			tl_pos.add(e.width, 0),
+			tl_pos.add(e.width, e.height),
+			tl_pos.add(0, e.height),
+		];
+
+		if (e.scale.x !== 0 || e.scale.y !== 1) {
+			const [w, h, nw, nh] = [
+				e.width,
+				e.height,
+				e.width * e.scale.x,
+				e.height * e.scale.y,
+			];
+			const [dw, dh] = [nw - w, nh - h];
+
+			switch (e.anchor) {
+				case "topleft":
+					bboxes[1] = bboxes[1].add(dw, 0);
+					bboxes[2] = bboxes[2].add(dw, dh);
+					bboxes[3] = bboxes[3].add(0, dh);
+					break;
+				case "top":
+					bboxes[0] = bboxes[0].add(-dw / 2, 0);
+					bboxes[1] = bboxes[1].add(dw / 2, 0);
+					bboxes[2] = bboxes[2].add(dw / 2, dh);
+					bboxes[3] = bboxes[3].add(-dw / 2, dh);
+					break;
+				case "topright":
+					bboxes[0] = bboxes[0].add(-dw, 0);
+					bboxes[2] = bboxes[2].add(dw, dh);
+					bboxes[3] = bboxes[3].add(-dw, dh);
+					break;
+				case "right":
+					bboxes[0] = bboxes[0].add(-dw, -dh / 2);
+					bboxes[1] = bboxes[1].add(0, -dh / 2);
+					bboxes[2] = bboxes[2].add(0, dh / 2);
+					bboxes[3] = bboxes[3].add(-dw, dh / 2);
+					break;
+				case "botright":
+					bboxes[0] = bboxes[0].add(-dw, dh);
+					bboxes[1] = bboxes[1].add(0, dh);
+					bboxes[3] = bboxes[3].add(-dw, 0);
+					break;
+				case "bot":
+					bboxes[0] = bboxes[0].add(-dw / 2, -dh);
+					bboxes[1] = bboxes[1].add(dw / 2, -dh);
+					bboxes[2] = bboxes[2].add(dw / 2, 0);
+					bboxes[3] = bboxes[3].add(-dw / 2, 0);
+					break;
+				case "botleft":
+					bboxes[0] = bboxes[0].add(0, -dh);
+					bboxes[1] = bboxes[1].add(dw, -dh);
+					bboxes[2] = bboxes[2].add(dw, 0);
+					break;
+				case "left":
+					bboxes[0] = bboxes[0].add(0, -dh / 2);
+					bboxes[1] = bboxes[1].add(dw, -dh / 2);
+					bboxes[2] = bboxes[2].add(dw, dh / 2);
+					bboxes[3] = bboxes[3].add(0, dh / 2);
+					break;
+				case "center":
+					bboxes[0] = bboxes[0].add(-dw/2, -dh / 2);
+					bboxes[1] = bboxes[1].add(dw/2, -dh / 2);
+					bboxes[2] = bboxes[2].add(dw/2, dh / 2);
+					bboxes[3] = bboxes[3].add(-dw/2, dh / 2);
+					break;
+			}
+		}
+	}
 
 	get(tag) {
 		if (tag === "*") {

@@ -15,7 +15,6 @@ export default function Snowball({ k, constants, state }) {
 	snowball.acc = k.vec2(0, gravity);
 
 	snowball.onCollide("snowblock", (e) => {
-		console.log(snowball.pos.y, e.pos.y);
 		// only attach on bottom
 		// if (snowball.pos.y<e.pos.y) {
 		snowball.vel.y = 0;
