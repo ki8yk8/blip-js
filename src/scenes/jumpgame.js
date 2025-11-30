@@ -14,6 +14,7 @@ export function registerJumpGameScene({ k, constants, state }) {
 		const snowball = Snowball({ k, constants, state });
 
 		// level 1
-		const platform = Platform({ k, pos: k.vec2(k.width() / 2, 500) });
+		Platform({ k, n: 5, pos: k.vec2(k.width() / 2, 500) });
+		Platform({ k, n: 1, pos: k.vec2(k.width() / 2, 400) });
 	});
 }

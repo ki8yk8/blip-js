@@ -25,6 +25,7 @@ export function registerLoaderScene({ k, constants, state }) {
 
 			"snow-platform-left": "/sprites/snow_78 1.png",
 			"snow-platform-right": "/sprites/snow_59 1.png",
+			"snow-platform-middle": "/sprites/snow_58 1.png",
 			"snow-platform": "/sprites/snow_79 1.png",
 
 			soil: "/sprites/snow_74 1.png",
