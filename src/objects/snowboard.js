@@ -67,15 +67,15 @@ export default function Snowboard({ k, state, constants }) {
 		handleSnowboardHit();
 	});
 
-	function handleSnowboardHit() {
+	async function handleSnowboardHit() {
 		// on hit boulder, you rotate and blink multiple times and your health decrease
 		snowboard.angle = (snowboard.angle + 180) % 360;
 
 		// blink 1
-		k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o));
-		k.wait(0.5, () => k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o)));
-		k.wait(1, () => k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o)));
-		k.wait(1.5, () => k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o)));
+		await k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o));
+		await k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o));
+		await k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o));
+		await k.tween(1, 0, 0.5, (o) => (snowboard.opacity = o));
 	}
 
 	k.onUpdate(() => {
