@@ -1,7 +1,14 @@
+import SnowBlocks from "../objects/snow-blocks";
+
 const DELAY = 0.8;
 
 export function registerGameOverScene({ k, state, constants }) {
 	k.scene("over", (score) => {
+		const snowblocks = SnowBlocks({ k, n: 12, pos: k.vec2(k.width() / 2, k.height()) });
+
+		// squence of long and small trees
+		console.log(snowblocks)
+		
 		const score_title = k.add([
 			k.text("You Scored", { size: 32 }),
 			k.pos(k.width() / 2, 200),
