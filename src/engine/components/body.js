@@ -13,11 +13,12 @@ export function body(props = {}) {
 				this.acc = vec2(0, engine._gravity);
 			}
 		},
-		jump(force) {
+		jump(...props) {
+			const force = vec2(props);
 			// collision should only occur when the object is touching the ground
 			if (this.getCollisions().length > 0) {
 				const impulse = force.scale(1 / this.mass);
-				this.vel = this.vel.add(impulse).neg();
+				this.vel = this.vel.add(impulse);
 			}
 		},
 

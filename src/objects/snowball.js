@@ -9,7 +9,7 @@ export default function Snowball({ k, constants, state }) {
 	]);
 
 	k.onKeyPress(" ", () => {
-		snowball.jump(k.vec2(20, 200).neg());
+		snowball.jump(20, 200);
 	})
 
 	return snowball;
