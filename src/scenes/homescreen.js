@@ -16,7 +16,14 @@ export function registerHomeScreen({ k, state, constants }) {
 			k.pos(igloo.pos.add(-50, 0)),
 			k.anchor("bot"),
 		]);
-		k.add([k.sprite("snowman"), k.anchor("bot"), k.pos(igloo.pos.add(200, 0))]);
+		const snowman = k.add([
+			k.sprite("snowman"),
+			k.anchor("bot"),
+			k.pos(igloo.pos.add(200, 0)),
+			k.rotate(0),
+		]);
+
+		k.animate(snowman, "angle", [0, -2, 2, -2, 2, 0], 2);
 
 		const logo = k.add([
 			k.text("Ski Downhill", { size: 64 }),

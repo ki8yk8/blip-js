@@ -10,7 +10,7 @@ const k = new Engine({
 	width: window.innerWidth,
 	height: window.innerHeight,
 	canvas: document.getElementById("game-canvas"),
-	backgroundColor: "#DDE7F7",
+	backgroundColor: "#BFCDEA",
 });
 
 const state = {
