@@ -17,8 +17,6 @@ export function registerGameScene({ k, state, constants }) {
 			},
 		});
 
-		k.wait(1, () => (state.health = 80));
-
 		k.loop(constants.heart_spawn_rate, () => {
 			if (k.get("heart").length <= constants.max_hearts) {
 				Hearts({ k, state });

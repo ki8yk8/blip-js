@@ -1,4 +1,4 @@
-export default function Snowboard({ k }) {
+export default function Snowboard({ k , state}) {
 	const snowboard = k.add([
 		k.rect(20, 50, { radius: [9, 9, 2, 2] }),
 		k.color("#384559"),
@@ -52,6 +52,11 @@ export default function Snowboard({ k }) {
 	};
 
 	snowboard.onCollide("boulder", (boulder) => {
+		// the loss of health depends on the impact i.e. the velocity with which the snowboard was moving
+		const vel_dis = snowboard.vel.len();
+		const impact_decrease = vel_dis * 0.1;
+		state.health -= impact_decrease;
+
 		handleSnowboardHit();
 	});
 	snowboard.onCollide("bar", (bar) => {
