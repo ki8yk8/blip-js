@@ -86,10 +86,10 @@ export function registerGameScene({ k, state, constants }) {
 			}
 		});
 
-		let first = true;
+		let first_ghost = true;
 		k.loop(constants.ghost_spawns, () => {
-			if (first) {
-				first = false;
+			if (first_ghost) {
+				first_ghost = false;
 				return;
 			}
 

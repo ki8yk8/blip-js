@@ -26,6 +26,16 @@ export default function Health({ k, constants, state }) {
 		k.destroy(health);
 	});
 
+	// when the health appears on top of boulder then respawn the health at another location
+	k.onCollide("boulder", () => {
+		const [rand_x, rand_y] = [
+			k.rand(200, k.width() - 200),
+			k.rand(200, k.height() - 200),
+		];
+
+		health.pos = k.vec2(rand_x, rand_y);
+	});
+
 	k.wait(constants.health_stays, () => k.destroy(health));
 
 	return health;
