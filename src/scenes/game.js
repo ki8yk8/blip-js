@@ -50,14 +50,16 @@ export function registerGameScene({ k, state, constants }) {
 			k.anchor("topleft"),
 		]);
 
+		let portal_opened = false;
 		k.useEffect(
 			() => {
 				score.text = `Score: ${state.points}`;
 				score.loaded = false;
 
 				// open portal for the next game
-				if (state.points >= constants.portal_opens) {
+				if (state.points >= constants.portal_opens && !portal_opened) {
 					Portal({ k });
+					portal_opened = true;
 				}
 			},
 			() => [state.points]
