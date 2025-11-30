@@ -1,6 +1,11 @@
 import { vec2 } from "../engine/vec2";
 
-export default function Snowball({ k, pos = vec2(k.width() / 2, 100), onWin }) {
+export default function Snowball({
+	k,
+	pos = vec2(k.width() / 2, 100),
+	onWin,
+	onLose,
+}) {
 	const snowball = k.add([
 		k.rect(50, 50, { radius: 25 }),
 		k.anchor("bot"),
@@ -68,6 +73,10 @@ export default function Snowball({ k, pos = vec2(k.width() / 2, 100), onWin }) {
 
 		// new level starts
 		onWin?.();
+	});
+
+	snowball.onCollide("spikes", () => {
+		onLose?.();
 	});
 
 	// do not let snowball cross the boundary ever

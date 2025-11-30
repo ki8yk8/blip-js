@@ -2,6 +2,7 @@ import Igloo from "../../objects/igloo";
 import Platform from "../../objects/platform";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
+import Spikes from "../../objects/spikes";
 
 export function registerJumpGameLevel3Scene({ k, constants, state }) {
 	k.scene("jump-game-level-3", () => {
@@ -19,6 +20,7 @@ export function registerJumpGameLevel3Scene({ k, constants, state }) {
 			constants,
 			state,
 			onWin: goNextLevel,
+			onLose: handleLoss,
 		});
 
 		const p1 = Platform({
@@ -44,12 +46,20 @@ export function registerJumpGameLevel3Scene({ k, constants, state }) {
 
 		Igloo({ k, pos: p4.pos.add(190, 0), rotate: true });
 
+		Spikes({ k, pos: k.vec2(k.width() / 2, k.height() - 64) });
+		Spikes({ k, pos: p2.pos });
+		Spikes({ k, pos: p4.pos });
+
 		function goNextLevel() {
 			window.localStorage.setItem(
 				"jumpLevel",
 				k.max(window.localStorage.getItem("jumpLevel") ?? 1, 4)
 			);
 			k.go("jump-game", 4);
+		}
+
+		function handleLoss() {
+			k.go("jump-game");
 		}
 	});
 }
