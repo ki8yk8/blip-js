@@ -97,20 +97,24 @@ export default function Snowboard({ k, state, constants }) {
 
 		// handle turning thursts; the left and right thruster consume less fuel than the main one
 		if (k.isKeyDown("ArrowLeft")) {
-			snowboard.angle -= turn_speed * k.dt;
-			if (Math.abs(last_emitted.right_thruster - k.time) > 0.1) {
-				right_emitter.emit(3);
-				last_emitted.right_thruster = k.time;
+			if (state.fuel > 0) {
+				snowboard.angle -= turn_speed * k.dt;
+				if (Math.abs(last_emitted.right_thruster - k.time) > 0.1) {
+					right_emitter.emit(3);
+					last_emitted.right_thruster = k.time;
+				}
+				state.fuel -= constants.rotation_fuel_rate * k.dt;
 			}
-			state.fuel -= constants.rotation_fuel_rate * k.dt;
 		}
 		if (k.isKeyDown("ArrowRight")) {
-			snowboard.angle += turn_speed * k.dt;
-			state.fuel -= constants.rotation_fuel_rate * k.dt;
+			if (state.fuel > 0) {
+				snowboard.angle += turn_speed * k.dt;
+				state.fuel -= constants.rotation_fuel_rate * k.dt;
 
-			if (Math.abs(last_emitted.left_thruster - k.time) > 0.1) {
-				left_emitter.emit(3);
-				last_emitted.left_thruster = k.time;
+				if (Math.abs(last_emitted.left_thruster - k.time) > 0.1) {
+					left_emitter.emit(3);
+					last_emitted.left_thruster = k.time;
+				}
 			}
 		}
 
@@ -119,12 +123,14 @@ export default function Snowboard({ k, state, constants }) {
 		const forward = k.vec2(0, -1).rotate(snowboard.angle);
 
 		if (k.isKeyDown("ArrowUp")) {
-			acc = acc.add(forward.scale(forward_acc));
-			state.fuel -= constants.main_fuel_rate * k.dt;
+			if (state.fuel > 0) {
+				acc = acc.add(forward.scale(forward_acc));
+				state.fuel -= constants.main_fuel_rate * k.dt;
 
-			if (Math.abs(last_emitted.snowboard - k.time) > 0.1) {
-				snowboard.emit(3);
-				last_emitted.snowboard = k.time;
+				if (Math.abs(last_emitted.snowboard - k.time) > 0.1) {
+					snowboard.emit(3);
+					last_emitted.snowboard = k.time;
+				}
 			}
 		}
 
