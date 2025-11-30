@@ -3,9 +3,13 @@
 export default function useEffect(engine, callback, get_deps = () => []) {
 	let start_value = get_deps();
 
+	if (!Array.isArray(start_value)) start_value = [start_value];
+	callback();
+
 	engine.onUpdate(() => {
-		const dependency = get_deps();
-		console.log(dependency);
+		let dependency = get_deps();
+		if (!Array.isArray(dependency)) dependency = [dependency];
+
 		dependency.forEach((depend, index) => {
 			if (depend !== start_value[index]) {
 				callback();

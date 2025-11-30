@@ -13,7 +13,7 @@ export function registerGameScene({ k, state, constants }) {
 		const health_progress = Progress({
 			k,
 			getPercent() {
-				return [state.health];
+				return state.health;
 			},
 		});
 
