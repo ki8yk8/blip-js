@@ -1,15 +1,17 @@
-export default function Snowball({ k, constants, state }) {
+import { vec2 } from "../engine/vec2";
+
+export default function Snowball({ k, pos = vec2(k.width() / 2, 100) }) {
 	const snowball = k.add([
 		k.rect(50, 50, { radius: 25 }),
 		k.anchor("bot"),
-		k.pos(k.width() / 2, 100),
+		k.pos(pos),
 		k.area(),
 		k.color("#D8F2F4"),
 		"snowball",
 	]);
 
 	const particles = k.add([
-		k.rect(10, 10),
+		k.rect(1, 1),
 		k.pos(0, 0),
 		k.particles({
 			spread: 360,

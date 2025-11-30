@@ -19,13 +19,21 @@ export function registerJumpGameScene({ k, constants, state }) {
 		});
 
 		// level 1
-		Platform({ k, n: 5, pos: k.vec2(k.width() / 2, 500) });
-		Platform({ k, n: 1, pos: k.vec2(k.width() / 2, 400) });
+		Platform({ k, n: 1, pos: k.vec2((k.width() * 2) / 3, 200) });
+		Platform({ k, n: 2, pos: k.vec2((k.width() * 2) / 3 - 32, 280) });
+		Platform({ k, n: 3, pos: k.vec2((k.width() * 2) / 3 - 32 * 2, 360) });
+		Platform({ k, n: 4, pos: k.vec2((k.width() * 2) / 3 - 32 * 3, 450) });
+		Platform({ k, n: 5, pos: k.vec2((k.width() * 2) / 3 - 32 * 4, 540) });
 
 		Igloo({ k, pos: k.vec2(k.width() / 4, k.height() - 64) });
 		Grass({ k, pos: getRanodmPos(k) });
 		Stone({ k, pos: getRanodmPos(k) });
 
-		const snowball = Snowball({ k, constants, state });
+		const snowball = Snowball({
+			k,
+			pos: k.vec2((k.width() * 2) / 3, 100),
+			constants,
+			state,
+		});
 	});
 }

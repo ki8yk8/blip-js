@@ -66,7 +66,7 @@ export default function Platform({ k, n, pos, constants }) {
 
 		if (k.rand() < 0.6) {
 			const rand_pos = platform.pos.add(
-				k.rand(-platform.width / 2 - 50, platform.width / 2 - 50),
+				k.rand(-platform.width / 2 + 50, platform.width / 2 - 50),
 				0
 			);
 
