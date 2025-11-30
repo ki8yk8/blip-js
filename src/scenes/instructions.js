@@ -6,6 +6,13 @@ export function registerInstructionsScreen({ k }) {
 			k.color("PURPLE"),
 		]);
 
+		const another_hint = k.add([
+			k.text("Press arrow keys for viewing instructions."),
+			k.pos(k.width() / 2, k.height() - 150),
+			k.rotate(0),
+			k.scale(1),
+			k.color("BROWN"),
+		]);
 		const hint = k.add([
 			k.text("Press space to continue"),
 			k.pos(k.width() / 2, k.height() - 100),
@@ -64,6 +71,12 @@ export function registerInstructionsScreen({ k }) {
 			"scale",
 			[k.vec2(1), k.vec2(1.1), k.vec2(1), k.vec2(0.9), k.vec2(1)],
 			4
+		);
+		k.animate(
+			another_hint,
+			"pos",
+			[another_hint.pos, another_hint.pos.add(0, 10), another_hint.pos],
+			2
 		);
 
 		// exit the instruction screen

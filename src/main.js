@@ -36,4 +36,4 @@ registerGameScene({ k, constants, state });
 registerInstructionsScreen({ k, constants, state });
 registerGameOverScene({ k, constants, state });
 
-k.go("over", 2);
+k.go("home");
