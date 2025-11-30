@@ -1,5 +1,6 @@
 import Background from "../objects/background";
 import { spawnBoulders } from "../objects/boulders";
+import Fuel from "../objects/fuel";
 import { Hearts } from "../objects/hearts";
 import Progress from "../objects/progress";
 import Snowboard from "../objects/snowboard";
@@ -54,6 +55,20 @@ export function registerGameScene({ k, state, constants }) {
 				score.loaded = false;
 			},
 			() => [state.points]
+		);
+
+		let last_spawned = k.time;
+		k.useEffect(
+			() => {
+				if (
+					k.time > last_spawned + constants.gap_in_fuel_spawn &&
+					state.fuel < constants.fuel_threshold
+				) {
+					Fuel({ k, constants, state });
+					last_spawned = k.time;
+				}
+			},
+			() => [state.fuel]
 		);
 	});
 }

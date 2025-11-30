@@ -22,6 +22,9 @@ const constants = {
 	rotation_fuel_rate: 2.5,
 	main_fuel_rate: 5,
 	fuel_fills: 50,
+	gap_in_fuel_spawn: 5,
+	fuel_threshold: 60,
+	fuel_stays: 5,
 };
 
 k.loadSprite("heart", "/sprites/star.png");
