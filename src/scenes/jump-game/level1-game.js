@@ -1,6 +1,7 @@
 import Grass from "../../objects/grass";
 import Igloo from "../../objects/igloo";
 import Platform from "../../objects/platform";
+import Snow from "../../objects/snow";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
 import Stone from "../../objects/stone";
@@ -39,6 +40,8 @@ export function registerJumpGameLevel1Scene({ k, constants, state }) {
 			state,
 			onWin: goNextLevel,
 		});
+
+		Snow({ k });
 
 		function goNextLevel() {
 			window.localStorage.setItem(
