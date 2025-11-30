@@ -369,6 +369,8 @@ class Engine {
 					break;
 			}
 		}
+
+		return bboxes;
 	}
 
 	get(tag) {

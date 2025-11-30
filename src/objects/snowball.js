@@ -12,14 +12,13 @@ export default function Snowball({ k, constants, state }) {
 	const jump_force = 200;
 
 	snowball.vel = k.vec2(0, 0);
-	snowball.acc = k.vec2(0, gravity);
 
 	snowball.onCollide("snowblock", (e) => {
-		// only attach on bottom
-		// if (snowball.pos.y<e.pos.y) {
-		snowball.vel.y = 0;
-		snowball.acc.y = 0;
-		// }
+		const [s_bbox, e_bbox] = [k.bbox(snowball), k.bbox(e)];
+		if (Math.abs(s_bbox[2].y - e_bbox[0].y) < 5) {
+			snowball.vel.y = 0;
+			snowball.acc.y = 0;
+		}
 	});
 
 	// do not let snowball cross the boundary ever
@@ -37,8 +36,6 @@ export default function Snowball({ k, constants, state }) {
 		if (!snowball.checkCollision("snowblock")) {
 			snowball.acc.y = gravity;
 			return;
-		} else {
-			snowball.acc.y = 0;
 		}
 
 		// on press space jump
