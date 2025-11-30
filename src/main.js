@@ -30,6 +30,11 @@ const constants = {
 
 k.loadSprite("heart", "/sprites/star.png");
 k.loadSprite("fuel", "/sprites/fuel.png");
+k.loadSprite("ghost", "./sprites/ghosty.png");
+k.loadSprite("grass", "./sprites/grass.png");
+k.loadSprite("portal", "/sprites/portal.png");
+k.loadSprite("spike", "/sprites/spike.png");
+k.loadSprite("steel", "/sprites/steel.png");
 
 registerHomeScreen({ k, constants, state });
 registerGameScene({ k, constants, state });
