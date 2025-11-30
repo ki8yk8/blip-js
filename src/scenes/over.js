@@ -1,8 +1,14 @@
 export function registerGameOverScene({ k, state, constants }) {
 	k.scene("over", (score) => {
+		const score_title = k.add([
+			k.text("You Scored", { size: 32 }),
+			k.pos(k.width() / 2, 200),
+			k.color("BLACK"),
+		]);
+
 		const score_text = k.add([
-			k.text(`${score}`, { size: 64 }),
-			k.pos(k.width() / 2, 100),
+			k.text(`${score}`, { size: 72 }),
+			k.pos(score_title.pos.add(0, 64)),
 			k.color("PURPLE"),
 		]);
 
