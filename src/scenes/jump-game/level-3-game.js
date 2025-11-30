@@ -40,9 +40,9 @@ export function registerJumpGameLevel3Scene({ k, constants, state }) {
 			k,
 			n: 9,
 			pos: p3.pos.add(400, -20),
-		})
+		});
 
-		Igloo({k, pos: p4.pos.add(190, 0)});
+		Igloo({ k, pos: p4.pos.add(190, 0), rotate: true });
 
 		function goNextLevel() {
 			window.localStorage.setItem(
