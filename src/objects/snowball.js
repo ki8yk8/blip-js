@@ -7,16 +7,20 @@ export default function Snowball({ k, constants, state }) {
 		"snowball",
 	]);
 	const max_velocity = 300;
-	const gravity = 500;
+	const gravity = 200;
 	const drag = 0.1;
 	const jump_force = 200;
 
-	snowball.vel = k.vec2(0, 0)
+	snowball.vel = k.vec2(0, 0);
 	snowball.acc = k.vec2(0, gravity);
 
 	snowball.onCollide("snowblock", (e) => {
+		console.log(snowball.pos.y, e.pos.y);
+		// only attach on bottom
+		// if (snowball.pos.y<e.pos.y) {
 		snowball.vel.y = 0;
 		snowball.acc.y = 0;
+		// }
 	});
 
 	// do not let snowball cross the boundary ever
@@ -26,13 +30,14 @@ export default function Snowball({ k, constants, state }) {
 			snowball.width / 2,
 			k.width() - snowball.width / 2
 		);
-		// snowball.pos.y = k.clamp(snowball.pos.y, snowball.height, k.height() - 64);
+		snowball.pos.y = k.clamp(snowball.pos.y, snowball.height, k.height() - 64);
 	});
 
 	// handle movement left and right
 	k.onUpdate(() => {
 		if (!snowball.checkCollision("snowblock")) {
-			snowball.acc.y = 200;
+			snowball.acc.y = gravity;
+			return;
 		} else {
 			snowball.acc.y = 0;
 		}
@@ -50,8 +55,8 @@ export default function Snowball({ k, constants, state }) {
 			snowball.vel.x = snowball.vel.x * (1 - drag);
 		}
 
-		// snowball.vel.x = k.clamp(snowball.vel.x, -max_velocity, max_velocity);
-		// snowball.vel.y = k.clamp(snowball.vel.y, -max_velocity, max_velocity);
+		snowball.vel.x = k.clamp(snowball.vel.x, -max_velocity, max_velocity);
+		snowball.vel.y = k.clamp(snowball.vel.y, -max_velocity, max_velocity);
 	});
 
 	return snowball;
