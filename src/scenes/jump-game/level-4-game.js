@@ -1,3 +1,4 @@
+import Lift from "../../objects/lift";
 import SnowBlocks from "../../objects/snow-blocks";
 import Snowball from "../../objects/snowball";
 
@@ -13,11 +14,13 @@ export function registerJumpGameLevel4Scene({ k, constants, state }) {
 		// level 4
 		const snowball = Snowball({
 			k,
-			pos: k.vec2(100, 500),
+			pos: k.vec2(k.width()/2, 0),
 			constants,
 			state,
 			onWin: goNextLevel,
 		});
+
+		Lift({ k, pos: k.vec2(k.width() / 2, k.height() - 74) });
 
 		function goNextLevel() {
 			window.localStorage.setItem(
