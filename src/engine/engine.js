@@ -183,6 +183,8 @@ class Engine {
 				this.entities.splice(index, 1);
 			}
 
+			if (e.resolvePhysics) e.resolvePhysics(dt);
+
 			if (e.update) e.update(dt, e);
 		}
 

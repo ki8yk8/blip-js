@@ -19,8 +19,6 @@ export function pos(x, y) {
 		update(dt) {
 			if (this.vel) {
 				this.pos = this.pos.add(this.vel.x * dt, this.vel.y * dt);
-				
-				this.vel = this.vel.add(this.acc.scale(dt));
 			}
 		},
 	};

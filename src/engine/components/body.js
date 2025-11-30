@@ -13,5 +13,8 @@ export function body(props = {}) {
 			}
 		},
 		jump(force) {},
+		resolvePhysics(dt) {
+			this.vel = this.vel.add(this.acc.scale(dt));
+		},
 	};
 }
