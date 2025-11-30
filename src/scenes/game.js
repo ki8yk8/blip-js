@@ -12,8 +12,19 @@ export function registerGameScene({ k, state, constants }) {
 		spawnBoulders(k, snowboard.pos);
 		const health_progress = Progress({
 			k,
+			title: "Health",
+			color: "GREEN",
 			getPercent() {
 				return state.health;
+			},
+		});
+		const fuel_progress = Progress({
+			k,
+			title: "Fuel",
+			pos: health_progress.pos.add(0, 80),
+			color: "PURPLE",
+			getPercent() {
+				return 100;
 			},
 		});
 
