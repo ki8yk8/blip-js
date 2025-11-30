@@ -26,6 +26,7 @@ const constants = {
 	gap_in_fuel_spawn: 5,
 	fuel_threshold: 60,
 	fuel_stays: 5,
+	portal_opens: 5,
 };
 
 k.loadSprite("heart", "/sprites/star.png");
@@ -41,4 +42,4 @@ registerGameScene({ k, constants, state });
 registerInstructionsScreen({ k, constants, state });
 registerGameOverScene({ k, constants, state });
 
-k.go("home");
+k.go("game");

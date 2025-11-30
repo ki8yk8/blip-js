@@ -2,6 +2,7 @@ import Background from "../objects/background";
 import { spawnBoulders } from "../objects/boulders";
 import Fuel from "../objects/fuel";
 import { Hearts } from "../objects/hearts";
+import Portal from "../objects/portal";
 import Progress from "../objects/progress";
 import Snowboard from "../objects/snowboard";
 
@@ -53,6 +54,11 @@ export function registerGameScene({ k, state, constants }) {
 			() => {
 				score.text = `Score: ${state.points}`;
 				score.loaded = false;
+
+				// open portal for the next game
+				if (state.points >= constants.portal_opens) {
+					Portal({ k });
+				}
 			},
 			() => [state.points]
 		);
