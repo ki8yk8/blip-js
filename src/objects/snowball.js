@@ -1,6 +1,6 @@
 import { vec2 } from "../engine/vec2";
 
-export default function Snowball({ k, pos = vec2(k.width() / 2, 100) }) {
+export default function Snowball({ k, pos = vec2(k.width() / 2, 100), onWin }) {
 	const snowball = k.add([
 		k.rect(50, 50, { radius: 25 }),
 		k.anchor("bot"),
@@ -67,7 +67,7 @@ export default function Snowball({ k, pos = vec2(k.width() / 2, 100) }) {
 		await k.wait(0.5, jump);
 
 		// new level starts
-		console.log("level complete");
+		onWin?.();
 	});
 
 	// do not let snowball cross the boundary ever

@@ -12,8 +12,8 @@ export default function Portal({ k, state, constants }) {
 	k.animate(portal, "angle", [0, -15, 15, 0], 2);
 
 	portal.onCollide("snowboard", () => {
-		k.go("jump-game");
-	})
+		k.go("jump-game-level-1");
+	});
 
 	return portal;
 }
