@@ -6,11 +6,17 @@ export default function Snowball({ k, constants, state }) {
 		k.area(),
 		"snowball",
 	]);
+	const max_velocity = 300;
+	const gravity = 500;
+	const drag = 0.1;
+	const jump_force = 200;
 
-	snowball.acc = k.vec2(0, 200);
+	snowball.vel = k.vec2(0, 0)
+	snowball.acc = k.vec2(0, gravity);
 
-	snowball.onCollide("snowblock", () => {
-		snowball.vel.y = snowball.vel.y * -0.2;
+	snowball.onCollide("snowblock", (e) => {
+		snowball.vel.y = 0;
+		snowball.acc.y = 0;
 	});
 
 	// do not let snowball cross the boundary ever
@@ -20,25 +26,32 @@ export default function Snowball({ k, constants, state }) {
 			snowball.width / 2,
 			k.width() - snowball.width / 2
 		);
-		snowball.pos.y = k.clamp(snowball.pos.y, snowball.height, k.height() - 64);
+		// snowball.pos.y = k.clamp(snowball.pos.y, snowball.height, k.height() - 64);
 	});
 
 	// handle movement left and right
-	const drag = 0.1;
 	k.onUpdate(() => {
-		if (!snowball.checkCollision("snowblock")) return;
+		if (!snowball.checkCollision("snowblock")) {
+			snowball.acc.y = 200;
+		} else {
+			snowball.acc.y = 0;
+		}
 
 		// on press space jump
 		if (k.isKeyDown(" ")) {
-			snowball.vel = snowball.vel.add(0, -150);
+			snowball.vel.y = -jump_force;
+			snowball.acc.y = gravity;
 		}
 		if (k.isKeyDown("ArrowRight")) {
-			snowball.vel.x = 200;
+			snowball.vel.x = 150;
 		} else if (k.isKeyDown("ArrowLeft")) {
-			snowball.vel.x = -200;
+			snowball.vel.x = -150;
 		} else {
 			snowball.vel.x = snowball.vel.x * (1 - drag);
 		}
+
+		// snowball.vel.x = k.clamp(snowball.vel.x, -max_velocity, max_velocity);
+		// snowball.vel.y = k.clamp(snowball.vel.y, -max_velocity, max_velocity);
 	});
 
 	return snowball;

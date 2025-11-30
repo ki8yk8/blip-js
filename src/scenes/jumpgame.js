@@ -11,5 +11,13 @@ export function registerJumpGameScene({ k, constants, state }) {
 		});
 
 		const snowball = Snowball({ k, constants, state });
+
+		// level 1
+		const platform = k.add([
+			k.sprite("snow-platform-left"),
+			k.pos(k.width()/2, 500),
+			k.area(),
+			"snowblock"
+		])
 	});
 }
