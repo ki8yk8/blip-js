@@ -1,12 +1,9 @@
+import SnowBlocks from "../objects/snow-blocks";
+
 export function registerHomeScreen({ k, state, constants }) {
 	k.scene("home", () => {
 		// adding cool sprites
-		k.add([
-			k.sprite("snow-block"),
-			k.pos(k.width()/2, k.height()),
-			k.scale(1),
-			k.anchor("bot"),
-		])
+		SnowBlocks({ k, n: 10, pos: k.vec2(k.width() / 2, k.height()) });
 
 		const logo = k.add([
 			k.text("Ski Downhill", { size: 64 }),
